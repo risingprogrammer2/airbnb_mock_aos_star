@@ -15,12 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".src.main.MainActivity">
-
-        </activity>
         <activity
             android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity android:name=".src.main.MainActivity">
+
+        </activity>
+        <activity android:name=".src.signUpIn.LogInActivity"
+            android:theme="@style/LogInTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

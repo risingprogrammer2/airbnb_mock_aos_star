@@ -2,4 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- log in -->
+    <dimen name="log_in_activity_vertical_padding">8dp</dimen>
+    <dimen name="log_in_activity_horizontal_padding">24dp</dimen>
+    <dimen name="log_in_text_size">15sp</dimen>
+    <dimen name="log_in_text_title_size">22sp</dimen>
 </resources>

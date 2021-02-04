@@ -11,10 +11,18 @@
     <color name="whiteForBackground">#FFFFFF</color>
     <color name="blackForText">#4a4a4a</color>
     <color name="redForText">#d9534f</color>
+    <color name="transparentForBackground">@android:color/transparent</color>
 
 
     <!-- 스플래시 -->
     <color name="greyForSplashLogo">#DBDBDB</color>
     <color name="greyForSplashBackground">#F2F2F2</color>
     <color name="greyForSplashStatusIcon">#6b6b6b</color>
+
+    <!-- 로그인 -->
+    <color name="blackForLogInClearBtn">#484848</color>
+    <color name="blackForLogInText">#2A2A2A</color>
+    <color name="greyForLogInPhoneBorder">#BBBBBB</color>
+    <color name="greyForLogInBtnContinue">#DDDDDD</color>
+    <color name="greyForLogInTextOr">#767676</color>
 </resources>
