@@ -25,4 +25,5 @@
     <color name="greyForLogInPhoneBorder">#BBBBBB</color>
     <color name="greyForLogInBtnContinue">#DDDDDD</color>
     <color name="greyForLogInTextOr">#767676</color>
+    <color name="brownForWarn">#c13514</color>
 </resources>

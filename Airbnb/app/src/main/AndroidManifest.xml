@@ -24,7 +24,8 @@
 
         </activity>
         <activity android:name=".src.signUpIn.LogInActivity"
-            android:theme="@style/LogInTheme">
+            android:theme="@style/LogInTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

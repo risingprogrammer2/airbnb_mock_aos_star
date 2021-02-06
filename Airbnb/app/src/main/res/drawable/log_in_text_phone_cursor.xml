@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- 커서 색깔 -->
+    <solid android:color="@color/greyForLogInPhoneBorder"/>
+    <!-- 커서 두께 -->
+    <size android:width="0.5dp"/>
+</shape>

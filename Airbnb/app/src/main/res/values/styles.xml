@@ -21,6 +21,8 @@
 
     <!-- log in theme -->
     <style name="LogInTheme" parent="SplashTheme">
-        <item name="android:color">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="colorAccent">@color/black</item>
     </style>
 </resources>
