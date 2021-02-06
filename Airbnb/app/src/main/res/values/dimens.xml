@@ -8,4 +8,5 @@
     <dimen name="log_in_activity_horizontal_padding">24dp</dimen>
     <dimen name="log_in_text_size">16sp</dimen>
     <dimen name="log_in_text_title_size">22sp</dimen>
+    <dimen name="log_in_linear_layout_social_horizontal_padding">24dp</dimen>
 </resources>

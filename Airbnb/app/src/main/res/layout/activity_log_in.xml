@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whiteForBackground"
-    tools:context=".src.signUpIn.LogInActivity"
+    tools:context=".src.logIn.LogInActivity"
     android:paddingVertical="@dimen/activity_vertical_margin"
     android:paddingHorizontal="@dimen/log_in_activity_horizontal_padding">
 
@@ -99,13 +99,26 @@
         android:id="@+id/log_in_img_spinner_drop"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.17"
+        app:layout_constraintHeight_percent="0.05"
         android:src="@drawable/expand_more"
+        app:layout_constraintTop_toTopOf="@id/log_in_layout_telephone"
         app:layout_constraintBottom_toBottomOf="@id/log_in_layout_telephone"
         app:layout_constraintEnd_toEndOf="@id/log_in_layout_telephone"
+        app:layout_constraintVertical_bias="0.13" />
+
+    <ImageView
+        android:id="@+id/log_in_img_check"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.15"
         app:layout_constraintHeight_percent="0.05"
+        android:src="@drawable/check_black_8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/log_in_layout_telephone"
+        app:layout_constraintEnd_toEndOf="@id/log_in_layout_telephone"
         app:layout_constraintTop_toTopOf="@id/log_in_layout_telephone"
-        app:layout_constraintVertical_bias="0.13"
-        app:layout_constraintWidth_percent="0.17" />
+        app:layout_constraintVertical_bias="0.87" />
 
     <TextView
         android:id="@+id/log_in_text_notice"
@@ -180,12 +193,31 @@
             android:id="@+id/log_in_btn_email_log_in"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/log_in_btn_social_log_in_background"
             app:layout_constraintHeight_percent="0.18"
+            android:background="@drawable/log_in_btn_social_log_in_background"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:paddingHorizontal="@dimen/log_in_linear_layout_social_horizontal_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:src="@drawable/log_in_logo_email_with"
+                android:tint="@color/black"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:text="@string/log_in_btn_email"
+
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -193,56 +225,96 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/log_in_btn_social_log_in_background"
-            android:paddingHorizontal="24dp"
+            android:backgroundTint="#1EC800"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:paddingHorizontal="@dimen/log_in_linear_layout_social_horizontal_padding"
+            app:layout_constraintBottom_toTopOf="@id/log_in_btn_kakao_log_in"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/log_in_btn_email_log_in"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/log_in_btn_kakao_log_in"
-            android:weightSum="1">
+            app:layout_constraintTop_toBottomOf="@id/log_in_btn_email_log_in">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:src="@drawable/log_in_logo_naver_with"/>
+                android:src="@drawable/log_in_logo_naver_with"
+                android:tint="@color/white"
+                android:scaleType="centerInside"/>
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
                 android:gravity="center"
-                android:text="네이버로 로그인하기"
+                android:text="@string/log_in_btn_naver"
                 android:textSize="16sp"
-                android:textScaleX="1.1"/>
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/log_in_btn_kakao_log_in"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/log_in_btn_social_log_in_background"
             app:layout_constraintHeight_percent="0.18"
+            android:background="@drawable/log_in_btn_social_log_in_background"
+            android:backgroundTint="#FEE500"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:paddingHorizontal="@dimen/log_in_linear_layout_social_horizontal_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/log_in_btn_naver_log_in"
-            app:layout_constraintBottom_toTopOf="@id/log_in_btn_apple_log_in"
-            android:orientation="horizontal">
+            app:layout_constraintBottom_toTopOf="@id/log_in_btn_apple_log_in">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:src="@drawable/log_in_logo_kakao_with"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:text="@string/log_in_btn_kakao"
+                android:textColor="@color/blackForKakao"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/log_in_btn_apple_log_in"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/log_in_btn_social_log_in_background"
             app:layout_constraintHeight_percent="0.18"
+            android:background="@drawable/log_in_btn_social_log_in_background"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:paddingHorizontal="@dimen/log_in_linear_layout_social_horizontal_padding"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/log_in_btn_kakao_log_in"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="horizontal"
-            app:layout_constraintVertical_chainStyle="spread"
-            android:weightSum="1">
+            app:layout_constraintVertical_chainStyle="spread">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:src="@drawable/log_in_logo_apple_with"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:gravity="center"
+                android:text="@string/log_in_text_apple"
+                android:textSize="16sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

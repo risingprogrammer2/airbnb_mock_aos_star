@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="log_in_spinner_nation_region">
+        <item>대한민국 ( +82 )</item>
         <item>가나 ( +233 )</item>
         <item>가봉 ( +241 )</item>
         <item>가이아나 ( +592 )</item>
@@ -30,7 +31,6 @@
         <item>니제르 ( +227 )</item>
         <item>니카라과 ( +505 )</item>
         <item>대만 ( +886 )</item>
-        <item>대한민국 ( +82 )</item>
         <item>덴마크 ( +45 )</item>
         <item>도미니카 ( +1 )</item>
         <item>독일 ( +49 )</item>

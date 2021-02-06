@@ -20,7 +20,7 @@
     <string name="my_page_tv_counter">%1d 번 눌렀습니다.</string>
     <string name="my_page_btn_counting_number">숫자 세기</string>
 
-    <!--LogIn -->
+    <!--Log in -->
     <string name="log_in_title">에어비앤비 로그인/회원 가입</string>
     <string name="log_in_hint_nation_region">국가/지역</string>
     <string name="log_in_text_korea">국가/지역</string>
@@ -33,4 +33,12 @@
     <string name="log_in_btn_kakao">카카오로 로그인하기</string>
     <string name="log_in_btn_naver">네이버로 로그인하기</string>
     <string name="log_in_text_apple">Apple로 로그인하기</string>
+
+    <!--Phone -->
+    <string name="phone_text_title">전화번호 인증하기</string>
+    <string name="phone_text_ask">코드를 받지 못하셨나요?</string>
+    <string name="phone_text_resend"><u>다시 보내기</u></string>
+    <string name="phone_text_whats"><u>왓츠앱으로 보내기</u></string>
+    <string name="phone_text_call"><u>전화로 인증하기</u></string>
+
 </resources>

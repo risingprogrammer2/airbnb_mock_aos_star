@@ -26,4 +26,6 @@
     <color name="greyForLogInBtnContinue">#DDDDDD</color>
     <color name="greyForLogInTextOr">#767676</color>
     <color name="brownForWarn">#c13514</color>
+    <color name="blackForKakao">#D9000000</color>
+    <color name="redForContinue">#E31C5D</color>
 </resources>
