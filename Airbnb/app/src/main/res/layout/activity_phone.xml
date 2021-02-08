@@ -39,7 +39,7 @@
         android:id="@+id/phone_text_guide1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        style="@style/PhoneInputTextStyle"
+        style="@style/PhoneInputNumStyle"
         android:maxLines="2"
         android:text="문자 메시지를 통해 011-376-4817번으로 보내드린 코드를 입력하세요."
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,14 +63,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.21"
-            android:background="@drawable/phone_text_input_num_selector"
-            android:maxLength="1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/greyForLogInBtnContinue"
-            android:gravity="center"
-            android:textCursorDrawable="@drawable/log_in_text_phone_cursor"
-            android:inputType="number" />
+            android:nextFocusForward="@+id/phone_text_input_num1"
+            style="@style/PhoneEditTextStyle"
+            android:enabled="true"/>
 
         <View
             android:layout_width="0dp"
@@ -83,13 +78,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.21"
-            android:background="@drawable/phone_text_input_num_selector"
-            android:maxLength="1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/greyForLogInTextOr"
-            android:gravity="center"
-            android:inputType="number" />
+            style="@style/PhoneEditTextStyle"
+            android:enabled="false"
+            android:nextFocusForward="@+id/phone_text_input_num2" />
 
         <View
             android:layout_width="0dp"
@@ -102,13 +93,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.21"
-            android:background="@drawable/phone_text_input_num_selector"
-            android:maxLength="1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/greyForLogInTextOr"
-            android:gravity="center"
-            android:inputType="number" />
+            android:nextFocusForward="@+id/phone_text_input_num3"
+            style="@style/PhoneEditTextStyle"
+            android:enabled="false"/>
 
         <View
             android:layout_width="0dp"
@@ -121,13 +108,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.21"
-            android:background="@drawable/phone_text_input_num_selector"
-            android:maxLength="1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/greyForLogInTextOr"
-            android:gravity="center"
-            android:inputType="number" />
+            style="@style/PhoneEditTextStyle"
+            android:enabled="false" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/phone_btn_resend"

@@ -15,15 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity
-            android:name=".src.splash.SplashActivity"
-            android:theme="@style/SplashTheme">
 
-        </activity>
-        <activity android:name=".src.main.MainActivity">
+        <activity android:name=".src.splash.SplashActivity"
+            android:theme="@style/SplashTheme"/>
 
-        </activity>
-        <activity android:name=".src.signUpIn.LogInActivity"
+        <activity android:name=".src.logIn.LogInActivity"
             android:theme="@style/LogInTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
@@ -32,6 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".src.logIn.phone.PhoneActivity"
+            android:theme="@style/LogInTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
+
     </application>
 
 </manifest>

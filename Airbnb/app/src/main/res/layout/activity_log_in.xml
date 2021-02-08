@@ -65,33 +65,36 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:padding="@dimen/log_in_activity_vertical_padding"
+            android:paddingHorizontal="@dimen/log_in_activity_vertical_padding"
+            android:paddingVertical="4dp"
             android:background="@null"
             android:spinnerMode="dialog"
             android:entries="@array/log_in_spinner_nation_region" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/log_in_layout_input_num"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.47"
             android:background="@drawable/log_in_text_phone_selector"
+            android:gravity="center"
             android:paddingHorizontal="@dimen/activity_horizontal_margin"
             android:paddingTop="6dp"
-            android:gravity="center"
+            android:hint="@string/log_in_hint_phone_num"
             app:hintTextColor="@color/greyForLogInTextOr">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/log_in_text_input_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@color/transparentForBackground"
                 android:gravity="center_vertical"
-                android:hint="@string/log_in_hint_phone_num"
-                android:layout_marginBottom="10dp"
                 android:inputType="phone"
                 android:maxLines="1"
                 android:textColorHint="@color/greyForLogInTextOr"
-                android:textSize="15sp"
-                android:textCursorDrawable="@drawable/log_in_text_phone_cursor"/>
+                android:textCursorDrawable="@drawable/log_in_text_phone_cursor"
+                android:textSize="15sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -144,7 +147,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/log_in_text_size"
         android:gravity="center"
-        android:background="@drawable/log_in_btn_continue_background"
+        android:background="@drawable/log_in_btn_continue_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log_in_text_notice"

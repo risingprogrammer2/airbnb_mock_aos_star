@@ -25,6 +25,7 @@
     <string name="log_in_hint_nation_region">국가/지역</string>
     <string name="log_in_text_korea">국가/지역</string>
     <string name="log_in_hint_phone_num">전화번호</string>
+    <string name="log_in_text_error">유효하지 않은 전화번호</string>
     <string name="log_in_text_notice">통화나 문자로 전화번호를 확인하겠습니다. 일반 문자 메시지 요금 및
     데이터 요금이 부과됩니다.</string>
     <string name="log_in_btn_continue">계속하기</string>
@@ -33,6 +34,8 @@
     <string name="log_in_btn_kakao">카카오로 로그인하기</string>
     <string name="log_in_btn_naver">네이버로 로그인하기</string>
     <string name="log_in_text_apple">Apple로 로그인하기</string>
+    <string name="log_in_regex_cell_phone">^01(?:0|1|[6-9]) - (?:\d{3}|\d{4}) - \d{4}$</string>
+    <string name="log_in_regex_home_phone">^\d{2,3} - \d{3,4} - \d{4}$</string>
 
     <!--Phone -->
     <string name="phone_text_title">전화번호 인증하기</string>
