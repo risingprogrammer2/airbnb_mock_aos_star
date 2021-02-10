@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+        android:id="@+id/my_page_parent_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whiteForBackground"
+        tools:context=".src.main.my_page.MyPageFragment"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingVertical="@dimen/activity_vertical_margin">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/my_page_img_holder"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.2"
+                app:layout_constraintHeight_percent="0.98"
+                android:layout_marginStart="@dimen/log_in_activity_horizontal_padding"
+                app:cardCornerRadius="100dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/my_page_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/my_page_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintWidth_percent="0.68"
+                android:gravity="start|center_vertical"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="상호 홍"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/log_in_activity_horizontal_padding"
+                app:layout_constraintStart_toEndOf="@id/my_page_img_holder"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.5"
+                android:text="@string/my_page_btn_text_profile"
+                android:textSize="18sp"
+                android:textColor="@color/greenForMyPageProfile"
+                android:gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/log_in_activity_horizontal_padding"
+                app:layout_constraintStart_toEndOf="@id/my_page_img_holder"
+                app:layout_constraintTop_toBottomOf="@id/my_page_name"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/my_page_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/my_page_grey_gratation"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/my_page_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whiteForBackground"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/activity_vertical_margin"
+            android:paddingHorizontal="@dimen/log_in_activity_horizontal_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/my_page_text_section1"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="start|bottom"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn0"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section1_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text0"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text0"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section1_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text1"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text1"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section1_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text2"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text2"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section1_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text3"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text3"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/my_page_text_section2"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="start|bottom"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section2_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text4"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text4"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn5"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section2_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text5"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text5"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/my_page_text_section3"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="start|bottom"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn6"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.4"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section3_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.7"
+                    app:layout_constraintHeight_percent="0.6"
+                    style="@style/MyPageBtnText2"
+                    android:text="@string/my_page_btn_text_section3_1_1"
+                    app:layout_constraintTop_toBottomOf="@id/my_page_btn_text6"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text6"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text6"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn7"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.4"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section3_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.7"
+                    app:layout_constraintHeight_percent="0.6"
+                    style="@style/MyPageBtnText2"
+                    android:text="@string/my_page_btn_text_section3_2_1"
+                    app:layout_constraintTop_toBottomOf="@id/my_page_btn_text7"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text7"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text7" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/my_page_text_section4"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="start|bottom"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn8"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section4_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text8"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text8"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn9"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.4"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section4_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.7"
+                    app:layout_constraintHeight_percent="0.6"
+                    style="@style/MyPageBtnText2"
+                    android:text="@string/my_page_btn_text_section4_2_1"
+                    app:layout_constraintTop_toBottomOf="@id/my_page_btn_text9"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text9"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text9" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn10"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintHeight_percent="0.4"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section4_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.7"
+                    app:layout_constraintHeight_percent="0.6"
+                    style="@style/MyPageBtnText2"
+                    android:text="@string/my_page_btn_text_section4_3_1"
+                    app:layout_constraintTop_toBottomOf="@id/my_page_btn_text10"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text10"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text10" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn11"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section4_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text11"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text11"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn12"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section4_5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text12"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text12"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/my_page_text_section5"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="start|bottom"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn13"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section5_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/airbnb_logo"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/black"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/my_page_btn_text13"
+                    app:layout_constraintBottom_toBottomOf="@id/my_page_btn_text13"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/my_page_btn14"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+
+                <TextView
+                    android:id="@+id/my_page_btn_text14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    style="@style/MyPageBtnText"
+                    android:text="@string/my_page_btn_text_section5_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/my_page_btn_text_version"
+                android:textColor="@color/greyForMyPageText"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

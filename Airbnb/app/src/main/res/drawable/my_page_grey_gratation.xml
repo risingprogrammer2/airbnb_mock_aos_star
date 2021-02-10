@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--어느 방향으로 그라데이션 효과를 넣을지 정할 수 있다-->
+    <!-- 시작 색 -->
+    <!-- 가운데 색 -->
+    <!-- 끝 색 -->
+
+    <gradient
+        android:angle="90"
+        android:type="linear"
+        android:startColor="#fafafa"
+        android:centerColor="#efefef"
+        android:endColor="#e1e1e1"/>
+</shape>

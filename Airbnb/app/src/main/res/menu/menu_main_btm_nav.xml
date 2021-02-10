@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_main_btm_nav_search"
+        android:icon="@drawable/main_btm_search"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="@string/main_btm_nav_search_title" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_store"
+        android:icon="@drawable/main_btm_store"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="@string/main_btm_nav_store_title" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_trip"
+        android:icon="@drawable/main_btm_trip"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="@string/main_btm_nav_trip_title" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_message"
+        android:icon="@drawable/main_btm_message"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="@string/main_btm_nav_message_title" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_my_page"
+        android:icon="@drawable/main_btm_my_page"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:title="@string/main_btm_nav_my_page_title" />
+
+</menu>

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#028287</color>
 
     <!-- 기본 -->
     <color name="white">#FFFFFF</color>
@@ -19,6 +19,9 @@
     <color name="greyForSplashBackground">#F2F2F2</color>
     <color name="greyForSplashStatusIcon">#6b6b6b</color>
 
+    <!-- main -->
+    <color name="greyForMainBtmText">#717171</color>
+
     <!-- 로그인 -->
     <color name="blackForLogInClearBtn">#484848</color>
     <color name="blackForLogInText">#2A2A2A</color>
@@ -28,4 +31,15 @@
     <color name="brownForWarn">#B84D35</color>
     <color name="blackForKakao">#D9000000</color>
     <color name="redForContinue">#E31C5D</color>
+
+    <!-- 회원가입 정보 작성-->
+    <color name="redForDialogPositive">#EF6065</color>
+
+    <!-- main_my_page -->
+    <color name="blackForStatusBar">#666666</color>
+    <color name="greyForMyPageText">#767676</color>
+    <color name="blackForMyPageText">#484848</color>
+    <color name="greenForMyPageProfile">#028287</color>
+    <color name="greyForMyPageDivider">#EBEBEB</color>
+
 </resources>

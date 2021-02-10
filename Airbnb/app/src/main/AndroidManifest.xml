@@ -17,22 +17,36 @@
         tools:ignore="AllowBackup">
 
         <activity android:name=".src.splash.SplashActivity"
-            android:theme="@style/SplashTheme"/>
+            android:theme="@style/SplashTheme">
+        </activity>
 
-        <activity android:name=".src.logIn.LogInActivity"
+        <activity android:name=".src.log_in.LogInActivity"
             android:theme="@style/LogInTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity android:name=".src.log_in.phone.PhoneActivity"
+            android:theme="@style/LogInTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+
+
+        </activity>
+
+        <activity android:name=".src.log_in.input_profile.InputProfileActivity"
+            android:theme="@style/LogInTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+        </activity>
+
+        <activity android:name=".src.main.MainActivity"
+            android:theme="@style/LogInTheme"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".src.logIn.phone.PhoneActivity"
-            android:theme="@style/LogInTheme"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
-
     </application>
 
 </manifest>

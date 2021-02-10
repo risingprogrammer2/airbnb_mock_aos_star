@@ -13,10 +13,17 @@ class ApplicationClass : Application() {
     //val API_URL = "https://members.softsquared.com/"
 
     // 테스트 서버 주소
-     val API_URL = "https://dev.rp2airbnb.shop"
+    val API_URL = "https://dev.rp2airbnb.shop"
 
     // 실 서버 주소
-    // val API_URL = "http://api.test.com/"
+    // val API_URL = "http://prod.rp2airbnb.shop"
+
+    // 네아로 Client ID, Secret
+    val NAVER_ID = "85c0KuzfMwyqtc7nXByI"
+    val NAVER_SECRET = "g9Cw_To5dG"
+
+    // 카카오
+
 
     // 코틀린의 전역변수 문법
     companion object {
@@ -34,7 +41,7 @@ class ApplicationClass : Application() {
     override fun onCreate() {
         super.onCreate()
         sSharedPreferences =
-            applicationContext.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
+            applicationContext.getSharedPreferences("com.rp2.star.airbnb", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
     }

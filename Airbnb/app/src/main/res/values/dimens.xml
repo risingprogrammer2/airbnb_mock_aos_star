@@ -9,4 +9,14 @@
     <dimen name="log_in_text_size">16sp</dimen>
     <dimen name="log_in_text_title_size">22sp</dimen>
     <dimen name="log_in_linear_layout_social_horizontal_padding">24dp</dimen>
+
+    <!-- input profile -->
+    <dimen name="input_profile_text_continue_size">18sp</dimen>
+    <dimen name="input_profile_text_notice_small">11sp</dimen>
+    <dimen name="input_profile_text_notice_large">14sp</dimen>
+    <dimen name="input_profile_vertical_margin">8dp</dimen>
+
+    <!-- main_my_page -->
+    <dimen name="my_page_linear_btn_vertical_padding">8dp</dimen>
+
 </resources>

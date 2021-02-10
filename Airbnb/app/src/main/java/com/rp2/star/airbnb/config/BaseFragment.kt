@@ -49,4 +49,9 @@ abstract class BaseFragment<B : ViewBinding>(
             mLoadingDialog.dismiss()
         }
     }
+
+    // 토스트를 길게 띄움.
+    fun showCustomLongToast(message: String){
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+    }
 }

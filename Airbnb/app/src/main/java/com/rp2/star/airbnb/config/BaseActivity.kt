@@ -41,4 +41,9 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     fun showCustomToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+    // 토스트를 길게 띄움.
+    fun showCustomLongToast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
 }
