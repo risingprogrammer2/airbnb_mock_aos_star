@@ -18,7 +18,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // 처음 화면이 켜졌을 때 활성화될 하단 버튼 - 실제 화면이 아닌 버튼에만 적용
+        binding.mainBtmNav.selectedItemId = R.id.menu_main_btm_nav_my_page
         showLoadingDialog(this)
 
         Handler(Looper.getMainLooper()).postDelayed({

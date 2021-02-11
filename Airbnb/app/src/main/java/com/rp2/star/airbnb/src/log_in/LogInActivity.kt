@@ -1,5 +1,6 @@
 package com.rp2.star.airbnb.src.log_in
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +9,9 @@ import android.text.Editable
 import android.util.Log
 import android.view.View
 import com.kakao.sdk.auth.model.OAuthToken
-import com.nhn.android.naverlogin.OAuthLogin
-import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.rp2.star.airbnb.R
+import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivityLogInBinding
 import com.rp2.star.airbnb.src.log_in.input_profile.InputProfileActivity
@@ -29,13 +30,13 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
     private val apiUrl = "https://openapi.naver.com/v1/nid/me"
 
     lateinit var mContext: Context
-    private lateinit var mOAuthLoginModule: OAuthLogin
-    lateinit var mOAuthLoginButton: OAuthLoginButton
-    private lateinit var accessToken: String
+    private val naverModule = ApplicationClass.naverLoginModule
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mContext = this
 
         // 전화번호 입력할 때 형식 검사 -> 에러 메시지, 계속하기 버튼 활성화
         binding.logInTextInputNum.addTextChangedListener(numChangedListener)
@@ -170,7 +171,7 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
         // 국가번호랑 합체: +8210xxxxoooo
         phoneNumber = nationNumber + phoneNumber.substring(1..phoneNumber.lastIndex)
 
-        phoneIntent.putExtra("phone",phoneNumber)
+        phoneIntent.putExtra("phone", phoneNumber)
         phoneIntent.putExtra("formatted", formattedNumber)
         startActivity(phoneIntent)
 
@@ -203,24 +204,25 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
         LogInService(this).tryKakaoLogIn(token.accessToken)
     }
 
+    // 팀 서버와 카카오 로그인 통신 성공했을 때,
     override fun onPostKakaoLogInSuccess(response: SignUpResponse) {
-        Log.d("로그","onPostKakaoLogInSuccess() called, response: $response")
-
+        Log.d("로그", "onPostKakaoLogInSuccess() called, response: $response")
         dismissLoadingDialog()
 
 
         val mainIntent = Intent(this, MainActivity::class.java)
         val inputProfileIntent = Intent(this, InputProfileActivity::class.java)
 
-
         when(response.message.toString()){
             "카카오 로그인 성공" -> {
                 saveUserLogIn(response.result!!)
                 startActivity(mainIntent)
+                finish()
             }
             "카카오 회원가입 성공" -> {
                 saveUserLogIn(response.result!!)
                 startActivity(inputProfileIntent)
+                finish()
             }
             else -> {
                 Log.d("로그", "팀 서버로부터 카카오 로그인/회원가입 성공이라고 떴지만 오류발생")
@@ -229,8 +231,9 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
 
     }
 
+    // 팀 서버와 카카오 로그인 통신 실패
     override fun onPostKakaoLogInFailure(message: String) {
-        Log.d("로그","onPostKakaoLogInFailure() called, message: $message")
+        Log.d("로그", "onPostKakaoLogInFailure() called, message: $message")
 
         dismissLoadingDialog()
         showCustomToast("네트워크 확인 후 다시 시도해주세요.")
@@ -240,6 +243,47 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
     private val naverOnClickListener = View.OnClickListener{
         showLoadingDialog(this)
 
+        // 아래에 만든 핸들러를 인수로 넣어준다
+        naverModule.startOauthLoginActivity(this, naverHandler)
+    }
 
+    // 네이버 서버로부터 로그인 reponse가 왔을 때 동작하는 핸들러
+    private val naverHandler = @SuppressLint("HandlerLeak")
+    object: OAuthLoginHandler(){
+        override fun run(success: Boolean) {
+            if(success){
+                val accessToken = naverModule.getAccessToken(mContext)
+
+                Log.d("태그", "네이버 서버에 로그인 요청 성공, accessToken: $accessToken")
+
+
+            } else{
+                val errorCode: String = naverModule.getLastErrorCode(mContext).code
+                val errorDesc: String = naverModule.getLastErrorDesc(mContext)  // 실패 이유
+                Log.d("로그", "네이버에 서버에서 실패 - errorCode: $errorCode ," +
+                        " errorDesc: $errorDesc")
+                showCustomToast("로그인을 다시 시도해주세요 - 원인: $errorDesc")
+
+            }
+        }
+
+    }
+
+    // 팀 서버와 네이버 로그인 통신을 성공
+    fun onPostNaverLogInSuccess(response: SignUpResponse){
+        Log.d("로그", "onPostKakaoLogInSuccess() called, response: $response")
+        dismissLoadingDialog()
+
+
+        val mainIntent = Intent(this, MainActivity::class.java)
+        val inputProfileIntent = Intent(this, InputProfileActivity::class.java)
+    }
+
+    // 팀 서버와 네이버 로그인 통신 실패
+    fun onPostNaverLogInFailure(message: String){
+        Log.d("로그", "onPostNaverLogInFailure() called, message: $message")
+
+        dismissLoadingDialog()
+        showCustomToast("네트워크 확인 후 다시 시도해주세요.")
     }
 }

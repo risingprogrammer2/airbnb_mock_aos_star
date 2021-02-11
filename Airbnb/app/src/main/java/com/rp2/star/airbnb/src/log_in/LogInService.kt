@@ -16,6 +16,27 @@ import retrofit2.Response
 
 class LogInService(val view: LogInActivityView) {
 
+    /*
+    // 팀 서버에 네이버 로그인/회원가입 통신 요청
+    fun tryNaverLogIn(accessToken: String){
+
+        val postNaverLogInRequest = PostNaverLogInRequest(accessToken)
+        val logInRetrofitInterface = ApplicationClass.sRetrofit.create(LogInRetrofitInterface::class.java)
+
+        logInRetrofitInterface.postNaverLogInRequest(postNaverLogInRequest)
+            .enqueue(object : Callback<SignUpResponse> {
+
+                override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+                    view.onPostNaverLogInSuccess(response.body() as SignUpResponse)
+                }
+
+                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                    view.onPostNaverLogInFailure(t.message ?: "통신 오류")
+                }
+            })
+    }
+    */
+
     // 팀 서버에 카카오 로그인/회원가입 통신 요청
     fun tryKakaoLogIn(accessToken: String){
 

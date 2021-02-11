@@ -9,6 +9,12 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LogInRetrofitInterface {
+/*
+
+    // 팀서버에 네이버 회원가입/로그인 요청
+    @POST("/auth/naver/user")
+    fun postNaverLogInRequest(@Body accessToken: PostNaverLogInRequest): Call<SignUpResponse>
+*/
 
     // 팀서버에 카카오 회원가입/로그인 요청
     @POST("/auth/kakao/user")

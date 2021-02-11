@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.google.gson.GsonBuilder
 import com.kakao.sdk.user.UserApiClient
 import com.rp2.star.airbnb.src.log_in.models.ResultSignUp
 import com.rp2.star.airbnb.util.LoadingDialog
@@ -54,6 +55,20 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     fun saveUserLogIn(result: ResultSignUp){
         val id: Int = result.id
         val jwt: String =result.token
+        var name: String? = null
+        UserApiClient.instance.me{ user, error ->
+            if (error != null) {
+                Log.e("로그", "사용자 정보 요청 실패", error)
+            }
+            else if (user != null) {
+                Log.i("로그", "사용자 정보 요청 성공, user: $user")
+                val gson = GsonBuilder().create()
+                val profile = user.kakaoAccount?.profile
+                Log.d("로그", "카카오 프로필: $profile")
+            }
+
+        }
+
         val sp = ApplicationClass.sSharedPreferences
         val spEditor = sp.edit()
         spEditor.putInt("id", id)
@@ -89,4 +104,24 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         }
     }
     */
+
+    // 네이버 로그아웃
+    fun naverLogOut(){
+        ApplicationClass.naverLoginModule.logout(applicationContext)
+    }
+
+    // 네이버 연동 해제
+    fun naverDelete(){
+        val isSuccessDeleteToken: Boolean = ApplicationClass.
+        naverLoginModule.logoutAndDeleteToken(applicationContext)
+
+        if (!isSuccessDeleteToken) {
+            // 서버에서 토큰 삭제에 실패했어도 클라이언트에 있는 토큰은 삭제되어 로그아웃된 상태입니다.
+            // 클라이언트에 토큰 정보가 없기 때문에 추가로 처리할 수 있는 작업은 없습니다.
+            Log.d("로그", "네이버 연동 해제 errorCode:" +
+                    ApplicationClass.naverLoginModule.getLastErrorCode(applicationContext))
+            Log.d("로그", "네이버 연동 해제 errorDesc:" +
+                    ApplicationClass.naverLoginModule.getLastErrorDesc(applicationContext))
+        }
+    }
 }
