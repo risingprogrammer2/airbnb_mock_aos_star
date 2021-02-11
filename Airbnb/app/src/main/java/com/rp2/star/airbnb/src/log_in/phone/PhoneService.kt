@@ -4,6 +4,7 @@ import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.src.log_in.models.PostCertNumCompRequest
 import com.rp2.star.airbnb.src.log_in.models.PostCertNumRequest
+import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,12 +33,14 @@ class PhoneService(val view: PhoneActivityView) {
     fun tryPostCertNumCompare(postCertNumCompRequest: PostCertNumCompRequest){
         val phoneRetrofitInterface = ApplicationClass.sRetrofit.create(PhoneRetrofitInterface::class.java)
 
-        phoneRetrofitInterface.postCertNumComp(postCertNumCompRequest).enqueue(object: Callback<BaseResponse>{
-            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                view.onCompareCertNumSuccess(response.body() as BaseResponse)
+        phoneRetrofitInterface.postCertNumComp(postCertNumCompRequest)
+            .enqueue(object: Callback<SignUpResponse>{
+
+            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+                view.onCompareCertNumSuccess(response.body() as SignUpResponse)
             }
 
-            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 view.onPostCertNumFailure(t.message ?: "통신 오류")
             }
         })

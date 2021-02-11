@@ -9,7 +9,7 @@ import retrofit2.http.POST
 interface InputProfileRetrofitInterface {
 
     // (번호로) 회원가입 요청
-    @POST("/auth/new-user")
+    @POST("/auth/user")
     fun postSignUp(@Body params: PostPhoneSignUpRequest): Call<SignUpResponse>
 
 }

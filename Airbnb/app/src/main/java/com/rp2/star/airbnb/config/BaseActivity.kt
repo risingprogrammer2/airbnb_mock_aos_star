@@ -2,10 +2,13 @@ package com.rp2.star.airbnb.config
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.kakao.sdk.user.UserApiClient
+import com.rp2.star.airbnb.src.log_in.models.ResultSignUp
 import com.rp2.star.airbnb.util.LoadingDialog
 
 // 액티비티의 기본을 작성, 뷰 바인딩 활용
@@ -46,4 +49,44 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     fun showCustomLongToast(message: String){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
+    // 로그인할 때 유저 정보 저장
+    fun saveUserLogIn(result: ResultSignUp){
+        val id: Int = result.id
+        val jwt: String =result.token
+        val sp = ApplicationClass.sSharedPreferences
+        val spEditor = sp.edit()
+        spEditor.putInt("id", id)
+        spEditor.putString("jwt", jwt)
+        spEditor.apply()
+    }
+
+
+    // 카카오연결 끊기 - 다시 카카오톡 화면 띄워서 로그인 하는 모습 보이기 위해 로그아웃용으로 사용
+    fun kakaoLogOut(){
+        UserApiClient.instance.unlink { error ->
+            if (error != null) {
+                Log.e("로그", "연결 끊기 실패", error)
+            }
+            else {
+                Log.i("로그", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+            }
+        }
+    }
+
+
+    /*
+    // 카카오 로그아웃
+    fun kakaoLogOut(){
+        // 로그아웃
+        UserApiClient.instance.logout { error ->
+            if (error != null) {
+                Log.e("로그", "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+            }
+            else {
+                Log.i("로그", "로그아웃 성공. SDK에서 토큰 삭제됨")
+            }
+        }
+    }
+    */
 }

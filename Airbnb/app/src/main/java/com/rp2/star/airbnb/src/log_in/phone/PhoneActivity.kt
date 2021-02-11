@@ -9,12 +9,13 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
-import androidx.core.text.isDigitsOnly
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.databinding.ActivityPhoneBinding
 import com.rp2.star.airbnb.src.log_in.input_profile.InputProfileActivity
 import com.rp2.star.airbnb.src.log_in.models.PostCertNumCompRequest
+import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
+import com.rp2.star.airbnb.src.main.MainActivity
 
 class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::inflate),
     PhoneActivityView{
@@ -33,6 +34,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
         val formattedNumber = intent.extras?.get("formatted") as String
         // 하이픈 없는 번호
         phoneNumber = intent.extras?.get("phone") as String
+        //phoneNumber = "+821082449983"
         val guideText = "문자 메시지를 통해 ${formattedNumber}번으로 보내드린 코드를 입력하세요."
         binding.phoneTextGuide1.text = guideText
 
@@ -48,6 +50,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
             // 숫자 입력시 동작 코드가 담긴 리스너
             numView.addTextChangedListener(numChangedListener)
         }
+
 
 
 
@@ -76,7 +79,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
 
         when(response.code){
             1000 -> {
-                showCustomToast("번호 전송 success: ${response.message}")
+                //showCustomToast("번호 전송 success: ${response.message}")
             }
             else -> showCustomToast("번호 전송 failure: ${response.message}")
         }
@@ -90,7 +93,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
     }
 
     // 인증번호 비교 요청 통신 성공
-    override fun onCompareCertNumSuccess(response: BaseResponse) {
+    override fun onCompareCertNumSuccess(response: SignUpResponse) {
         dismissLoadingDialog()
 
         when(response.code){
@@ -98,14 +101,30 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
                 // showCustomToast("번호 비교 ${response.success}: ${response.message}")
                 Log.e("로그","$response")
 
-                // 프로필 입력 화면으로 전환
-                val profileIntent = Intent(mContext, InputProfileActivity::class.java)
-                profileIntent.putExtra("phone", phoneNumber)
-                startActivity(profileIntent)
-                // 인증코드 입력 화면 스택에서 제거
-                finish()
+                val result = response.result
+
+                // 첫 회원가입이면 프로필 입력 화면으로 이동한다.
+                if(result == null){
+                    val profileIntent = Intent(mContext, InputProfileActivity::class.java)
+                    profileIntent.putExtra("phone", phoneNumber)
+                    startActivity(profileIntent)
+                    // 인증코드 입력 화면 스택에서 제거
+                    finish()
+                }
+                // 이미 가입한 회원이면 바로 로그인 -> 메인 화면으로 이동한다
+                else{
+                    // 로그인 정보 저장
+                    saveUserLogIn(response.result!!)
+
+                    val mainIntent = Intent(this, MainActivity::class.java)
+                    startActivity(mainIntent)
+                }
+
             }
-            else -> showCustomToast("${response.message}")
+            else -> {
+                Log.e("로그","인증번호 비교 통신 성공 but 서버에서 돌려보냄, response: $response")
+                showCustomToast("${response.message}")
+            }
         }
     }
 
@@ -150,12 +169,23 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
                         currentFocus.isEnabled = false
                     }
                     binding.phoneTextInputNum3 -> {
-                        binding.phoneTextInputNum2.text = null
-                        binding.phoneTextInputNum2.isEnabled = true
-                        binding.phoneTextInputNum2.requestFocus()
-                        binding.phoneTextInputNum2.isCursorVisible = true
+                        // 마지막칸에 아무것도 없는 상태에서 지우면 이전 칸으로 이동
+                        if(binding.phoneTextInputNum3.text.isEmpty()){
+                            Log.d("로그","아무것도 없을 때 지우는 코드")
+                            binding.phoneTextInputNum2.text = null
+                            binding.phoneTextInputNum2.isEnabled = true
+                            binding.phoneTextInputNum2.requestFocus()
+                            binding.phoneTextInputNum2.isCursorVisible = true
 
-                        currentFocus.isEnabled = false
+                            currentFocus.isEnabled = false
+                        }
+                        // 숫자가 있을 때 지우면 숫자만 지우고 포커스는 그대로
+                        // 그치만 동작이 안먹는다.. 2개가 한꺼번에 지워지고, 앱은 정상 동작됨.
+                        else{
+                            Log.d("로그","숫자가 있을 때 지우는 코드")
+                            binding.phoneTextInputNum3.text = null
+                        }
+
                     }
                 }
             }
@@ -173,7 +203,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             val num = p0.toString()
-            if(num.isDigitsOnly()){
+            if(num.isNotEmpty()){
                 val currentView = currentFocus
                 when(currentView?.id){
 
@@ -182,9 +212,12 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
                         for(i in 0..3){
                             inputNum += numViewArray[i].text.toString()
                         }
+                        Log.d("로그","제출 코드: $inputNum")
 
                         // 서버에 인증번호 비교 요청
-                        val postCertNumCompRequest = PostCertNumCompRequest(phoneNumber, inputNum)
+                        //val postCertNumCompRequest = PostCertNumCompRequest(phoneNumber, inputNum)
+
+                        val postCertNumCompRequest = PostCertNumCompRequest("+821082449983", inputNum)
                         showLoadingDialog(mContext)
                         PhoneService(mContext as PhoneActivityView).tryPostCertNumCompare(postCertNumCompRequest)
                     }

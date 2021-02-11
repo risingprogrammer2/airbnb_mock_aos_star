@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/airbnb_logo"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="centerInside" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -49,6 +49,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="상호 홍"
+                android:textStyle="bold"
                 android:textSize="26sp"
                 android:textColor="@color/black"
                 android:layout_marginStart="@dimen/log_in_activity_horizontal_padding"
@@ -59,7 +60,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintHeight_percent="0.5"
                 android:text="@string/my_page_btn_text_profile"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/greenForMyPageProfile"
                 android:gravity="start|center_vertical"
                 android:layout_marginStart="@dimen/log_in_activity_horizontal_padding"
@@ -111,7 +112,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img1"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -139,7 +140,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img2"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -167,7 +168,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img3"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -195,7 +196,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img4"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -230,7 +231,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img5"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -258,7 +259,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img5"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -302,7 +303,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img6"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -339,7 +340,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img6"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -374,7 +375,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img7"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"
@@ -411,7 +412,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/airbnb_logo"
+                    android:src="@drawable/my_page_img8"
                     android:scaleType="fitCenter"
                     android:tint="@color/black"
                     app:layout_constraintWidth_percent="0.1"

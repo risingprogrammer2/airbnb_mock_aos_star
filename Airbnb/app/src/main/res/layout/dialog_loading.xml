@@ -9,4 +9,4 @@
     android:maxHeight="65dip"
     android:minWidth="65dip"
     android:minHeight="65dip"
-    app:SpinKit_Color="@color/blackForLogInText" />
+    app:SpinKit_Color="@color/colorAccent" />

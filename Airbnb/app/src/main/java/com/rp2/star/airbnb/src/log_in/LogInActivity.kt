@@ -7,16 +7,21 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.util.Log
 import android.view.View
+import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivityLogInBinding
+import com.rp2.star.airbnb.src.log_in.input_profile.InputProfileActivity
+import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
 import com.rp2.star.airbnb.src.log_in.phone.PhoneActivity
+import com.rp2.star.airbnb.src.main.MainActivity
 import java.util.regex.Pattern
 
 
-class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::inflate){
+class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::inflate),
+    LogInActivityView{
 
     private val OAUTH_CLIENT_ID = "MJqbP82f4Y5p5v2nLOGa"
     private val OAUTH_CLIENT_SECRET = "aEaReQ4RER"
@@ -38,6 +43,12 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
         // 계속하기 버튼 클릭
         binding.logInBtnContinue.setOnClickListener(continueOnClickListener)
         binding.logInBtnContinue.isEnabled = false
+
+        //카카오로 로그인 버튼 클릭
+        binding.logInBtnKakaoLogIn.setOnClickListener(kakaoOnClickListener)
+
+        //네이버로 로그인 버튼 클릭
+        binding.logInBtnNaverLogIn.setOnClickListener(naverOnClickListener)
 
         // 종료 버튼
         binding.logInBtnClose.setOnClickListener{
@@ -118,23 +129,23 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
 
         // 정규식으로 집 전화번호 형식 검사
         fun isValidHomePhoneNumber(phoneNumber: String): Boolean {
-            var returnValue = false;
+            var returnValue = false
 
             try {
                 val regex =
                     "^\\s*(02|031|032|033|041|042|043|051|052|053|054|055|061|062|063|064|070)" +
                             "?(-|\\)|\\s)*(\\d{3,4})(-|\\s)*(\\d{4})\\s*$"
-                val p = Pattern.compile(regex);
-                val m = p.matcher(phoneNumber);
+                val p = Pattern.compile(regex)
+                val m = p.matcher(phoneNumber)
                 if (m.matches()) {
-                    returnValue = true;
+                    returnValue = true
                 }
                 if(returnValue){
                     if(phoneNumber.split('-').size != 3){
                         returnValue = false
                     }
                 }
-                return returnValue;
+                return returnValue
             }
             catch (e: Exception){
                 return false
@@ -162,8 +173,73 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
         phoneIntent.putExtra("phone",phoneNumber)
         phoneIntent.putExtra("formatted", formattedNumber)
         startActivity(phoneIntent)
+
+        // 화면 원래 상태로 되돌려놓음.
         binding.logInTextInputNum.setText("")
+        binding.logInTextInputNum.error = null
+        binding.logInBtnContinue.isEnabled = false
+        binding.logInImgCheck.visibility = View.GONE
     }
 
+    // 카카오로 로그인 버튼 클릭 리스너
+    private val kakaoOnClickListener = View.OnClickListener {
+        showLoadingDialog(this)
 
+        LogInService(this).kakaoLogIn(this)
+    }
+
+    // 카카오 서버에 로그인 요청 성공 but 로그인 실패
+    override fun onKakaoApiFailure(message: String) {
+        Log.e("로그", "카카오 서버로부터 로그인 실패, error: $message")
+
+        dismissLoadingDialog()
+        showCustomLongToast("카카오 서버로부터 로그인 실패: $message")
+    }
+
+    // 카카오 서버에 로그인 요청, 로그인 성공
+    override fun onKakaoApiSuccess(token: OAuthToken) {
+        Log.d("로그", "카카오 서버로부터 로그인 성공, access token: ${token.accessToken}")
+
+        LogInService(this).tryKakaoLogIn(token.accessToken)
+    }
+
+    override fun onPostKakaoLogInSuccess(response: SignUpResponse) {
+        Log.d("로그","onPostKakaoLogInSuccess() called, response: $response")
+
+        dismissLoadingDialog()
+
+
+        val mainIntent = Intent(this, MainActivity::class.java)
+        val inputProfileIntent = Intent(this, InputProfileActivity::class.java)
+
+
+        when(response.message.toString()){
+            "카카오 로그인 성공" -> {
+                saveUserLogIn(response.result!!)
+                startActivity(mainIntent)
+            }
+            "카카오 회원가입 성공" -> {
+                saveUserLogIn(response.result!!)
+                startActivity(inputProfileIntent)
+            }
+            else -> {
+                Log.d("로그", "팀 서버로부터 카카오 로그인/회원가입 성공이라고 떴지만 오류발생")
+            }
+        }
+
+    }
+
+    override fun onPostKakaoLogInFailure(message: String) {
+        Log.d("로그","onPostKakaoLogInFailure() called, message: $message")
+
+        dismissLoadingDialog()
+        showCustomToast("네트워크 확인 후 다시 시도해주세요.")
+    }
+
+    // 네이버로 로그인 클릭 리스너
+    private val naverOnClickListener = View.OnClickListener{
+        showLoadingDialog(this)
+
+
+    }
 }

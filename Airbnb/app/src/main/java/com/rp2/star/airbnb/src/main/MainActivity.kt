@@ -1,6 +1,8 @@
 package com.rp2.star.airbnb.src.main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseActivity
@@ -17,7 +19,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.beginTransaction().add(R.id.main_frm, MyPageFragment()).commitAllowingStateLoss()
+        showLoadingDialog(this)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            supportFragmentManager.beginTransaction().add(R.id.main_frm, MyPageFragment()).commitAllowingStateLoss()
+            dismissLoadingDialog()
+        }, 1000)
 
         binding.mainBtmNav.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->

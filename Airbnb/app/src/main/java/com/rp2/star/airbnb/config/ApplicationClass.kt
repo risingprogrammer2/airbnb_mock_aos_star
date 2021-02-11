@@ -2,6 +2,8 @@ package com.rp2.star.airbnb.config
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.kakao.sdk.common.KakaoSdk
+import com.nhn.android.naverlogin.OAuthLogin
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,11 +20,13 @@ class ApplicationClass : Application() {
     // 실 서버 주소
     // val API_URL = "http://prod.rp2airbnb.shop"
 
-    // 네아로 Client ID, Secret
+    // 네이버 로그인
     val NAVER_ID = "85c0KuzfMwyqtc7nXByI"
     val NAVER_SECRET = "g9Cw_To5dG"
+    val NAVER_NAME = "AirbnbByStar"
 
-    // 카카오
+    // 카카오 로그인
+    val KAKAO_KEY = "806a3f954b6b3c877720495c3d0b5ccd"
 
 
     // 코틀린의 전역변수 문법
@@ -44,6 +48,27 @@ class ApplicationClass : Application() {
             applicationContext.getSharedPreferences("com.rp2.star.airbnb", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
+
+        // 카카오 sdk 초기화
+        KakaoSdk.init(this, "806a3f954b6b3c877720495c3d0b5ccd")
+        // 카카오 키해시 생성
+        /*var keyHash = Utility.getKeyHash(this)
+        Log.d("로그","카카오 키해시: $keyHash")*/
+
+        // 네이버 sdk 초기화
+        val mOAuthLoginModule = OAuthLogin.getInstance()
+        mOAuthLoginModule.init(
+            this
+            ,NAVER_ID
+            ,NAVER_SECRET
+            ,NAVER_NAME
+            //,OAUTH_CALLBACK_INTENT
+            // SDK 4.1.4 버전부터는 OAUTH_CALLBACK_INTENT변수를 사용하지 않습니다.
+        )
+
+
+        // 로그인 초기화
+        sSharedPreferences.edit().clear().apply()
     }
 
     // 레트로핏 인스턴스를 생성하고, 레트로핏에 각종 설정값들을 지정해줍니다.

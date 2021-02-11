@@ -16,8 +16,27 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
+        <!-- 카카오 로그인 -->
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
+                <data android:host="oauth"
+                    android:scheme="kakao806a3f954b6b3c877720495c3d0b5ccd" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".src.log_in.LogInActivity"
@@ -41,11 +60,7 @@
             android:theme="@style/LogInTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -1,16 +1,19 @@
 package com.rp2.star.airbnb.src.log_in.input_profile
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.rp2.star.airbnb.R
+import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivityInputProfileBinding
 import com.rp2.star.airbnb.src.log_in.models.PostPhoneSignUpRequest
 import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
+import com.rp2.star.airbnb.src.main.MainActivity
 import java.util.*
 
 
@@ -30,7 +33,6 @@ InputProfileActivityView{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        phoneNumber = intent.extras?.get("phone").toString()
 
         // 이름 입력칸에 따라 포커스 이동
         binding.inputProfileTextFirst.setOnFocusChangeListener { view, hasFocus ->
@@ -66,7 +68,7 @@ InputProfileActivityView{
         val dateDialog = DatePickerDialog(this, R.style.DatePickerStyle, dateDialogListener,
             calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))
         dateDialog.setTitle(R.string.input_profile_text_date_picker)
-        val positiveButton = dateDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+        // val positiveButton = dateDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
         // positiveButton.setTextColor(resources.getColor(R.color.redForDialogPositive))
         binding.inputProfileTextBirth.setOnFocusChangeListener { view, hasFocus ->
             Log.d("로그", "setOnFocusChangeListener, hasFocus: $hasFocus")
@@ -89,18 +91,38 @@ InputProfileActivityView{
 
         // 계속하기 버튼
         binding.inputProfileBtnContinue.setOnClickListener{
-            lastName = binding.inputProfileTextLast.text.toString()
-            firstName = binding.inputProfileTextFirst.text.toString()
+            val sp = ApplicationClass.sSharedPreferences
+            val id = sp.getInt("id", -1)
 
-//            val lastIdx = mYear.lastIndex
-//            val year = mYear.substring(lastIdx-1..lastIdx)
-            birth = mYear + mMonth + mDate
+            // 소셜로그인으로 이미 서버에서 회원가입 등록 -> 다시 서버로 요청하지 않는다
+            if(id != -1){
+                val mainIntent = Intent(this, MainActivity::class.java)
+                startActivity(mainIntent)
+            }
 
-            email = binding.inputProfileTextEmail.text.toString()
+            // sms 회원가입 -> 서버로 정보를 전달해서 회원가입 요청
+            else {
+                lastName = binding.inputProfileTextLast.text.toString()
+                firstName = binding.inputProfileTextFirst.text.toString()
 
-            val params = PostPhoneSignUpRequest(phoneNumber, email, lastName, firstName,
-            birth, "123456789")
-            Log.d("로그", "회원가입 정보: $params")
+                // +82로 시작하는 번호
+                phoneNumber = intent.extras?.get("phone").toString()
+                val lastIdx = mYear.lastIndex
+                val year = mYear.substring(lastIdx - 1..lastIdx)
+                birth = year + mMonth + mDate
+                email = binding.inputProfileTextEmail.text.toString()
+
+
+                // API에 전달할 Body parameters
+                /*val params = PostPhoneSignUpRequest("+821012345678", email, lastName, firstName,
+            birth)*/
+                val params = PostPhoneSignUpRequest(phoneNumber, email, lastName, firstName, birth)
+                Log.d("로그", "입력한 회원가입 정보: $params")
+
+                showLoadingDialog(this)
+                InputProfileService(this).tryPostSignUp(params)
+            }
+
         }
 
     }
@@ -205,10 +227,25 @@ InputProfileActivityView{
     }
 
     override fun onPostSignUpSuccess(response: SignUpResponse) {
+        dismissLoadingDialog()
+        Log.d("로그", "onPostSignUpSuccess() called -> message: $response.message")
+
         when(response.success){
+            // 회원가입이 성공하면 메인화면으로 넘어간다.
             true -> {
-                Log.d("로그", "onPostSignUpSuccess() called -> message: $response.message")
-                //val mainIntent =
+                // SharedPreference 에디트 모드로 가입된 idx과 token 값 저장
+                // 이후 자동 로그인, 프로필 조회, 수정 등에 사용
+                val sp = ApplicationClass.sSharedPreferences
+                val editor = sp.edit()
+                // idx와 token 값 저장
+                response.result?.let {
+                    editor.putInt("id", it.id)
+                    editor.putString("token", it.token)
+                    editor.commit()}
+
+                val mainIntent = Intent(this, MainActivity::class.java)
+                startActivity(mainIntent)
+                finish()
 
             }
             false -> {
