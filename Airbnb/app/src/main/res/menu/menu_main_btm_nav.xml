@@ -7,7 +7,6 @@
         android:icon="@drawable/btm_nav_search"
         app:showAsAction="always"
         android:enabled="true"
-        android:checkable="true"
         android:title="@string/main_btm_nav_search_title" />
 
     <item
@@ -36,6 +35,7 @@
         android:icon="@drawable/btm_nav_my_page"
         app:showAsAction="always"
         android:enabled="true"
+        android:checkable="true"
         android:title="@string/main_btm_nav_my_page_title" />
 
 </menu>

@@ -42,4 +42,7 @@
     <color name="greenForMyPageProfile">#028287</color>
     <color name="greyForMyPageDivider">#EBEBEB</color>
 
+    <!-- main_search -->
+    <color name="navyForAppbar">#07080C</color>
+
 </resources>

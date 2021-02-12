@@ -17,9 +17,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
         val sp = ApplicationClass.sSharedPreferences
         val idx = sp.getInt("idx", -1)
-
+/*
         // 임시 설정: 카카오 로그아웃
         kakaoLogOut()
+*/
 
         Handler(Looper.getMainLooper()).postDelayed({
             // 로그인 되어있지 않으면 로그인 액티비티로 이동

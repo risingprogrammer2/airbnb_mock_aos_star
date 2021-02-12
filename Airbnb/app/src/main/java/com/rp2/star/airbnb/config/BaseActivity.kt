@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.google.gson.GsonBuilder
 import com.kakao.sdk.user.UserApiClient
 import com.rp2.star.airbnb.src.log_in.models.ResultSignUp
 import com.rp2.star.airbnb.util.LoadingDialog
@@ -55,7 +54,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     fun saveUserLogIn(result: ResultSignUp){
         val id: Int = result.id
         val jwt: String =result.token
-        var name: String? = null
+        /*var name: String? = null
         UserApiClient.instance.me{ user, error ->
             if (error != null) {
                 Log.e("로그", "사용자 정보 요청 실패", error)
@@ -66,8 +65,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
                 val profile = user.kakaoAccount?.profile
                 Log.d("로그", "카카오 프로필: $profile")
             }
-
-        }
+        }*/
 
         val sp = ApplicationClass.sSharedPreferences
         val spEditor = sp.edit()
@@ -76,6 +74,11 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         spEditor.apply()
     }
 
+    // 로그아웃 -> sp clear
+    fun appLogOut(){
+        val spEditor = ApplicationClass.sSharedPreferences.edit()
+        spEditor.clear()
+    }
 
     // 카카오연결 끊기 - 다시 카카오톡 화면 띄워서 로그인 하는 모습 보이기 위해 로그아웃용으로 사용
     fun kakaoLogOut(){
@@ -124,4 +127,6 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
                     ApplicationClass.naverLoginModule.getLastErrorDesc(applicationContext))
         }
     }
+
+    // fun
 }

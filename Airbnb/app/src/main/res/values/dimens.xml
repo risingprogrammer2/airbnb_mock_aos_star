@@ -18,5 +18,7 @@
 
     <!-- main_my_page -->
     <dimen name="my_page_linear_btn_vertical_padding">8dp</dimen>
+    <dimen name="my_page_name_horizontal_margin">16dp</dimen>
+    <dimen name="my_page_profile_horizontal_margin">17dp</dimen>
 
 </resources>

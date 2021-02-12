@@ -32,11 +32,6 @@
         <activity android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".src.log_in.LogInActivity"
@@ -57,10 +52,14 @@
         </activity>
 
         <activity android:name=".src.main.MainActivity"
-            android:theme="@style/LogInTheme"
+            android:theme="@style/MainTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

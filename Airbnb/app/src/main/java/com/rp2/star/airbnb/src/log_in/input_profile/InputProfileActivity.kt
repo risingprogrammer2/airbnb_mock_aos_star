@@ -235,13 +235,8 @@ InputProfileActivityView{
             true -> {
                 // SharedPreference 에디트 모드로 가입된 idx과 token 값 저장
                 // 이후 자동 로그인, 프로필 조회, 수정 등에 사용
-                val sp = ApplicationClass.sSharedPreferences
-                val editor = sp.edit()
-                // idx와 token 값 저장
-                response.result?.let {
-                    editor.putInt("id", it.id)
-                    editor.putString("token", it.token)
-                    editor.commit()}
+                Log.d("로그","InputProfileActivity: 회원가입 승인 후 jwt, id 저장")
+                saveUserLogIn(response.result!!)
 
                 val mainIntent = Intent(this, MainActivity::class.java)
                 startActivity(mainIntent)

@@ -91,4 +91,15 @@
     <string name="my_page_btn_text_section5_2">로그아웃</string>
     <string name="my_page_btn_text_version">버전21.05(24001306)</string>
 
+    <!-- main_search -->
+    <string name="main_search_notice"><u>에어비앤비의 코로나19 대응 방안에 대한 최신 정보를 확인하세요.</u></string>
+    <string name="main_search_search_text">어디로 여행가시나요?</string>
+    <string name="main_search_text1"><b>이제, 여행은 가까운 곳에서</b></string>
+    <string name="main_search_tex2">근처의 숙소 둘러보기</string>
+    <string name="main_search_seoul"><b>서울</b>\n차로 30분 거리</string>>
+    <string name="main_search_incheon"><b>인천</b>\n차로 30분 거리</string>
+    <string name="main_search_uijeongbu"><b>의정부시</b>\n차로 45분 거리</string>
+    <string name="main_search_daegu"><b>대구\n차로 4시간 거리</b></string>
+    <string name="main_search_daejeon"><b>대전\n차로 2.5시간 거리</b></string>
+    <string name="main_search_bucheon"><b>부천시\n차로 15분 거리</b></string>
 </resources>
