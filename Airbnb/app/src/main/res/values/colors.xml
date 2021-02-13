@@ -45,4 +45,8 @@
     <!-- main_search -->
     <color name="navyForAppbar">#07080C</color>
 
+    <!-- search_first-->
+    <color name="blueForStatusBar">#3C97C6</color>
+    <color name="blueForBackground">#197CC0</color>
+
 </resources>

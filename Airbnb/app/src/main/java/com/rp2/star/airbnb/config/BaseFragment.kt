@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
@@ -79,5 +80,14 @@ abstract class BaseFragment<B : ViewBinding>(
                 Log.i("로그", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
             }
         }
+    }
+
+    // status bar 배경 색상 변경
+    fun changeStatusBarColor(color: Int){
+        val mWindow = requireActivity().window
+        mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        // mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        mWindow.statusBarColor = color
+
     }
 }

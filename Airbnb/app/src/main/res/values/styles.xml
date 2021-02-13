@@ -5,19 +5,19 @@
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!-- 상태바 색상-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item><!-- 액션바 숨기기 -->
+        <item name="windowNoTitle">true</item> <!-- 타이틀바 숨기기 -->
     </style>
 
     <!-- splash theme -->
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <item name="colorPrimaryDark">@color/white</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item> <!-- 상태바 아이콘 색상 -->
     </style>
 
     <!-- log in theme -->
@@ -28,9 +28,17 @@
     </style>
 
     <style name="MainTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimaryDark">@color/white</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
+    </style>
+
+    <style name="SearchTheme" parent="Theme.MaterialComponents.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimaryDark">@color/blueForStatusBar</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
 
     </style>
 
@@ -83,5 +91,18 @@
         <item name="android:gravity">start|top</item>
         <item name="android:textColor">@color/blackForMyPageText</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- searching_step1 text1 style-->
+    <style name="SearchingStepText1" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/blackForMyPageText</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- searching_step1 text2 style-->
+    <style name="SearchingStepText2" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/blackForMyPageText</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>

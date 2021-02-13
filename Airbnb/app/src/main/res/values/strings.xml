@@ -102,4 +102,20 @@
     <string name="main_search_daegu"><b>대구\n차로 4시간 거리</b></string>
     <string name="main_search_daejeon"><b>대전\n차로 2.5시간 거리</b></string>
     <string name="main_search_bucheon"><b>부천시\n차로 15분 거리</b></string>
+
+    <!-- searching_step1 -->
+    <string name="searching_step1_text_search">어디로 여행가세요?</string>
+    <string name="searching_step1_text_near">가까운 여행지 둘러보기</string>
+    <string name="searching_step1_text_record">최근 검색 기록</string>
+    <string name="searching_step1_text_popular">근처의 인기 여행지 v</string>
+    <string name="searching_step1_text_jeju">제주시</string>
+    <string name="searching_step1_text_7hour">차로 7시간 거리</string>
+    <string name="searching_step1_text_sokcho">속초시</string>
+    <string name="searching_step1_text_2half_hour">차로 2.5시간 거리</string>
+    <string name="searching_step1_text_gang">강릉시</string>
+    <string name="searching_step1_text_3hour">차로 3시간 거리</string>
+    <string name="searching_step1_text_jeonju">전주시</string>
+    <string name="searching_step1_text_5hour">차로 5시간 거리</string>
+    <string name="searching_step1_text_busan">부산광역시</string>
+    <string name="searching_step1_text_4hour">차로 4시간 거리</string>
 </resources>

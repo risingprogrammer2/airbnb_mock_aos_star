@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".src.main.search.SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,6 +39,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_search_btn_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
@@ -62,14 +64,13 @@
             <TextView
                 android:id="@+id/main_search_text_search"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="@string/main_search_text1"
+                android:text="@string/main_search_search_text"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_default="wrap"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -79,23 +80,21 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="700dp"
-        android:background="@drawable/main_search_neat_background"
+        android:layout_marginBottom="140dp"
         android:fillViewport="true"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@drawable/main_search_background_img"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.7"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_weight="0.7">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/main_search_guideline1"
@@ -107,9 +106,8 @@
                 <TextView
                     android:id="@+id/main_search_text_near"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.6"
-                    app:layout_constraintHeight_default="wrap"
                     app:layout_constraintTop_toTopOf="@id/main_search_guideline1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,25 +140,22 @@
                 android:id="@+id/main_search_scroll_"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.3"
+                android:layout_weight="0.3"
                 android:padding="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:fillViewport="true"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:orientation="vertical"
                     android:background="@color/whiteForBackground"
                     app:useDefaultMargins="true"
-                    app:rowCount="2">
+                    app:rowCount="2"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                     <LinearLayout
                         android:layout_height="89dp"
@@ -302,9 +297,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
