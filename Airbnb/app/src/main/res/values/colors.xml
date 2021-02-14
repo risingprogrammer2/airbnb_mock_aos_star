@@ -49,4 +49,23 @@
     <color name="blueForStatusBar">#3C97C6</color>
     <color name="blueForBackground">#197CC0</color>
 
+    <!--searching_calendar color-->
+    <!--Background color-->
+    <color name="GreyForModal">#B0B0B0</color>
+
+    <color name="calendar_picker_bg">#00FFFFFF</color>
+
+    <color name="calendar_day_unselected_bg">#00000000</color>
+    <color name="calendar_day_selected_bg">#000000</color>
+    <color name="calendar_day_range_selected_bg">#EBEBEB</color>
+
+
+    <color name="calendar_day_disabled_font">#DDDDDD</color>
+    <color name="calendar_day_weekend_font">#000000</color>
+    <color name="calendar_day_selected_font">#FFFFFF</color>
+    <color name="calendar_day_normal_font">#000000</color>
+
+    <color name="calendar_month_font">#000000</color>
+    <color name="calendar_week_font">#333333</color>
+
 </resources>

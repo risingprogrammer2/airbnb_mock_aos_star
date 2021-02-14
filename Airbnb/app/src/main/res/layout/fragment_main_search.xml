@@ -9,79 +9,81 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/main_search_appbar"
-        android:layout_height="140dp"
+        android:layout_height="145dp"
         android:layout_width="match_parent"
         android:background="@color/navyForAppbar">
 
+        <TextView
+            android:id="@+id/main_search_notice"
+            android:layout_height="90dp"
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            android:paddingHorizontal="16dp"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="1dp"
+            android:text="@string/main_search_notice"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:maxLines="2"
+            android:background="@color/transparentForBackground"/>
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            app:toolbarId="@+id/main_search_toolbar"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            android:layout_height="55dp"
+            android:fitsSystemWindows="true"
             app:contentScrim="@color/whiteForBackground"
-            android:background="@color/black">
-
-            <TextView
-                android:id="@+id/main_search_notice"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:paddingHorizontal="16dp"
-                android:layout_gravity="center"
-                android:lineSpacingExtra="1dp"
-                android:text="@string/main_search_notice"
-                android:textSize="14dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:background="@color/transparentForBackground"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
+            app:scrimVisibleHeightTrigger="5dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:background="@color/black"
+            app:toolbarId="@id/main_search_btn_search">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/main_search_btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/main_search_search_background">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/btm_nav_search"
-                android:tint="@color/redForDialogPositive"
-                app:layout_constraintBottom_toBottomOf="@id/main_search_text_search"
-                app:layout_constraintDimensionRatio="w,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/main_search_text_search"
-                app:layout_constraintHeight_default="spread"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/main_search_text_search" />
-
-            <TextView
-                android:id="@+id/main_search_text_search"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/main_search_search_text"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/main_search_search_background"
+                app:layout_collapseMode="pin">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/btm_nav_search"
+                    android:tint="@color/redForDialogPositive"
+                    app:layout_constraintBottom_toBottomOf="@id/main_search_text_search"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/main_search_text_search"
+                    app:layout_constraintHeight_default="spread"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/main_search_text_search" />
+
+                <TextView
+                    android:id="@+id/main_search_text_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/main_search_search_text"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="700dp"
-        android:layout_marginBottom="140dp"
-        android:fillViewport="true"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -92,16 +94,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@drawable/main_search_background_img"
-                android:layout_weight="0.7">
+                android:layout_height="490dp"
+                android:background="@drawable/main_search_background_img">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/main_search_guideline1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.2"/>
+                    app:layout_constraintGuide_percent="0.2" />
 
                 <TextView
                     android:id="@+id/main_search_text_near"
@@ -139,8 +140,7 @@
             <HorizontalScrollView
                 android:id="@+id/main_search_scroll_"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
+                android:layout_height="200dp"
                 android:padding="16dp"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -158,21 +158,24 @@
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
+                        android:orientation="horizontal"
+                        android:background="@color/whiteForBackground">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
+                            android:layout_weight="1"
+                            android:src="@drawable/search_main_seoul"
                             android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_seoul"
@@ -181,21 +184,23 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
+                            android:layout_weight="1"
+                            android:src="@drawable/search_main_incheon"
                             android:adjustViewBounds="true"
-                            android:scaleType="fitStart"
+                            android:scaleType="centerCrop"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_incheon"
@@ -204,21 +209,23 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
-                            android:scaleType="fitStart"
+                            android:layout_weight="1"
+                            android:src="@drawable/search_main_park1"
+                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_uijeongbu"
@@ -227,21 +234,23 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
-                            android:scaleType="fitStart"
+                            android:layout_weight="1"
+                            android:src="@drawable/main_search_daegu"
+                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_daegu"
@@ -250,21 +259,23 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
-                            android:scaleType="fitStart"
+                            android:layout_weight="1"
+                            android:src="@drawable/search_main_park2"
+                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_daejeon"
@@ -273,21 +284,23 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_height="89dp"
-                        android:layout_width="wrap_content"
+                        android:layout_height="79dp"
+                        android:layout_width="184dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:src="@drawable/main_search_background_img"
-                            android:scaleType="fitStart"
+                            android:layout_weight="1"
+                            android:src="@drawable/search_main_park3"
+                            android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
                             android:background="@drawable/main_search_img_border"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:gravity="start|center_vertical"
                             android:layout_marginStart="8dp"
                             android:text="@string/main_search_bucheon"

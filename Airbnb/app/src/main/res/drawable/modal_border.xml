@@ -5,16 +5,19 @@
             android:shape="rectangle">
             <!-- 테두리 내부 색상 설정 -->
             <solid
-                android:color="#f7f7f7"/>
+                android:color="@color/whiteForBackground"/>
 
             <!-- 테두리 내부 여백 설정 -->
             <padding/>
 
             <!-- 테두리 설정: 두께, 색상 -->
-            <stroke />
+            <stroke
+                android:width="1dp"
+                android:color="@color/whiteForBackground" />
 
             <corners
-                android:radius="50dp"/>
+                android:topLeftRadius="20dp"
+                android:topRightRadius="20dp"/>
         </shape>
     </item>
 </layer-list>

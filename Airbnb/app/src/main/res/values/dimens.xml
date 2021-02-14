@@ -21,4 +21,8 @@
     <dimen name="my_page_name_horizontal_margin">16dp</dimen>
     <dimen name="my_page_profile_horizontal_margin">17dp</dimen>
 
+    <!-- searching_step1 -->
+    <dimen name="searching_step1_btn_vertical_padding">16dp</dimen>
+    <dimen name="searching_step1_btn_horizontal_padding">16dp</dimen>
+
 </resources>

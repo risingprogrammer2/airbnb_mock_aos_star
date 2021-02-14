@@ -1,241 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-<LinearLayout
-    android:id="@+id/input_profile_parent"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteForBackground"
-    tools:context=".src.log_in.input_profile.InputProfileActivity"
-    android:orientation="vertical"
-    android:paddingVertical="@dimen/activity_vertical_margin"
-    android:paddingHorizontal="@dimen/log_in_activity_horizontal_padding">
+    android:fitsSystemWindows="true"
+    tools:context=".src.main.MainActivity">
 
-    <ImageButton
-        android:id="@+id/input_profile_btn_back"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/searching_step1_img4" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이하\n이" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:src="@drawable/arrow_back_black_24dp"
-        android:tint="@color/blackForLogInClearBtn"
-        android:background="@color/whiteForBackground"
-        android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/input_profile_text_title"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:gravity="start|center_vertical"
-        android:text="@string/input_profile_text_title"
-        android:textColor="@color/black"
-        android:textSize="@dimen/log_in_text_title_size"
-        android:layout_marginBottom="6dp"/>
-
-    <LinearLayout
-        android:id="@+id/input_profile_layout_name"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:layout_constraintHeight_percent="0.177"
-        android:orientation="vertical"
-        android:background="@drawable/log_in_linear_layout_phone_border"
-        android:weightSum="1">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_profile_layout_first"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.49"
-            android:background="@drawable/input_profile_text_first_selector"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/activity_horizontal_margin"
-            android:paddingTop="6dp"
-            android:hint="@string/input_profile_hint_first"
-            app:hintTextColor="@color/greyForLogInTextOr">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_profile_text_first"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/transparentForBackground"
-                android:gravity="center_vertical"
-                android:inputType="textPersonName"
-                android:maxLines="1"
-                android:textColorHint="@color/greyForLogInTextOr"
-                android:textCursorDrawable="@drawable/log_in_text_phone_cursor"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <View
-            android:id="@+id/input_profile_name_divider"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.007"
-            android:background="@color/greyForLogInPhoneBorder" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_profile_layout_last"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.48"
-            android:background="@drawable/input_profile_text_last_selector"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/activity_horizontal_margin"
-            android:paddingTop="6dp"
-            android:hint="@string/input_profile_hint_last"
-            app:hintTextColor="@color/greyForLogInTextOr">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_profile_text_last"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/transparentForBackground"
-                android:gravity="center_vertical"
-                android:inputType="textPersonName"
-                android:maxLines="1"
-                android:textColorHint="@color/greyForLogInTextOr"
-                android:textCursorDrawable="@drawable/log_in_text_phone_cursor"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/input_profile_text_notice1"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start|center_vertical"
-        android:maxLines="2"
-        android:text="@string/input_profile_text_notice1"
-        android:textColor="@color/greyForLogInTextOr"
-        android:textSize="@dimen/input_profile_text_notice_small"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_profile_layout_birth"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/input_profile_hint_birth"
-        android:gravity="center"
-        android:background="@drawable/input_profile_text_selector"
-        android:paddingHorizontal="@dimen/activity_horizontal_margin"
-        android:paddingTop="12dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_profile_text_birth"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="start"
-            android:textSize="15sp"
-            android:maxLines="1"
-            android:inputType="date"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/input_profile_text_notice2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start|center_vertical"
-        android:maxLines="2"
-        android:text="@string/input_profile_text_notice2"
-        android:textColor="@color/greyForLogInTextOr"
-        android:textSize="@dimen/input_profile_text_notice_small"
-        android:layout_marginVertical="@dimen/input_profile_vertical_margin"
-        android:visibility="visible"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_profile_layout_email"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="@string/input_profile_hint_email"
-        app:boxStrokeErrorColor="@color/brownForWarn"
-        app:errorTextColor="@color/brownForWarn"
-        android:background="@drawable/input_profile_text_selector"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:paddingHorizontal="@dimen/activity_horizontal_margin"
-        android:paddingTop="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_profile_text_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="start"
-            android:maxLines="1"
-            android:textSize="15sp"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/input_profile_text_email_error"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start|top"
-        android:maxLines="2"
-        android:drawableStart="@drawable/error_16dp"
-        android:drawablePadding="4dp"
-        android:text="@string/input_profile_text_email_error"
-        android:textColor="@color/brownForWarn"
-        android:textSize="@dimen/input_profile_text_notice_small"
-        android:layout_marginVertical="@dimen/input_profile_vertical_margin"
-        android:visibility="gone"/>
+        android:layout_margin="16dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
-    <TextView
-        android:id="@+id/input_profile_text_notice3"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="start|center_vertical"
-        android:maxLines="2"
-        android:text="@string/input_profile_text_notice3"
-        android:textColor="@color/greyForLogInTextOr"
-        android:textSize="@dimen/input_profile_text_notice_small"
-        android:layout_marginVertical="@dimen/input_profile_vertical_margin"/>
-
-    <TextView
-        android:id="@+id/input_profile_text_notice4"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="start|center_vertical"
-        android:maxLines="4"
-        android:text="@string/input_profile_text_notice4"
-        android:textColor="@color/black"
-        android:textSize="@dimen/input_profile_text_notice_large"/>
-
-    <Button
-        android:id="@+id/input_profile_btn_continue"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="@string/input_profile_btn_continue"
-        android:textColor="@color/white"
-        android:textSize="@dimen/input_profile_text_continue_size"
-        android:gravity="center"
-        android:layout_marginVertical="@dimen/activity_vertical_margin"
-        android:background="@drawable/input_profile_btn_continue_selector"
-        android:enabled="false"/>
-
-    <TextView
-        android:id="@+id/input_profile_text_notice5"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="start|center_vertical"
-        android:maxLines="4"
-        android:text="@string/input_profile_text_notice5"
-        android:textColor="@color/black"
-        android:textSize="@dimen/input_profile_text_notice_large"
-        android:layout_marginTop="@dimen/activity_vertical_margin"/>
-
-
-    <Switch
-        android:id="@+id/input_profile_switch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:maxLines="2"
-        android:text="@string/input_profile_text_notice6"
-        android:textColor="@color/black"
-        android:textSize="@dimen/input_profile_text_notice_large"/>
-</LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

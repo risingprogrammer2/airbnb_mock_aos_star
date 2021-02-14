@@ -23,13 +23,15 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_weight="0.1"
+                android:layout_gravity="center_vertical"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:src="@drawable/arrow_back_black_24dp"/>
 
             <androidx.appcompat.widget.SearchView
+                android:id="@+id/searching_step1_search_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:paddingStart="8dp"
@@ -58,8 +60,7 @@
                 android:id="@+id/searching_step1_near"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="@drawable/my_page_text_divider"
-                android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                 <ImageView
                     android:id="@+id/searching_step1_near_img"
@@ -87,11 +88,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:gravity="start|center_vertical"
                     android:text="@string/searching_step1_text_record"
                     android:textSize="11sp"
@@ -105,7 +107,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:gravity="start|center_vertical"
                     android:text="@string/searching_step1_text_popular"
                     android:textSize="11sp"
@@ -114,11 +116,11 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/my_page_btn1"
+                    android:id="@+id/searching_step1_popular1"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/my_page_text_divider"
-                    android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                    android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                     <ImageView
                         android:id="@+id/searching_step1_popular1_img"
@@ -155,11 +157,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/searching_step1_popular3"
+                    android:id="@+id/searching_step1_popular2"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/my_page_text_divider"
-                    android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                    android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                     <ImageView
                         android:id="@+id/searching_step1_popular2_img"
@@ -196,11 +198,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/searching_step1_popular2"
+                    android:id="@+id/searching_step1_popular3"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/my_page_text_divider"
-                    android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                    android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                     <ImageView
                         android:id="@+id/searching_step1_popular3_img"
@@ -241,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/my_page_text_divider"
-                    android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                    android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                     <ImageView
                         android:id="@+id/searching_step1_popular4_img"
@@ -282,7 +284,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/my_page_text_divider"
-                    android:paddingVertical="@dimen/my_page_linear_btn_vertical_padding">
+                    android:paddingVertical="@dimen/searching_step1_btn_vertical_padding">
 
                     <ImageView
                         android:id="@+id/searching_step1_popular5_img"

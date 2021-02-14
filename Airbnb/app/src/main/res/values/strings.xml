@@ -107,7 +107,7 @@
     <string name="searching_step1_text_search">어디로 여행가세요?</string>
     <string name="searching_step1_text_near">가까운 여행지 둘러보기</string>
     <string name="searching_step1_text_record">최근 검색 기록</string>
-    <string name="searching_step1_text_popular">근처의 인기 여행지 v</string>
+    <string name="searching_step1_text_popular">근처의 인기 여행지</string>
     <string name="searching_step1_text_jeju">제주시</string>
     <string name="searching_step1_text_7hour">차로 7시간 거리</string>
     <string name="searching_step1_text_sokcho">속초시</string>
@@ -118,4 +118,16 @@
     <string name="searching_step1_text_5hour">차로 5시간 거리</string>
     <string name="searching_step1_text_busan">부산광역시</string>
     <string name="searching_step1_text_4hour">차로 4시간 거리</string>
+
+    <!-- searching_step2 -->
+    <string name="searching_step2_text_collapsing">무엇을 찾고\n계신가요?</string>
+    <string name="searching_step2_text1">숙소 찾기</string>
+    <string name="searching_step2_text1_1">집 전체, 개인실 등</string>
+    <string name="searching_step2_text2">장기 숙박</string>
+    <string name="searching_step2_text2_1">4주 이상의 편안한 숙박</string>
+    <string name="searching_step2_text3">체험 찾기</string>
+    <string name="searching_step2_text3_1">현지인이 호스팅하는 액티비티</string>
+
+    <!-- searching_calendar -->
+    <string name="searching_calendar_text_pick">날짜를\n선택하세요.</string>
 </resources>
