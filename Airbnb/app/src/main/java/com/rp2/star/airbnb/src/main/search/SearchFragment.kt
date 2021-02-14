@@ -15,6 +15,7 @@ class SearchFragment : BaseFragment<FragmentMainSearchBinding>(FragmentMainSearc
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         binding.mainSearchBtnSearch.setOnClickListener {
             val searchingIntent = Intent(activity, SearchingActivity::class.java)
             startActivity(searchingIntent)

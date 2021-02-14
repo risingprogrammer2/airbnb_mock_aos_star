@@ -46,7 +46,7 @@
     <color name="navyForAppbar">#07080C</color>
 
     <!-- search_first-->
-    <color name="blueForStatusBar">#3C97C6</color>
+    <color name="blueForStatusBar">#397CC0</color>
     <color name="blueForBackground">#197CC0</color>
 
     <!--searching_calendar color-->
