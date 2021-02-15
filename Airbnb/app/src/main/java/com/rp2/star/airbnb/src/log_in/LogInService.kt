@@ -8,6 +8,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.AccessTokenInfo
 import com.kakao.sdk.user.model.User
 import com.rp2.star.airbnb.config.ApplicationClass
+import com.rp2.star.airbnb.src.log_in.models.NaverResponse
 import com.rp2.star.airbnb.src.log_in.models.PostKakaoLogInRequest
 import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
 import retrofit2.Call
@@ -16,26 +17,25 @@ import retrofit2.Response
 
 class LogInService(val view: LogInActivityView) {
 
-    /*
+
     // 팀 서버에 네이버 로그인/회원가입 통신 요청
     fun tryNaverLogIn(accessToken: String){
 
-        val postNaverLogInRequest = PostNaverLogInRequest(accessToken)
         val logInRetrofitInterface = ApplicationClass.sRetrofit.create(LogInRetrofitInterface::class.java)
 
-        logInRetrofitInterface.postNaverLogInRequest(postNaverLogInRequest)
-            .enqueue(object : Callback<SignUpResponse> {
+        logInRetrofitInterface.postNaverLogInRequest(accessToken)
+            .enqueue(object : Callback<NaverResponse> {
 
-                override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                    view.onPostNaverLogInSuccess(response.body() as SignUpResponse)
+                override fun onResponse(call: Call<NaverResponse>, response: Response<NaverResponse>) {
+                    view.onPostNaverLogInSuccess(response.body() as NaverResponse)
                 }
 
-                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                override fun onFailure(call: Call<NaverResponse>, t: Throwable) {
                     view.onPostNaverLogInFailure(t.message ?: "통신 오류")
                 }
             })
     }
-    */
+
 
     // 팀 서버에 카카오 로그인/회원가입 통신 요청
     fun tryKakaoLogIn(accessToken: String){
@@ -91,7 +91,15 @@ class LogInService(val view: LogInActivityView) {
             }
             else if (user != null) {
                 Log.i("로그", "사용자 정보 요청 성공, user: $user")
-                returnValue = user
+                Log.i("로그","properties: ${user.properties}")
+                Log.i("로그","properties: ${user.properties}")
+                val nickname: String? = user.properties?.get("nickname")
+                val img: String? = user.properties?.get("thumbnail_image")
+                ApplicationClass.sSharedPreferences.edit().apply{
+                    putString("firstName", nickname)
+                    putString("img", img)
+                    apply()
+                }
             }
         }
         return returnValue

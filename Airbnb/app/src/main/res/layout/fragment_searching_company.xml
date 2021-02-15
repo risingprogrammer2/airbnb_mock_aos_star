@@ -8,7 +8,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
-        android:layout_height="212dp"
+        android:layout_height="180dp"
         android:layout_width="match_parent">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:letterSpacing="0.05"
-                    android:text="@string/searching_step2_text_collapsing"
+                    android:text="@string/searching_company_text_company"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold"
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp">
+            android:paddingHorizontal="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,193 +76,313 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:paddingVertical="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                android:background="@drawable/my_page_text_divider">
 
                 <ImageView
-                    android:id="@+id/searching_step2_back"
-                    android:paddingHorizontal="8dp"
+                    android:id="@+id/searching_company_back"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    app:layout_constraintWidth_percent="0.15"
-                    android:src="@drawable/arrow_back_black_24dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_back_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintWidth_percent="0.15" />
 
-                <TextView
-                    android:id="@+id/searching_step2_query"
+
+                <LinearLayout
+                    android:id="@+id/searching_company_layout_top"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:ellipsize="end"
                     android:gravity="center"
-                    android:maxLines="1"
+                    android:orientation="vertical"
                     android:paddingHorizontal="16dp"
-                    android:text="송파"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.45"
-                    app:layout_constraintStart_toEndOf="@id/searching_step2_back"
-                    tools:layout_editor_absoluteY="16dp" />
+                    app:layout_constraintHorizontal_bias="0.39"
+                    app:layout_constraintStart_toEndOf="@id/searching_company_back"
+                    tools:layout_editor_absoluteY="8dp">
+
+                    <TextView
+                        android:id="@+id/searching_company_text_query"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="송파"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/searching_company_text_range"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="2월17일~19일"
+                        android:textColor="@color/blackForText"
+                        android:textSize="14sp"
+                        android:visibility="visible" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/searching_company_btn1"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                android:layout_height="90dp"
+                android:padding="@dimen/searching_step1_btn_vertical_padding"
+                android:background="@drawable/my_page_text_divider"
+                android:clickable="true"
+                android:focusable="true">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/searching_step2_btn1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/searching_step1_btn_vertical_padding"
-                    android:clickable="true"
-                    android:focusable="true">
+                <LinearLayout
+                    android:id="@+id/searching_company_btn1_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/searching_step2_btn1_img"
+                    <TextView
+                        android:id="@+id/searching_company_btn1_minus"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        app:layout_constraintWidth_percent="0.3"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/step2_img1"
-                        android:background="@drawable/main_search_img_border"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="w,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_minus"
+                        android:textSize="20sp"
+                        android:textScaleX="2"/>
                     <TextView
-                        android:id="@+id/searching_step2_btn1_text1"
-                        style="@style/SearchingStepText1"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/searching_step2_btn1_text2"/>
-                    <TextView
-                        android:id="@+id/searching_step2_btn1_text2"
-                        style="@style/SearchingStepText2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text1_1"
-                        app:layout_constraintTop_toBottomOf="@id/searching_step2_btn1_text1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/searching_step2_btn2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/searching_step1_btn_vertical_padding"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/searching_step2_btn2_img"
+                        android:id="@+id/searching_company_btn1_number"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/step2_img2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="w,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_percent="0.3" />
-
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="20sp"/>
                     <TextView
-                        android:id="@+id/searching_step2_btn2_text1"
-                        style="@style/SearchingStepText1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text2"
-                        android:textColor="@color/black"
-                        app:layout_constraintBottom_toTopOf="@id/searching_step2_btn2_text2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/searching_step2_btn2_text2"
-                        style="@style/SearchingStepText2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text2_1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/searching_step2_btn2_text1" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:cardCornerRadius="16dp"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/searching_step2_btn3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/searching_step1_btn_vertical_padding"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/searching_step2_btn3_img"
+                        android:id="@+id/searching_company_btn1_plus"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        app:layout_constraintWidth_percent="0.3"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/step2_img3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="w,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_plus"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/searching_company_btn1_text1"
+                    style="@style/SearchingStepText1"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn1_text1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/searching_company_btn1_text2"/>
+                <TextView
+                    android:id="@+id/searching_company_btn1_text2"
+                    style="@style/SearchingStepText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn1_text2"
+                    app:layout_constraintTop_toBottomOf="@id/searching_company_btn1_text1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/searching_company_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@drawable/my_page_text_divider"
+                android:padding="@dimen/searching_step1_btn_vertical_padding"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/searching_company_btn2_text1"
+                    style="@style/SearchingStepText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn2_text1"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/searching_company_btn2_text2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/searching_company_btn2_text2"
+                    style="@style/SearchingStepText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn2_text2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searching_company_btn2_text1" />
+
+                <LinearLayout
+                    android:id="@+id/searching_company_btn2_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/searching_step2_btn3_text1"
-                        style="@style/SearchingStepText1"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/searching_step2_btn3_text2"/>
+                        android:id="@+id/searching_company_btn2_minus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_minus"
+                        android:textSize="20sp"
+                        android:textScaleX="2"/>
                     <TextView
-                        android:id="@+id/searching_step2_btn3_text2"
-                        style="@style/SearchingStepText2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/searching_step2_text3_1"
-                        app:layout_constraintTop_toBottomOf="@id/searching_step2_btn3_text1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                        android:id="@+id/searching_company_btn2_number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/searching_company_btn2_plus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_plus"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/searching_step2_btn3"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@drawable/my_page_text_divider"
+                android:layout_gravity="center"
+                android:padding="@dimen/searching_step1_btn_vertical_padding"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/searching_company_btn3_text1"
+                    style="@style/SearchingStepText1"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn3_text1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/searching_company_btn3_text2"/>
+                <TextView
+                    android:id="@+id/searching_company_btn3_text2"
+                    style="@style/SearchingStepText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searching_company_btn3_text2"
+                    app:layout_constraintTop_toBottomOf="@id/searching_company_btn3_text1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <LinearLayout
+                    android:id="@+id/searching_company_btn3_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/searching_company_btn3_minus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_minus"
+                        android:textSize="20sp"
+                        android:textScaleX="2"/>
+                    <TextView
+                        android:id="@+id/searching_company_btn3_number"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/searching_company_btn3_plus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_border"
+                        android:gravity="center"
+                        android:text="@string/searching_company_btn_plus"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/bottom_bar_top_border"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <Button
+            android:id="@+id/searching_company_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:elevation="0dp"
+            android:fadingEdgeLength="0dp"
+            android:maxLines="1"
+            android:text="@string/searching_company_text_skip"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:backgroundTint="@color/whiteForBackground"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/transparentForBackground"
+            android:layout_weight="0.7"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searching_company_next"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:maxLines="1"
+            android:text="@string/searching_company_text_search"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/input_profile_btn_continue_selector"/>
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

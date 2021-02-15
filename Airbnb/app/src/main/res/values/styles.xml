@@ -36,7 +36,7 @@
     <style name="SearchTheme" parent="Theme.MaterialComponents.Light">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="colorPrimaryDark">@color/blueForStatusBar</item>
+        <item name="colorPrimaryDark">@color/blueForBackground</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
 

@@ -59,6 +59,13 @@ abstract class BaseFragment<B : ViewBinding>(
         Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
     }
 
+    // 로그아웃 -> 활동 정보 모두 삭제
+    fun appLogOut(){
+        val spEditor = ApplicationClass.sSharedPreferences.edit()
+        spEditor.clear()
+        spEditor.apply()
+    }
+
     // 로그인 정보 저장
     fun saveUserLogIn(result: ResultSignUp){
         val id: Int = result.id
@@ -72,6 +79,9 @@ abstract class BaseFragment<B : ViewBinding>(
 
     // 카카오연결 끊기 - 다시 카카오톡 화면 띄워서 로그인 하는 모습 보이기 위해 로그아웃용으로 사용
     fun kakaoLogOut(){
+        // 활동 정보 모두 삭제
+        ApplicationClass.sSharedPreferences.edit().clear().apply()
+
         UserApiClient.instance.unlink { error ->
             if (error != null) {
                 Log.e("로그", "연결 끊기 실패", error)

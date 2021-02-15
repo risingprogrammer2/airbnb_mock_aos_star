@@ -32,6 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.menu_main_btm_nav_search -> {
+
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.main_frm, SearchFragment())
                             .commitAllowingStateLoss()
@@ -56,6 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_my_page -> {
+
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.main_frm, MyPageFragment())
                             .commitAllowingStateLoss()

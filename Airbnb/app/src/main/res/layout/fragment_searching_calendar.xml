@@ -158,19 +158,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
-        android:padding="16dp"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
         android:background="@drawable/bottom_bar_top_border"
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/searching_calendar_erase"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
             android:elevation="0dp"
+            android:fadingEdgeLength="0dp"
+            android:maxLines="1"
             android:text="@string/searching_calendar_text_erase"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -179,17 +181,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/transparentForBackground"
-            android:layout_weight="0.6"/>
+            android:layout_weight="0.7"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/searching_calendar_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
+            android:layout_weight="0.3"
             android:text="@string/searching_calendar_text_next"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="@color/black"
+            android:background="@drawable/input_profile_btn_continue_selector"
+            android:enabled="false"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

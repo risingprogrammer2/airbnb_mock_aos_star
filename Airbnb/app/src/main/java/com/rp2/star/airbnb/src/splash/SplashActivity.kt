@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivitySplashBinding
@@ -16,13 +17,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         super.onCreate(savedInstanceState)
 
         val sp = ApplicationClass.sSharedPreferences
-        val idx = sp.getInt("idx", -1)
+        val idx = sp.getInt("id", -1)
 /*
         // 임시 설정: 카카오 로그아웃
         kakaoLogOut()
 */
 
         Handler(Looper.getMainLooper()).postDelayed({
+            Log.d("로그","자동 로그인: id: $idx")
             // 로그인 되어있지 않으면 로그인 액티비티로 이동
             if(idx == -1){
                 startActivity(Intent(this, LogInActivity::class.java))

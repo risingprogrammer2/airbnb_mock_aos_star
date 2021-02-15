@@ -1,20 +1,16 @@
 package com.rp2.star.airbnb.src.log_in
 
-import com.rp2.star.airbnb.src.log_in.models.PostKakaoLogInRequest
-import com.rp2.star.airbnb.src.log_in.models.PostPhoneSignUpRequest
-import com.rp2.star.airbnb.src.log_in.models.PostSocialSignUpRequest
-import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
+import com.rp2.star.airbnb.src.log_in.models.*
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface LogInRetrofitInterface {
-/*
 
     // 팀서버에 네이버 회원가입/로그인 요청
     @POST("/auth/naver/user")
-    fun postNaverLogInRequest(@Body accessToken: PostNaverLogInRequest): Call<SignUpResponse>
-*/
+    fun postNaverLogInRequest(@Header("access_token") accessToken: String): Call<NaverResponse>
 
     // 팀서버에 카카오 회원가입/로그인 요청
     @POST("/auth/kakao/user")

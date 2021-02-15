@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="8dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/recycler_show_lodge_images"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/main_search_background_img"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:id="@+id/recycler_show_lodge_superhost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:background="@color/whiteForBackground"
+                android:text="슈퍼호스트"
+                android:textColor="@color/black"
+                android:padding="8dp"
+                android:textSize="14sp"
+                android:visibility="visible" />
+            
+            <ImageView
+                android:id="@+id/recycler_show_lodge_store"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="top|end"
+                android:adjustViewBounds="true"
+                android:src="@drawable/btm_nav_store"
+                android:tint="@color/redForText"/>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/btm_nav_store"
+            android:scaleType="fitCenter"
+            android:tint="@color/redForText"/>
+        <TextView
+            android:id="@+id/recycler_show_lodge_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="NEW"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/recycler_show_lodge_location"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="아파트 전체, 서초"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/recycler_show_lodge_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Comfy Studio"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+</LinearLayout>

@@ -132,4 +132,17 @@
     <string name="searching_calendar_text_pick">날짜를\n선택하세요.</string>
     <string name="searching_calendar_text_erase"><u>지우기</u></string>
     <string name="searching_calendar_text_next">다음</string>
+
+    <!-- searching_company -->
+    <string name="searching_company_text_company">일행에 대해\n알려주세요.</string>
+    <string name="searching_company_btn1_text1">성인</string>
+    <string name="searching_company_btn1_text2">만 13세 이상</string>
+    <string name="searching_company_btn2_text1">어린이</string>
+    <string name="searching_company_btn2_text2">2~12세</string>
+    <string name="searching_company_btn3_text1">유아</string>
+    <string name="searching_company_btn3_text2">2세 미만</string>
+    <string name="searching_company_text_skip"><u>건너뛰기</u></string>
+    <string name="searching_company_text_search">검색</string>
+    <string name="searching_company_btn_plus">+</string>
+    <string name="searching_company_btn_minus">-</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.rp2.star.airbnb.src.log_in
 
 import com.kakao.sdk.auth.model.OAuthToken
+import com.rp2.star.airbnb.src.log_in.models.NaverResponse
 import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
 
 interface LogInActivityView {
@@ -15,11 +16,10 @@ interface LogInActivityView {
 
     fun onPostKakaoLogInFailure(message: String)
 
-    /*
+
     // 팀 서버에 네이버 로그인 요청
-    fun onPostNaverLogInSuccess(response: SignUpResponse)
+    fun onPostNaverLogInSuccess(response: NaverResponse)
 
     fun onPostNaverLogInFailure(message: String)
-    */
 
 }

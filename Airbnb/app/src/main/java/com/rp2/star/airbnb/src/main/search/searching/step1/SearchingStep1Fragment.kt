@@ -5,18 +5,25 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import com.rp2.star.airbnb.R
+import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.databinding.FragmentSearchingStep1Binding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 
 
-class SearchingStep1Fragment(val searchingView: SearchingActivityView) : BaseFragment<FragmentSearchingStep1Binding>(FragmentSearchingStep1Binding::bind,
+class SearchingStep1Fragment(val searchingView: SearchingActivityView) :
+    BaseFragment<FragmentSearchingStep1Binding>(FragmentSearchingStep1Binding::bind,
     R.layout.fragment_searching_step1){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.searchingStep1SearchView.setOnQueryTextListener(onQueryListener)
+
+        // 뒤로 화살표 버튼
+        binding.searchingStep1Back.setOnClickListener {
+            activity!!.onBackPressed()
+        }
     }
 
     private val onQueryListener = object: SearchView.OnQueryTextListener{
@@ -25,7 +32,10 @@ class SearchingStep1Fragment(val searchingView: SearchingActivityView) : BaseFra
         override fun onQueryTextSubmit(query: String?): Boolean {
             Log.d("로그", "onQueryTextSubmit called - query: $query")
             if(!query.isNullOrEmpty()) {
-                searchingView.goToStep2(query)
+                val spEditor = ApplicationClass.sSharedPreferences.edit()
+                spEditor.putString("query",query)
+                spEditor.apply()
+                searchingView.goToStep2()
             }
             return true
         }

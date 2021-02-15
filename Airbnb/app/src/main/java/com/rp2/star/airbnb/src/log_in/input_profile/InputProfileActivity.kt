@@ -119,6 +119,9 @@ InputProfileActivityView{
                 val params = PostPhoneSignUpRequest(phoneNumber, email, lastName, firstName, birth)
                 Log.d("로그", "입력한 회원가입 정보: $params")
 
+                val spEditor = ApplicationClass.sSharedPreferences.edit()
+                spEditor.putString("firstName", firstName)
+                spEditor.putString("lastName", lastName)
                 showLoadingDialog(this)
                 InputProfileService(this).tryPostSignUp(params)
             }
@@ -230,7 +233,7 @@ InputProfileActivityView{
         dismissLoadingDialog()
         Log.d("로그", "onPostSignUpSuccess() called -> message: $response.message")
 
-        when(response.success){
+        when(response.isSuccess){
             // 회원가입이 성공하면 메인화면으로 넘어간다.
             true -> {
                 // SharedPreference 에디트 모드로 가입된 idx과 token 값 저장
