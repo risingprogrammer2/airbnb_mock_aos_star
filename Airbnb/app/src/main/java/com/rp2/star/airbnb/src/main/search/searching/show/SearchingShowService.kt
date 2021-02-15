@@ -8,6 +8,8 @@ import retrofit2.Response
 
 class SearchingShowService(val view: SearchingShowFragmentView) {
 
+    private val accessToken = ApplicationClass.sSharedPreferences.getString("jwt", null)
+
     // 도시명으로 숙소정보 요청
     fun tryGetLodgeByCity(cityName: String){
 
@@ -16,7 +18,7 @@ class SearchingShowService(val view: SearchingShowFragmentView) {
         val searchingShowRetrofitInterface = ApplicationClass.sRetrofit.create(
             SearchingShowRetrofitInterface::class.java)
 
-        searchingShowRetrofitInterface.getLodgeByCityRequest(cityName)
+        searchingShowRetrofitInterface.getLodgeByCityRequest(accessToken!!, cityName)
             .enqueue(object : Callback<GetLodgeByCityResponse> {
 
                 override fun onResponse(call: Call<GetLodgeByCityResponse>, response: Response<GetLodgeByCityResponse>) {

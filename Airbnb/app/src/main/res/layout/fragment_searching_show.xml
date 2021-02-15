@@ -9,7 +9,7 @@
     tools:context=".src.main.search.SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/main_search_appbar"
+        android:id="@+id/searching_show_appbar"
         android:layout_height="400dp"
         android:layout_width="match_parent"
         android:background="@color/transparentForBackground">
@@ -30,8 +30,7 @@
             app:toolbarId="@id/main_search_btn_search">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main_search_btn_search"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="8dp"
@@ -44,16 +43,16 @@
                     android:layout_height="0dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/arrow_back_black_24dp"
-                    app:layout_constraintBottom_toBottomOf="@id/main_search_text_search"
+                    app:layout_constraintBottom_toBottomOf="@id/searching_show_text_area"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="spread"
                     app:layout_constraintHorizontal_bias="0.04"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/main_search_text_search" />
+                    app:layout_constraintTop_toTopOf="@id/searching_show_text_area" />
 
                 <TextView
-                    android:id="@+id/main_search_text_search"
+                    android:id="@+id/searching_show_text_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -68,7 +67,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searching_show_recycler"
+        android:id="@+id/searching_show_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/whiteForBackground"

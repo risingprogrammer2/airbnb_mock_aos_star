@@ -9,10 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rp2.star.airbnb.R
+import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
 import kotlinx.android.synthetic.main.recycler_view_show_lodge.view.*
 
-class SearchingShowLodgeAdapter(val context: Context):
+class SearchingShowLodgeAdapter(val context: Context,
+                                val searchingActivityView: SearchingActivityView):
     RecyclerView.Adapter<SearchingShowLodgeAdapter.LodgeViewHolder>(){
 
     private var lodgeList = ArrayList<ResultLodgeByCity>()
@@ -38,12 +40,16 @@ class SearchingShowLodgeAdapter(val context: Context):
 
     // custom ViewHolder 클래스 정의
     inner class LodgeViewHolder(lodgeView: View) : RecyclerView.ViewHolder(lodgeView){
+        private val view: View = lodgeView.recycler_show_lodge_root
         private val img: ImageView = lodgeView.recycler_show_lodge_images
         private val superhost: TextView = lodgeView.recycler_show_lodge_superhost
         private val store: ImageView = lodgeView.recycler_show_lodge_store
         private val rating: TextView = lodgeView.recycler_show_lodge_rating
         private val location: TextView = lodgeView.recycler_show_lodge_location
         private val lodgeTitle: TextView = lodgeView.recycler_show_lodge_title
+
+
+
 
         fun setValue(resultLodgeByCity: ResultLodgeByCity){
             // 숙소 대표 사진
@@ -58,10 +64,29 @@ class SearchingShowLodgeAdapter(val context: Context):
                 superhost.visibility = View.GONE
             }
 
-            rating.text = resultLodgeByCity.rating.toString()
+
+
+            // 평점 값이 null이면 NEW로 출력
+            resultLodgeByCity.rating.apply{
+                when(this){
+                    null -> rating.text = String.format("NEW")
+                    else -> rating.text = this.toString()
+                }
+            }
+
             location.text = String.format("${resultLodgeByCity.lodgingType} " +
                     "${resultLodgeByCity.placeType} • ${resultLodgeByCity.city}")
             lodgeTitle.text = resultLodgeByCity.name
+
+            // 각 숙소를 클릭하면 상세 조회 화면으로 이동한다.
+            view.setOnClickListener{
+                val pos = adapterPosition
+                if(pos != RecyclerView.NOT_FOCUSABLE){
+                    val lodgeId = lodgeList[pos].id
+                    searchingActivityView.goToDetail(lodgeId)
+                }
+
+            }
 
             /*
             // 찜, 리뷰개수, 이미지 슬라이드 추가해야함
@@ -69,11 +94,13 @@ class SearchingShowLodgeAdapter(val context: Context):
             */
 
         }
+
     }
 
     // 베스트셀러 리스트를 받아온다, 프래그먼트에서 실행
     fun provideList(lodgeByCityList: ArrayList<ResultLodgeByCity>){
-        this.lodgeList =lodgeByCityList
+        this.lodgeList = lodgeByCityList
+        this.notifyDataSetChanged()
     }
 
 

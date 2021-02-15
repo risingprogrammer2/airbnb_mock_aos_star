@@ -279,16 +279,19 @@ class LogInActivity : BaseActivity<ActivityLogInBinding>(ActivityLogInBinding::i
     // 팀 서버와 네이버 로그인 통신을 성공
     override fun onPostNaverLogInSuccess(response: NaverResponse){
         Log.d("로그", "onPostKakaoLogInSuccess() called, response: $response")
+        Log.d("로그", "네아로 메시지: ${response.message}")
         dismissLoadingDialog()
-
-        /*when(response.message){
-            "success" -> {
-                saveUserLogIn(response.response!!)
-            }
-        }*/
 
         val mainIntent = Intent(this, MainActivity::class.java)
         val inputProfileIntent = Intent(this, InputProfileActivity::class.java)
+
+        when(response.message){
+            "success" -> {
+                saveUserLogIn(response.response!!)
+            }
+        }
+
+
     }
 
     // 팀 서버와 네이버 로그인 통신 실패

@@ -38,6 +38,12 @@
             android:theme="@style/LogInTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity android:name=".src.log_in.phone.PhoneActivity"
@@ -56,11 +62,6 @@
             android:theme="@style/MainTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".src.main.search.searching.SearchingActivity"

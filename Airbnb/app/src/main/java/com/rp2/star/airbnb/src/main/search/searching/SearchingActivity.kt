@@ -8,6 +8,7 @@ import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivitySearchingBinding
 import com.rp2.star.airbnb.src.main.search.searching.calendar.SearchingCalendarFragment
 import com.rp2.star.airbnb.src.main.search.searching.company.SearchingCompanyFragment
+import com.rp2.star.airbnb.src.main.search.searching.detail.SearchingDetailFragment
 import com.rp2.star.airbnb.src.main.search.searching.show.SearchingShowFragment
 import com.rp2.star.airbnb.src.main.search.searching.step1.SearchingStep1Fragment
 import com.rp2.star.airbnb.src.main.search.searching.step2.SearchingStep2Fragment
@@ -75,9 +76,23 @@ SearchingActivityView {
         ).commitAllowingStateLoss()
     }
 
+    // 검색 결과 화면으로 이동
     override fun goToShow() {
         supportFragmentManager.beginTransaction().replace(R.id.search_frm,
         SearchingShowFragment(this)
+        ).commitAllowingStateLoss()
+    }
+
+    // 상세 정보 화면으로 이동
+    override fun goToDetail(lodgeId: Int) {
+
+        // 숙소 id를 해당 프래그먼트에 넘겨준다
+        supportFragmentManager.beginTransaction().replace(R.id.search_frm,
+            SearchingDetailFragment(this).apply {
+                arguments = Bundle().apply {
+                    putInt("lodgeId", lodgeId)
+                }
+            }
         ).commitAllowingStateLoss()
     }
 }

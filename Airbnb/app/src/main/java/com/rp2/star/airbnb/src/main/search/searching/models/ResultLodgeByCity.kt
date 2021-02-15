@@ -12,9 +12,10 @@ data class ResultLodgeByCity(
     @SerializedName("total_user") val totalUser: Int,
     @SerializedName("latitude") val latitude: Float,
     @SerializedName("longitude") val longitude: Float,
-    @SerializedName("rating") val rating: Float,
+    @SerializedName("rating") val rating: Float?,
     @SerializedName("count") val count: Int,
-    @SerializedName("lodgeImages") val lodgeImages: ArrayList<String>,
+    @SerializedName("isSave") val isSave: Boolean = false,
+    @SerializedName("lodgeImages") val lodgeImages: List<String>,
     @SerializedName("lodgeSpaces") val lodgeSpaces: ResultLodgeByCitySpaces,
-    @SerializedName("lodgeFacilities") val lodgeFacilities: ArrayList<String>
+    @SerializedName("lodgeFacilities") val lodgeFacilities: List<String>
 )

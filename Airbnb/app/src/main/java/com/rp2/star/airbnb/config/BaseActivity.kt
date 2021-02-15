@@ -53,7 +53,16 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
     // 로그인할 때 유저 정보 저장
     fun saveUserLogIn(result: ResultSignUp){
         val id: Int = result.id
-        val jwt: String =result.token
+        val jwt: String = result.token
+        var name: String? = null
+
+        // 네이버 로그인에서 이름이 null값이 아니면 저장
+        result.name.apply{
+            when(this != null){
+                true -> name = this
+            }
+        }
+
         /*var name: String? = null
         UserApiClient.instance.me{ user, error ->
             if (error != null) {
@@ -71,6 +80,7 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         val spEditor = sp.edit()
         spEditor.putInt("id", id)
         spEditor.putString("jwt", jwt)
+        spEditor.putString("firstName", name)
         spEditor.apply()
     }
 
