@@ -63,7 +63,7 @@ abstract class BaseFragment<B : ViewBinding>(
     fun appLogOut(){
         val spEditor = ApplicationClass.sSharedPreferences.edit()
         spEditor.clear()
-        spEditor.apply()
+        spEditor.commit()
     }
 
     // 로그인 정보 저장
@@ -73,14 +73,14 @@ abstract class BaseFragment<B : ViewBinding>(
         val sp = ApplicationClass.sSharedPreferences
         val spEditor = sp.edit()
         spEditor.putInt("id", id)
-        spEditor.putString("jwt", jwt)
-        spEditor.apply()
+        spEditor.putString(ApplicationClass.X_ACCESS_TOKEN, jwt)
+        spEditor.commit()
     }
 
     // 카카오연결 끊기 - 다시 카카오톡 화면 띄워서 로그인 하는 모습 보이기 위해 로그아웃용으로 사용
     fun kakaoLogOut(){
         // 활동 정보 모두 삭제
-        ApplicationClass.sSharedPreferences.edit().clear().apply()
+        ApplicationClass.sSharedPreferences.edit().clear().commit()
 
         UserApiClient.instance.unlink { error ->
             if (error != null) {

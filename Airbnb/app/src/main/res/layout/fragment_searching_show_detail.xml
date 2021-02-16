@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/searching_detail_root"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -10,7 +11,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/detail_appbar"
-        android:layout_height="300dp"
+        android:layout_height="240dp"
         android:layout_width="match_parent"
         android:background="@color/transparentForBackground">
 
@@ -20,7 +21,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/transparentForBackground"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
             android:background="@color/transparentForBackground"
             app:toolbarId="@id/detail_toolbar">
 
@@ -32,9 +33,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/detail_toolbar"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/transparentForBackground"
                 app:layout_collapseMode="pin">
 
@@ -43,13 +44,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/white_circle_border"
+                    android:backgroundTint="@color/whiteForBackground"
+                    android:padding="12dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/arrow_back_black_24dp"
-                    android:backgroundTint="@color/whiteForBackground"
-                    android:padding="16dp"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.03"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -59,13 +60,14 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/white_circle_border"
                     android:backgroundTint="@color/whiteForBackground"
+                    android:padding="12dp"
                     android:scaleType="centerCrop"
-                    android:padding="16dp"
-                    android:tint="@color/black"
-                    android:src="@drawable/btm_nav_store"
+                    android:src="@drawable/searching_detail_heart_blank"
+                    android:tint="@color/redForText"
                     app:layout_constraintDimensionRatio="w,1:1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.03" />
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -76,92 +78,342 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/whiteForBackground"
+        android:paddingTop="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/my_page_text_divider">
-
-            <TextView
-                android:id="@+id/detail_lodge_name"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Comfy Studio"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:orientation="vertical"
+                android:background="@drawable/my_page_text_divider"
+                android:paddingVertical="16dp"
+                android:layout_marginBottom="16dp">
 
-            <TextView
-                android:id="@+id/detail_superhost"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/detail_lodge_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="4dp"
+                    android:textColor="@color/black"
+                    android:text="Comfy Studio"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:ellipsize="end"/>
+
+                <LinearLayout
+                    android:id="@+id/detail_superhost_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="4dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/detail_rating_img"
+                        android:layout_width="12sp"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/star"
+                        android:tint="@color/redForText"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/detail_rating_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="4.85 (87)"
+                        android:textSize="12sp"
+                        android:textColor="@color/greyForMyPageText"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/detail_superhost_img"
+                        android:layout_width="12sp"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/medal"
+                        android:tint="@color/redForText"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/detail_superhost_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:text="슈퍼호스트"
+                        android:textSize="12sp"
+                        android:textColor="@color/greyForMyPageText"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/detail_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="4dp"
+                    android:text="Seocho-dong, Seocho-gu, 서울, 한국"
+                    android:textSize="12sp"
+                    android:textColor="@color/greyForMainBtmText" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="슈퍼호스트"/>
+                android:background="@drawable/my_page_text_divider"
+                android:layout_marginBottom="24dp">
 
-            <TextView
-                android:id="@+id/detail_location"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/detail_place_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/black"
+                    android:text="아파트 전체"
+                    android:textSize="22sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
+
+                <TextView
+                    android:id="@+id/detail_host"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_place_type"
+                    android:text="호스트: Sung님"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/detail_total_and_spaces"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detail_host"
+                    android:text="최대 인원 2명 • 침실 1개 • 침대 1개 • 욕실 1개"
+                    android:maxLines="2"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:ellipsize="marquee" />
+
+                <ImageView
+                    android:id="@+id/detail_host_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignTop="@id/detail_place_type"
+                    android:layout_alignBottom="@id/detail_host"
+                    android:src="@drawable/my_page_me"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_property0_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seocho-dong, Seocho-gu, 서울, 한국"/>
-        </LinearLayout>
+                android:visibility="gone">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_page_text_divider">
+                <ImageView
+                    android:id="@+id/detail_property0_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintDimensionRatio="h,1:0.7"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/airbnb_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/detail_place_type"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/detail_property0_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="집 전체"
+                    android:textColor="@color/blackForText"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_property0_img"/>
+                <TextView
+                    android:id="@+id/detail_property0_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공동주택 전체를 단독으로 사용하시게 됩니다."
+                    android:textColor="@color/greyForMyPageText"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    app:layout_constraintStart_toStartOf="@id/detail_property0_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_property0_title"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_property1_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:textColor="@color/black"
-                android:text="아파트 전체"
-                android:textSize="22sp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/detail_host"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/detail_property1_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintDimensionRatio="h,1:0.7"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/airbnb_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/detail_property1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="집 전체"
+                    android:textColor="@color/blackForText"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_property1_img"
+                    app:layout_constraintBottom_toTopOf="@id/detail_property1_detail"/>
+                <TextView
+                    android:id="@+id/detail_property1_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공동주택 전체를 단독으로 사용하시게 됩니다."
+                    android:textColor="@color/greyForMyPageText"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/detail_property1_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_property1_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_property2_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/detail_place_type"
-                android:text="호스트: Sung님"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/detail_total_and_spaces"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/detail_property2_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintDimensionRatio="h,1:0.7"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/airbnb_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/detail_property2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="집 전체"
+                    android:textColor="@color/blackForText"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_property2_img"/>
+                <TextView
+                    android:id="@+id/detail_property2_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공동주택 전체를 단독으로 사용하시게 됩니다."
+                    android:textColor="@color/greyForMyPageText"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/detail_property2_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_property2_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_property3_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/detail_host"
-                android:text="Seocho-dong, Seocho-gu, 서울, 한국"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:ellipsize="marquee"
-                android:singleLine="true" />
+                android:visibility="gone">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignTop="@id/detail_place_type"
-                android:layout_alignBottom="@id/detail_host"
-                android:src="@drawable/my_page_me"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:layout_alignParentEnd="true"/>
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/detail_property3_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintDimensionRatio="h,1:0.7"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/airbnb_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/detail_property3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="환불 정책"
+                    android:textColor="@color/blackForText"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_property3_img"/>
+                <TextView
+                    android:id="@+id/detail_property3_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="체크인 30일 전까지 취소하시면 전액이 환불됩니다."
+                    android:textColor="@color/greyForMyPageText"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/detail_property3_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_property3_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_property4_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:background="@drawable/my_page_text_divider">
+
+                <ImageView
+                    android:id="@+id/detail_property4_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.1"
+                    app:layout_constraintDimensionRatio="h,1:0.7"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/airbnb_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/detail_property4_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="환불 정책"
+                    android:textColor="@color/blackForText"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/detail_property4_img"/>
+                <TextView
+                    android:id="@+id/detail_property4_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="체크인 30일 전까지 취소하시면 전액이 환불됩니다."
+                    android:textColor="@color/greyForMyPageText"
+                    android:textSize="14sp"
+                    android:maxLines="2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/detail_property4_title"
+                    app:layout_constraintTop_toBottomOf="@id/detail_property4_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

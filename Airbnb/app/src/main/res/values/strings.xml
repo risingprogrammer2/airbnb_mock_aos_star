@@ -5,6 +5,7 @@
     <!-- 도메인명_컴포넌트함축어_용도(=목적) -->
 
     <!-- Common -->
+    <string name="searching_show_txt_dot">•</string>
 
     <!-- Main -->
     <string name="main_btm_nav_search_title">검색</string>

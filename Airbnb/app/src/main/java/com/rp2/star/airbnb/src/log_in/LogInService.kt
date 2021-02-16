@@ -98,7 +98,7 @@ class LogInService(val view: LogInActivityView) {
                 ApplicationClass.sSharedPreferences.edit().apply{
                     putString("firstName", nickname)
                     putString("img", img)
-                    apply()
+                    commit()
                 }
             }
         }

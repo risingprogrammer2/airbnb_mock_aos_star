@@ -13,7 +13,7 @@ import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityRespon
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
 
 
-class SearchingShowFragment(val searchingView: SearchingActivityView) :
+class SearchingShowFragment(private val searchingView: SearchingActivityView) :
     BaseFragment<FragmentSearchingShowBinding>(FragmentSearchingShowBinding::bind,
     R.layout.fragment_searching_show), SearchingShowFragmentView{
 
@@ -26,6 +26,10 @@ class SearchingShowFragment(val searchingView: SearchingActivityView) :
 
 
         showLoadingDialog(context!!)
+        // 검색 도시로 숙소 조회
+//        sp.getString("query", null)?.let{
+//            SearchingShowService(this).tryGetLodgeByCity(it)
+//        }
         // 서울로 숙소 조회
         SearchingShowService(this).tryGetLodgeByCity("서울")
         // 숙소 조회 리사이클러뷰 어댑터 설정

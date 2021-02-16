@@ -154,7 +154,7 @@ class SearchingCalendarFragment(private val searchingView: SearchingActivityView
         Log.d("로그", "SearchingCalendar - onClickNext() called, datesData: $datesDataJson")
         spEditor.putString("datesDataJson", datesDataJson)
         spEditor.putString("datesString", mDatesString)
-        spEditor.apply()
+        spEditor.commit()
 
         searchingView.goToCompany()
 

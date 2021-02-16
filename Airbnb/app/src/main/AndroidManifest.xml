@@ -43,7 +43,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity android:name=".src.log_in.phone.PhoneActivity"
@@ -61,6 +60,7 @@
         <activity android:name=".src.main.MainActivity"
             android:theme="@style/MainTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
+
 
         </activity>
 

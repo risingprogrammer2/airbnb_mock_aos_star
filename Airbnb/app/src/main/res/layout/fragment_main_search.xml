@@ -34,7 +34,7 @@
             android:layout_height="55dp"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/whiteForBackground"
-            app:scrimVisibleHeightTrigger="5dp"
+            app:scrimVisibleHeightTrigger="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:background="@color/black"
             app:toolbarId="@id/main_search_btn_search">

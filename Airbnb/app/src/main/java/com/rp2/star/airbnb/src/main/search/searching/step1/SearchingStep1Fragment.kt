@@ -34,7 +34,7 @@ class SearchingStep1Fragment(val searchingView: SearchingActivityView) :
             if(!query.isNullOrEmpty()) {
                 val spEditor = ApplicationClass.sSharedPreferences.edit()
                 spEditor.putString("query",query)
-                spEditor.apply()
+                spEditor.commit()
                 searchingView.goToStep2()
             }
             return true

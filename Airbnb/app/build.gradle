@@ -98,6 +98,9 @@ dependencies {
     // 달력 라이브러리
     implementation 'com.andrewjapar.rangedatepicker:rangedatepicker:0.3'
 
+    // 뷰페이저 인디케이터
+    implementation 'me.relex:circleindicator:2.1.4'
+
     
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

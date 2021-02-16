@@ -11,7 +11,8 @@ interface SearchingShowRetrofitInterface {
     // 도시명으로 숙소들 정보 요청
     @GET("/lodging/city")
     fun getLodgeByCityRequest(
-        @Header("x-access-token") accessToken: String,
+        //@Header("x-access-token") accessToken: String,
+        @Header("access_token") accessToken: String,
         @Query("cityName") cityName: String): Call<GetLodgeByCityResponse>
 
     /*// 팀서버에 카카오 회원가입/로그인 요청
