@@ -16,7 +16,7 @@ class DetailImageSliderFragment(private val imgUrl: String) :
         super.onViewCreated(view, savedInstanceState)
         Glide.with(context!!)
             .load(imgUrl)
+            .error(R.drawable.search_main_seoul)
             .into(binding.detailSliderImg)
     }
-
 }

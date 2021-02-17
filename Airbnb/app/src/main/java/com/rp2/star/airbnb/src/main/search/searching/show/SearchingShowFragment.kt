@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseFragment
+import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.databinding.FragmentSearchingShowBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityResponse
@@ -31,13 +32,16 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 //            SearchingShowService(this).tryGetLodgeByCity(it)
 //        }
 
-        // 홍대로 숙소 조회
+        // 서울로 숙소 조회
         SearchingShowService(this).tryGetLodgeByCity("홍대")
+        //SearchingShowService(this).tryGetLodgeByCityDates("홍대")
         // 숙소 조회 리사이클러뷰 어댑터 설정
         lodgeByCityAdapter = SearchingShowLodgeAdapter(context!!, this, searchingView)
         binding.searchingShowRecyclerView.adapter = lodgeByCityAdapter
         binding.searchingShowRecyclerView.layoutManager = LinearLayoutManager(activity,
             LinearLayoutManager.VERTICAL, false)
+        // 인디케이터 설정
+
 
 /*
         // 뒤로가기 버튼
@@ -65,9 +69,9 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
                     }
                     else -> {
                         if(lodgeCount < 300){
-                            binding.searchingShowTextArea.text = String.format("${lodgeCount}개의 숙소")
+                            binding.searchingShowLodgeNum.text = String.format("${lodgeCount}개의 숙소")
                         }else{
-                            binding.searchingShowTextArea.text = String.format("300개 이상의 숙소")
+                            binding.searchingShowLodgeNum.text = String.format("300개 이상의 숙소")
                         }
 
 
@@ -95,5 +99,77 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
         showCustomToast("네트워크 확인 후 다시 시도해주세요.\n message: $message")
     }
 
+    // 숙소 저장 통신 성공
+    override fun onPostLodgeStoreSuccess(response: BaseResponse, pos: Int) {
+        dismissLoadingDialog()
+
+        Log.d("로그","onPostLodgeStoreSuccess() called - response: $response")
+
+        when(response.isSuccess){
+            true -> {
+                // 성공 -> 하트 변경 , 저장 플래그 변경
+                lodgeByCityList[pos].isSave = !(lodgeByCityList[pos].isSave)
+                lodgeByCityAdapter.apply{
+                    changeHeartState(pos)
+                    notifyDataSetChanged()
+                    //notifyItemChanged(pos)
+                }
+
+            }
+            false -> {
+                showCustomToast("저장에 실패했습니다, 잠시 후 다시 시도해주세요.\n" +
+                        "원인: ${response.message}")
+            }
+        }
+    }
+
+    // 숙소 저장 통신 실패
+    override fun onPostLodgeStoreFailure(message: String) {
+        dismissLoadingDialog()
+
+        Log.d("로그", "onGetLodgeDetailFailure() called, message: $message")
+
+        showCustomToast("저장 시도 실패: 네트워크 확인 후 다시 시도해주세요.\n message: $message")
+    }
+
+    // 숙소 저장 취소 통신 성공
+    override fun onDeleteLodgeStoreSuccess(response: BaseResponse, pos: Int) {
+        dismissLoadingDialog()
+
+        Log.d("로그", "onDeleteLodgeStoreSuccess() called - response: $response")
+
+        when(response.isSuccess){
+            true -> {
+                lodgeByCityList[pos].isSave = !(lodgeByCityList[pos].isSave)
+                lodgeByCityAdapter.apply{
+                    changeHeartState(pos)
+                    notifyDataSetChanged()
+                    // notifyItemChanged(pos)
+                }
+            }
+            false -> {
+                Log.d("로그", "숙소 저장 취소 실패 - message: ${response.message}")
+                showCustomLongToast("저장 숙소 삭제에 실패했습니다, 잠시 후 다시 시도해주세요.\n" +
+                        "원인: ${response.message}")
+            }
+        }
+
+
+    }
+
+    // 숙소 저장 취소통신 실패
+    override fun onDeleteLodgeStoreFailure(message: String) {
+        Log.d("로그","onDeleteLodgeStoreFailure() called - message: $message")
+
+        showCustomToast("숙소 저장 취소 통신 실패: message: $message")
+    }
+
+    fun onHeartClicked(pos: Int, lodgeId: Int, isStored: Boolean){
+        when(isStored){
+            true -> SearchingShowService(this).tryDeleteLodgeStore(lodgeId, pos)
+            false -> SearchingShowService(this)
+                .tryPostStoreLodge("하드코딩 폴더", lodgeId, pos)
+        }
+    }
 
 }

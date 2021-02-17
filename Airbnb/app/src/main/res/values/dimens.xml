@@ -25,4 +25,14 @@
     <dimen name="searching_step1_btn_vertical_padding">16dp</dimen>
     <dimen name="searching_step1_btn_horizontal_padding">16dp</dimen>
 
+    <!-- rangedatepicker 라이브러리 -->
+    <dimen name="calendar_day_height">36dp</dimen>
+    <dimen name="calendar_day_gap">8dp</dimen>
+    <dimen name="calendar_day_textsize">12sp</dimen>
+
+    <dimen name="calendar_month_padding">16dp</dimen>
+    <dimen name="calendar_month_textsize">16sp</dimen>
+
+    <dimen name="calendar_week_textsize">12sp</dimen>
+
 </resources>

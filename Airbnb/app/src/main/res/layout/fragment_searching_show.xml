@@ -6,27 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/black"
+    android:background="@color/whiteForBackground"
     tools:context=".src.main.search.SearchFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:background="@color/whiteForBackground">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/searching_show_temp_map"
+            android:scaleType="fitXY"/>
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/searching_show_appbar"
-        android:layout_height="400dp"
+        android:layout_height="320dp"
         android:layout_width="match_parent"
         android:background="@color/transparentForBackground">
 
-        <FrameLayout
-            android:id="@+id/searching_show_frm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="320dp"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/whiteForBackground"
             app:scrimVisibleHeightTrigger="5dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:background="@color/transparentForBackground"
             app:toolbarId="@id/main_search_btn_search">
 
@@ -66,59 +73,72 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="13dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:weightSum="1"
-            android:paddingVertical="4dp"
-            android:background="@color/whiteForBackground">
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.12"
-                android:layout_gravity="top"
-                android:background="@drawable/modal_line"/>
-        </LinearLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
-            android:padding="8dp"
-            android:backgroundTint="@color/whiteForBackground"
-            android:background="@drawable/my_page_text_divider"
-            android:layout_gravity="bottom">
-
-            <TextView
-                android:id="@+id/searching_company_text_query"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="300개 이상의 숙소"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searching_show_recycler_view"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true"
         android:background="@color/whiteForBackground"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/recycler_view_show_lodge"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="1"
+                android:paddingVertical="4dp"
+                android:background="@drawable/modal_border">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.12"
+                    android:layout_gravity="top"
+                    android:background="@drawable/modal_line"/>
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:padding="8dp"
+                android:background="@color/whiteForBackground"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:id="@+id/searching_show_lodge_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="300개 이상의 숙소"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searching_show_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/whiteForBackground"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/recycler_view_show_lodge"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

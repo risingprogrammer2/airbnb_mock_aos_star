@@ -82,7 +82,7 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
     }
 
     private val onClickCalendar = View.OnClickListener {
-
+        searchingView.goToDetailCalendar(lodgeId)
     }
 
     // 숙소 상세정보 조회 성공했을 때 실행 - 받아온 정보들 화면에 적용

@@ -49,13 +49,15 @@
         android:background="@color/whiteForBackground"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <com.andrewjapar.rangedatepicker.CalendarPicker
-            android:id="@+id/searching_calendar_calendar"
+        <com.savvi.rangedatepicker.CalendarPickerView
+            android:id="@+id/searching_calendar_picker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
+            android:layout_height="match_parent"
             android:scrollbarStyle="outsideOverlay"
-            app:pickerType="range" />
+            android:clipToPadding="false"
+            app:tsquare_orientation_horizontal="false"
+            app:tsquare_dividerColor="@color/transparentForBackground"
+            app:tsquare_headerTextColor="@color/black" />
     </FrameLayout>
 
     <com.rp2.star.airbnb.src.main.search.searching.calendar.CustomScrollView
@@ -171,8 +173,7 @@
             android:id="@+id/searching_calendar_erase"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:elevation="0dp"
-            android:fadingEdgeLength="0dp"
+            style="?attr/borderlessButtonStyle"
             android:maxLines="1"
             android:text="@string/searching_calendar_text_erase"
             android:textColor="@color/black"
@@ -182,17 +183,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/transparentForBackground"
-            android:layout_weight="0.7"/>
+            android:layout_weight="0.65"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/searching_calendar_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.35"
             android:text="@string/searching_calendar_text_next"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:backgroundTint="@color/black"
+            app:backgroundTint="@color/black"
             android:background="@drawable/input_profile_btn_continue_selector"
             android:enabled="false"/>
     </LinearLayout>

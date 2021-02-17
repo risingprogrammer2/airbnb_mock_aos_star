@@ -14,10 +14,10 @@ data class ResultLodgeByCity(
     @SerializedName("longitude") val longitude: Float,
     @SerializedName("rating") val rating: Float?,
     @SerializedName("count") val count: Int,
-    @SerializedName("isSave") val isSave: Boolean = false,
-    @SerializedName("lodgeImages") val lodgeImages: ArrayList<String>,
-    @SerializedName("lodgeSpaces") val lodgeSpaces: ResultLodgeByCitySpaces,
-    @SerializedName("lodgeFacilities") val lodgeFacilities: ArrayList<String>,
-    @SerializedName("price") val price: Int? = -1,    // 1박 당
-    @SerializedName("total_price") val totalPrice: Int? = -1,    // 총 가격
+    @SerializedName("is_save") var isSave: Boolean = false,
+    @SerializedName("lodge_images") val lodgeImages: ArrayList<String>,
+    @SerializedName("lodge_spaces") val lodgeSpaces: ResultLodgeByCitySpaces,
+    // @SerializedName("lodgeFacilities") val lodgeFacilities: ArrayList<String>,
+    @SerializedName("price") val price: Int?,    // 1박 당
+    @SerializedName("total_price") val totalPrice: Int?,    // 총 가격
 )

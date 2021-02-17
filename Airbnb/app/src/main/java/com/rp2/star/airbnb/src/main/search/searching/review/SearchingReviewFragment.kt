@@ -53,6 +53,7 @@ class SearchingReviewFragment(val searchingView: SearchingActivityView) :
             (binding.seachingReviewRating5.text.toString().toFloat()*10).toInt()
 
 
+        // 코멘트들 등록
         val searchingReviewRecyclerAdapter = SearchingReviewRecyclerAdapter(context!!, reviewList)
         binding.searchingReviewRecyclerView.adapter = searchingReviewRecyclerAdapter
         binding.searchingReviewRecyclerView.layoutManager = LinearLayoutManager(activity,

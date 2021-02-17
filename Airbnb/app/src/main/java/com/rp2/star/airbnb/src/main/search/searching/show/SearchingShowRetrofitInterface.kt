@@ -1,10 +1,10 @@
 package com.rp2.star.airbnb.src.main.search.searching.show
 
+import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityResponse
+import com.rp2.star.airbnb.src.main.search.searching.models.PostLodgeStoreBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface SearchingShowRetrofitInterface {
 
@@ -61,9 +61,11 @@ interface SearchingShowRetrofitInterface {
         @Query("totalUser") totalUser: Int // 게스트 수
     ): Call<GetLodgeByCityResponse>
 
+    // 숙소 찜, listName: 찜 폴더 이름
+    @POST("/lodging/list")
+    fun postLodgeStoreRequest(@Body postLodgeStoreBody: PostLodgeStoreBody): Call<BaseResponse>
 
-
-    /*// 팀서버에 카카오 회원가입/로그인 요청
-    @POST("/auth/kakao/user")
-    fun postKakaoLogInRequest(@Body accessToken: PostKakaoLogInRequest): Call<SignUpResponse>*/
+    // 숙소 찜 취소
+    @DELETE("/lodging/list/{lodgingId}")
+    fun deleteLodgeStoreRequest(@Path("lodgingId") lodgeId: Int): Call<BaseResponse>
 }

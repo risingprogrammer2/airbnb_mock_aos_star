@@ -5,8 +5,8 @@
     android:id="@+id/progressBar"
     style="@style/SpinKitView.ThreeBounce"
     android:layout_gravity="center"
-    android:maxWidth="65dip"
-    android:maxHeight="65dip"
-    android:minWidth="65dip"
-    android:minHeight="65dip"
+    android:maxWidth="40dip"
+    android:maxHeight="40dip"
+    android:minWidth="40dip"
+    android:minHeight="40dip"
     app:SpinKit_Color="@color/colorAccent" />

@@ -383,7 +383,9 @@
             android:text="@string/searching_company_text_search"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:backgroundTint="@color/black"
+            app:elevation="0dp"
+            android:fadingEdge="none"
+            app:backgroundTint="@color/black"
             android:background="@drawable/input_profile_btn_continue_selector"/>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

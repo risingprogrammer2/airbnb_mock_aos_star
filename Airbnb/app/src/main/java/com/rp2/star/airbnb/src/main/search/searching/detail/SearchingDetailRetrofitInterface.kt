@@ -9,8 +9,8 @@ import retrofit2.http.*
 
 interface SearchingDetailRetrofitInterface {
 
-    // 도시명으로 숙소들 정보 요청
-    @GET("/lodging/{lodgeId}")
+    // 클릭하면 상세정보 요청
+    @GET("/lodging/{lodgeId}/info")
     fun getLodgeDetailRequest(
         //@Header("x-access-token") accessToken: String,
         @Header("access_token") accessToken: String,

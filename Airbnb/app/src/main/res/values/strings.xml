@@ -146,4 +146,20 @@
     <string name="searching_company_text_search">검색</string>
     <string name="searching_company_btn_plus">+</string>
     <string name="searching_company_btn_minus">-</string>
+
+    <!-- searching_detail -->
+    <string name="searching_dtl_txt_for_fee">요금을\n확인하려면</string>
+    <string name="searching_dtl_txt_reserve">예약 가능 여부 보기</string>
+    <string name="searching_dtl_txt_no_review">여행에 차질이 없도록 최선을 다해 도와드리겠습니다. 모든 예약은 에어비앤비의 <u>게스트 환불 정책</u>에 따라 보호받습니다.</string>
+
+    <!--searching_review -->
+    <string name="searching_review_toolbar_back_title">뒤로가기</string>
+    <string name="searching_review_toolbar_search_title">검색</string>
+
+    <!--detail_calendar -->
+    <string name="dtl_calendar_btn_erase">삭제</string>
+    <string name="dtl_calendar_txt_choose">날짜 선택</string>
+    <string name="dtl_calendar_txt_check">여행 날짜를 입력하여 정확한 요금을 확인하세요.</string>
+    <string name="dtl_calendar_txt_input">요금을 확인하려면 날짜를\n입력하세요.</string>
+    <string name="dtl_calendar_btn_save">저장</string>
 </resources>

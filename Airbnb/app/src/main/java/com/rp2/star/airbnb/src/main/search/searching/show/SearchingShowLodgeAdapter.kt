@@ -14,6 +14,7 @@ import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
 import kotlinx.android.synthetic.main.recycler_view_show_lodge.view.*
+import me.relex.circleindicator.CircleIndicator3
 
 class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingShowFragment,
                                 val searchingActivityView: SearchingActivityView):
@@ -49,6 +50,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
         private val rating: TextView = lodgeView.recycler_show_lodge_rating
         private val location: TextView = lodgeView.recycler_show_lodge_location
         private val lodgeTitle: TextView = lodgeView.recycler_show_lodge_title
+        private val indicator: CircleIndicator3 = lodgeView.recycler_show_lodge_indicator
 
 
 
@@ -58,6 +60,10 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
             val imgUrlList = resultLodgeByCity.lodgeImages
             val searchingShowSliderAdapter = SearchingShowSliderAdapter(fragment,imgUrlList)
             viewPager.adapter = searchingShowSliderAdapter
+
+            // 인디게이터 설정
+            indicator.setViewPager(viewPager)
+            indicator.createIndicators(imgUrlList.size,0)
 
             // 슈퍼호스트 표시
             if(resultLodgeByCity.superhost == "Y"){
@@ -71,7 +77,12 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
             if(isStored){
                 ApplicationClass.sSharedPreferences.edit()
                     .putBoolean("isStored", isStored).commit()
-                isStoredImg.setImageResource(R.drawable.searching_detail_heart_filled)
+                isStoredImg.apply{
+                    when(isStored){
+                        true -> setImageResource(R.drawable.searching_detail_heart_filled)
+                        false -> setImageResource(R.drawable.searching_detail_heart_blank)
+                    }
+                }
             }
 
             // 평점 값이 null이면 NEW로 출력
@@ -90,19 +101,34 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
             view.setOnClickListener{
                 val pos = adapterPosition
                 Log.d("로그","숙소 상세 조회 리사이클러 뷰 클릭 - position: $pos")
-                if(pos != RecyclerView.NOT_FOCUSABLE){
+                /*if(pos != RecyclerView.NOT_FOCUSABLE){
                     val lodgeId = lodgeList[pos].id
-
                     searchingActivityView.goToDetail(lodgeId)
-                }
+                }*/
+                val lodgeId = lodgeList[pos].id
+
+                searchingActivityView.goToDetail(lodgeId)
 
             }
 
-            /*
-            // 찜, 리뷰개수, 이미지 슬라이드 추가해야함
-            if()
-            */
+            // 숙소 찜하기 / 취소
+            isStoredImg.setOnClickListener {
+                val pos = adapterPosition
+                val lodgeId = lodgeList[pos].id
 
+                when(isStored){
+                    false -> {
+                        fragment.showLoadingDialog(fragment.context!!)
+                        SearchingShowService(fragment).tryPostStoreLodge(
+                            "하드코딩 폴더", lodgeId, pos)
+                    }
+                    true -> {
+                        fragment.showLoadingDialog(fragment.context!!)
+                        SearchingShowService(fragment).tryDeleteLodgeStore(lodgeId, pos)
+                    }
+
+                }
+            }
         }
 
     }
@@ -113,5 +139,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
         this.notifyDataSetChanged()
     }
 
-
+    fun changeHeartState(pos: Int){
+        lodgeList[pos].isSave = !(lodgeList[pos].isSave)
+    }
 }

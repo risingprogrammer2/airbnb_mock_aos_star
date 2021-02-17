@@ -1,5 +1,6 @@
 package com.rp2.star.airbnb.src.main.search.searching
 
+import SearchingDetailCalendarFragment
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivitySearchingBinding
 import com.rp2.star.airbnb.src.main.search.searching.calendar.SearchingCalendarFragment
 import com.rp2.star.airbnb.src.main.search.searching.company.SearchingCompanyFragment
+import com.rp2.star.airbnb.src.main.search.searching.company.SearchingReviewFragment
 import com.rp2.star.airbnb.src.main.search.searching.detail.SearchingDetailFragment
 import com.rp2.star.airbnb.src.main.search.searching.show.SearchingShowFragment
 import com.rp2.star.airbnb.src.main.search.searching.step1.SearchingStep1Fragment
@@ -33,7 +35,7 @@ SearchingActivityView {
 
         /*supportFragmentManager.beginTransaction().add(R.id.search_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()*/
-        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingStep1Fragment(this))
+        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingShowFragment(this))
             .commitAllowingStateLoss()
 
     }
@@ -98,7 +100,19 @@ SearchingActivityView {
     }
 
     override fun goToReview() {
-        TODO("Not yet implemented")
+        supportFragmentManager.beginTransaction().replace(R.id.searching_frm,
+            SearchingReviewFragment(this)
+        ).commitAllowingStateLoss()
+    }
+
+    override fun goToDetailCalendar(lodgeId: Int) {
+        supportFragmentManager.beginTransaction().replace(R.id.searching_frm,
+            SearchingDetailCalendarFragment(this).apply{
+                arguments = Bundle().apply{
+                    putInt("lodgeId", lodgeId)
+                }
+            }
+        ).commitAllowingStateLoss()
     }
 
 

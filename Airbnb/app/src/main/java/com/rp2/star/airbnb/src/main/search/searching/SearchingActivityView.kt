@@ -14,12 +14,15 @@ interface SearchingActivityView {
     // Company Fragment로 이동 (일행)
     fun goToCompany()
 
-    // show Fragment로 이동
+    // show Fragment로 이동 - 검색 결과
     fun goToShow()
 
-    // detail Fragment로 이동
+    // detail Fragment로 이동 - 숙소 상세 정보 화면
     fun goToDetail(lodgeId: Int)
 
-    // review Fragment로 이동
+    // review Fragment로 이동 - 후기 자세히 보기
     fun goToReview()
+
+    // detail calendar Fragment로 이동 - 예약 가능 날짜 확인
+    fun goToDetailCalendar(lodgeId: Int)
 }
