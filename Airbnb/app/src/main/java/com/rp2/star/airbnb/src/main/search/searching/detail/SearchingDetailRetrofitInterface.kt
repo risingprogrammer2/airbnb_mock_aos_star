@@ -1,6 +1,7 @@
 package com.rp2.star.airbnb.src.main.search.searching.detail
 
 import com.rp2.star.airbnb.config.BaseResponse
+import com.rp2.star.airbnb.src.main.search.searching.models.GetImpossibleDatesResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeDetailResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.PostLodgeStoreBody
 import retrofit2.Call
@@ -17,10 +18,13 @@ interface SearchingDetailRetrofitInterface {
 
     // 숙소 찜, listName: 찜 폴더 이름
     @POST("/lodging/list")
-
     fun postLodgeStoreRequest(@Body postLodgeStoreBody: PostLodgeStoreBody): Call<BaseResponse>
 
     // 숙소 찜 취소
     @DELETE("/lodging/list/{lodgingId}")
     fun deleteLodgeStoreRequest(@Path("lodgingId") lodgeId: Int): Call<BaseResponse>
+
+    // 예약 가능 날짜 확인
+    @GET("/lodgings/{lodgingId}/calendars")
+    fun getImpossibleDatesRequest(@Path("lodgingId") lodgeId: Int): Call<GetImpossibleDatesResponse>
 }

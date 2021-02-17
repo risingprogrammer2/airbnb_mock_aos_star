@@ -1,6 +1,7 @@
 package com.rp2.star.airbnb.src.main.search.searching.show
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.rp2.star.airbnb.R
+import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
 import kotlinx.android.synthetic.main.recycler_view_show_lodge.view.*
 
-class SearchingShowLodgeAdapter(val context: Context,
+class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingShowFragment,
                                 val searchingActivityView: SearchingActivityView):
     RecyclerView.Adapter<SearchingShowLodgeAdapter.LodgeViewHolder>(){
 
@@ -33,7 +35,7 @@ class SearchingShowLodgeAdapter(val context: Context,
         holder: SearchingShowLodgeAdapter.LodgeViewHolder,
         position: Int
     ) {
-        /*holder.setValue(lodgeList[position])*/
+        holder.setValue(lodgeList[position])
     }
 
     override fun getItemCount() =lodgeList.size
@@ -41,7 +43,7 @@ class SearchingShowLodgeAdapter(val context: Context,
     // custom ViewHolder 클래스 정의
     inner class LodgeViewHolder(lodgeView: View) : RecyclerView.ViewHolder(lodgeView){
         private val view: View = lodgeView.recycler_show_lodge_root
-        private val img: ViewPager2 = lodgeView.show_recycler_view_viewPager
+        private val viewPager: ViewPager2 = lodgeView.show_recycler_view_viewPager
         private val superhost: TextView = lodgeView.recycler_show_lodge_superhost
         private val isStoredImg: ImageView = lodgeView.recycler_show_lodge_store
         private val rating: TextView = lodgeView.recycler_show_lodge_rating
@@ -51,12 +53,12 @@ class SearchingShowLodgeAdapter(val context: Context,
 
 
 
-        /*fun setValue(resultLodgeByCity: ResultLodgeByCity){
-            // 숙소 대표 사진
-            val imgUrl = resultLodgeByCity.lodgeImages[0]
-            Glide.with(context)
-                .load(imgUrl)
-                .into(img)
+        fun setValue(resultLodgeByCity: ResultLodgeByCity){
+            // 숙소 대표 사진 -> 리사이클러 뷰 안에 뷰페이저를 넣는다
+            val imgUrlList = resultLodgeByCity.lodgeImages
+            val searchingShowSliderAdapter = SearchingShowSliderAdapter(fragment,imgUrlList)
+            viewPager.adapter = searchingShowSliderAdapter
+
             // 슈퍼호스트 표시
             if(resultLodgeByCity.superhost == "Y"){
                 superhost.visibility = View.VISIBLE
@@ -87,6 +89,7 @@ class SearchingShowLodgeAdapter(val context: Context,
             // 각 숙소를 클릭하면 상세 조회 화면으로 이동한다.
             view.setOnClickListener{
                 val pos = adapterPosition
+                Log.d("로그","숙소 상세 조회 리사이클러 뷰 클릭 - position: $pos")
                 if(pos != RecyclerView.NOT_FOCUSABLE){
                     val lodgeId = lodgeList[pos].id
 
@@ -95,12 +98,12 @@ class SearchingShowLodgeAdapter(val context: Context,
 
             }
 
-            *//*
+            /*
             // 찜, 리뷰개수, 이미지 슬라이드 추가해야함
             if()
-            *//*
+            */
 
-        }*/
+        }
 
     }
 

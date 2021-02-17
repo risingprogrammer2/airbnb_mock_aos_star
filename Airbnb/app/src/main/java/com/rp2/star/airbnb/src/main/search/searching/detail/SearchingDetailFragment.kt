@@ -14,6 +14,7 @@ import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.databinding.FragmentSearchingShowDetailBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
+import com.rp2.star.airbnb.src.main.search.searching.models.GetImpossibleDatesResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeDetailResponse
 
 
@@ -26,10 +27,15 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
     private var lodgeId = 26
     private lateinit var pagerAdapter: DetailImageSliderAdapter
     private lateinit var lodgeImgUrlList: ArrayList<String>
+    // 후기 자세히 보기 -> 평점 String, 평가 항목들 ArrayList<Float>, 후기들 ArrayList<LodgeReview> 전달
+    private lateinit var mBundle: Bundle
+    private lateinit var ratingList: FloatArray
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.detailHostImg.clipToOutline = true
 
         lodgeImgUrlList = ArrayList()
         // 해당 숙소를 저장했는지?
@@ -42,14 +48,18 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
         showLoadingDialog(context!!)
         SearchingDetailService(this as SearchingDetailFragmentView).tryGetLodgeDetail(lodgeId)
 
+        // 찜하기
         binding.detailStore.setOnClickListener(onStoreListener)
-
-/*
-        // 뒤로가기 버튼
-        binding.searchingShowBack.setOnClickListener {
-            searchingView.goToCalendar()
+        // 화면 안의 뒤로가기 버튼
+        binding.detailBack.setOnClickListener {
+            searchingView.goToShow()
         }
-*/
+
+        // 후기 모두 보기 버튼
+        binding.detailReviewBtn.setOnClickListener(onClickReview)
+
+        // 예약 가능 날짜 확인 버튼
+        binding.detailBtnCalendar.setOnClickListener(onClickCalendar)
     }
 
     // 찜하기 버튼 클릭 리스너
@@ -65,8 +75,13 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
             }
 
         }
+    }
 
+    private val onClickReview = View.OnClickListener {
+        searchingView.goToReview()
+    }
 
+    private val onClickCalendar = View.OnClickListener {
 
     }
 
@@ -78,13 +93,14 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
         val lodgeUser = result.lodgeUser
         val lodgeProperty = result.lodgeProperty
         val lodgeSpace = result.lodgeSpace
+        val lodgeReviewList = result.lodgeReview
         Log.d("로그", "onGetLodgeDetailSuccess() called, response: $response")
         Log.d("로그", "onGetLodgeDetailSuccess() called, message: $response.message")
         Log.d("로그", "onGetLodgeDetailSuccess() called, result: $result")
-        Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeReview: ${result.lodgeReview}")
+        Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeReview: $lodgeReviewList")
         Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeUser: ${result.lodgeUser}")
         Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeSpace: $lodgeSpace")
-        Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeImage: ${lodgeImage}")
+        Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeImage: $lodgeImage")
         Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeFacility: ${result.lodgeFacility}")
         Log.d("로그", "onGetLodgeDetailSuccess() called, lodgeProperty: ${result.lodgeProperty}")
 
@@ -119,22 +135,37 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
         }
 
         // 평점이 있으면 평점 (개수) or null
-        var rating: String? = null
+        var rating1: String? = null
+        var rating2: String? = null // 아래에 큰 글씨로 적혀있는 후기
         var startIdx = 0    // (
         var endIdx = 0      // )
         when (lodgeUser.count) {
-            0 -> rating = null
+            // 후기,평가가 아직 없으면
+            0 -> {
+                // 별 그림 삭제
+                binding.detailRatingRatingStar.visibility = View.GONE
+                rating2 = String.format("후기 (아직) 없음")
+                // 환불정책 어쩌구 저쩌구
+                binding.detailReviewComments.text = resources.getString(R.string.searching_dtl_txt_no_review)
+                // 후기 자세히보는 버튼 삭제
+                binding.detailReviewBtn.visibility = View.GONE
+
+            }
+            // 후기가 있으면
             else -> {
-                rating = String.format("${lodgeUser.rating} (${lodgeUser.count})")
-                startIdx = rating.indexOf("(")
-                endIdx = rating.lastIndex
+                rating1 = String.format("${lodgeUser.rating} (${lodgeUser.count})")
+                rating2 = String.format("${lodgeUser.rating}점 (후기 ${lodgeUser.count})개")
+                startIdx = rating1.indexOf("(")
+                endIdx = rating1.lastIndex
                 // 괄호부분만 회색으로 변경
-                val ssb = SpannableStringBuilder(rating)
+                val ssb = SpannableStringBuilder(rating1)
                 ssb.setSpan(resources.getColor(R.color.greyForMainBtmText), startIdx, endIdx,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                binding.detailRatingText.text = rating
+                binding.detailRatingText.text = rating1
             }
         }
+        binding.detailRatingRatingText.text = rating2
+
 
 
         // 두번째 섹션: 숙소, 장소 타입 반영
@@ -186,6 +217,39 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
             val propertyDetailText = lodgeProperty[i].detail
             propertyDetailView.text = propertyDetailText
         }
+
+        // 리뷰 목록이 있으면 첫번째 댓글만 보여준다
+        // 첫번째 리뷰 작성자
+        // 프로필 사진
+        if(lodgeReviewList.size > 0){
+            Glide.with(context!!)
+                .load(lodgeReviewList[0].img)
+                .error(R.drawable.my_page_me)
+                .into(binding.detailReviewImg)
+
+            // 이름
+            binding.detailReviewName.text = lodgeReviewList[0].firstName
+            // 날짜 -> yyyy년 mm월으로 파싱
+            val dates =
+                String.format("${lodgeReviewList[0]
+                    .createDate
+                    .substring(0..6)
+                    .replace("-","년 ")}월")
+            //var datenow = LocalDate.parse(lodgeReviewList[0].createDate, DateTimeFormatter.ISO_DATE)
+            binding.detailReviewDates.text = dates
+            // 코멘트
+            binding.detailReviewComments.text = lodgeReviewList[0].comment
+            // 평가항목들 FloatArray로 만들어서 Bundle로 전달
+            lodgeUser.apply{
+                ratingList = floatArrayOf(communicationRating, checkInRating, accuracyRating, positionRating,
+                satisfactionRating, cleanRating)
+                mBundle.putFloatArray("ratingList", ratingList)
+            }
+            // 리뷰객체 리스트 전달
+            mBundle.putParcelableArrayList("reviewList", lodgeReviewList)
+
+        }
+
 
         dismissLoadingDialog()
 
@@ -257,4 +321,13 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
 
         showCustomToast("숙소 저장 취소 통신 실패: message: $message")
     }
+
+    override fun onGetImpossibleDatesSuccess(response: GetImpossibleDatesResponse) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGetImpossibleDatesFailure(message: String) {
+        TODO("Not yet implemented")
+    }
+
 }

@@ -33,7 +33,7 @@ SearchingActivityView {
 
         /*supportFragmentManager.beginTransaction().add(R.id.search_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()*/
-        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingShowFragment(this))
+        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()
 
     }
@@ -97,6 +97,11 @@ SearchingActivityView {
         ).commitAllowingStateLoss()
     }
 
+    override fun goToReview() {
+        TODO("Not yet implemented")
+    }
+
+
     override fun onBackPressed() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.searching_frm)
         Log.d("로그","currentFragment.id: ${currentFragment!!.id}")
@@ -106,8 +111,11 @@ SearchingActivityView {
             R.id.searching_calendar_root -> goToStep2()
             R.id.searching_company_root -> goToCalendar()
             R.id.searching_show_root -> goToStep1()
-            R.id.searching_detail_root -> goToShow()
+            R.id.searching_detail_root -> {
+                Log.d("로그","detail_root.id: ${R.id.searching_detail_root}")
+                goToShow()
+            }
+            else -> super.onBackPressed()
         }
-        //super.onBackPressed()
     }
 }

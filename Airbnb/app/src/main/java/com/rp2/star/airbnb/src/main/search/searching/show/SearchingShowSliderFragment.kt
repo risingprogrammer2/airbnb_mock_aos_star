@@ -5,18 +5,18 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseFragment
-import com.rp2.star.airbnb.databinding.FragmentDetailImageSliderBinding
+import com.rp2.star.airbnb.databinding.FragmentShowRecyclerViewSliderBinding
 
 
 class SearchingShowSliderFragment(private val imgUrl: String) :
-    BaseFragment<FragmentDetailImageSliderBinding>(FragmentDetailImageSliderBinding::bind,
-    R.layout.fragment_detail_image_slider) {
+    BaseFragment<FragmentShowRecyclerViewSliderBinding>(FragmentShowRecyclerViewSliderBinding::bind,
+    R.layout.fragment_show_recycler_view_slider) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(context!!)
             .load(imgUrl)
-            .into(binding.detailSliderImg)
+            .into(binding.showSliderImg)
     }
 
 }

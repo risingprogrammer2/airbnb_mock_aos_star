@@ -1,6 +1,7 @@
 package com.rp2.star.airbnb.src.main.search.searching.detail
 
 import com.rp2.star.airbnb.config.BaseResponse
+import com.rp2.star.airbnb.src.main.search.searching.models.GetImpossibleDatesResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeDetailResponse
 
 interface SearchingDetailFragmentView {
@@ -19,5 +20,11 @@ interface SearchingDetailFragmentView {
     fun onDeleteLodgeStoreSuccess(response: BaseResponse)
 
     fun onDeleteLodgeStoreFailure(message: String)
+
+    // 예약 불가능 날짜 요청 콜백
+    fun onGetImpossibleDatesSuccess(response: GetImpossibleDatesResponse)
+
+    fun onGetImpossibleDatesFailure(message: String)
+
 
 }

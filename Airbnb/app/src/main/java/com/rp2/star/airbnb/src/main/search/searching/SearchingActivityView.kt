@@ -19,4 +19,7 @@ interface SearchingActivityView {
 
     // detail Fragment로 이동
     fun goToDetail(lodgeId: Int)
+
+    // review Fragment로 이동
+    fun goToReview()
 }

@@ -11,6 +11,7 @@ import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.databinding.FragmentSearchingCalendarBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.DatesData
+import java.util.*
 
 
 class SearchingCalendarFragment(private val searchingView: SearchingActivityView) :
@@ -36,9 +37,31 @@ class SearchingCalendarFragment(private val searchingView: SearchingActivityView
         binding.searchingCalendarLayoutTop.clipToOutline = true
 
         binding.searchingCalendarAppbar.addOnOffsetChangedListener(appBarStateChangeListener)
+        val startDates = "2021-02-17"
+        val endDates = "2021-02-20"
+        val startCal = Calendar.getInstance()
+        startCal.set(startDates.substring(0..3).toInt(),
+            startDates.substring(5..6).toInt(),
+            startDates.substring(8..9).toInt()
+        )
+
+
+
+
+        val endCal = Calendar.getInstance()
+        endCal.set(endDates.substring(0..3).toInt(),
+            endDates.substring(5..6).toInt(),
+            endDates.substring(8..9).toInt()
+        )
+
+        Log.d("로그","날짜: startDates: ${startCal.time}, endDates: ${endCal.time}")
 
         binding.searchingCalendarCalendar.apply{
             showDayOfWeekTitle(false)
+            setRangeDate(startCal.time, endCal.time)
+//            val startDate = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+//            val endDate = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault())
+//            endDate.add(Calendar.MONTH, 6) // Add 6 months ahead from current date
             //setRangeDate(startDate.time, endDate.time)
             //setSelectionDate(startDate.time, endDate.time)
         }

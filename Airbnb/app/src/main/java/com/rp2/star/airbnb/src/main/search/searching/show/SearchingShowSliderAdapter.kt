@@ -3,11 +3,10 @@ package com.rp2.star.airbnb.src.main.search.searching.show
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.rp2.star.airbnb.src.main.search.searching.detail.DetailImageSliderFragment
-import com.rp2.star.airbnb.src.main.search.searching.detail.SearchingDetailFragment
 
-class SearchingShowSliderAdapter(searchingFragment: SearchingDetailFragment,
+class SearchingShowSliderAdapter(searchingShowFragment: SearchingShowFragment,
                                  private val lodgeImgUrlList: ArrayList<String>):
-    FragmentStateAdapter(searchingFragment){
+    FragmentStateAdapter(searchingShowFragment){
 
     // 사진 개수
     override fun getItemCount() = lodgeImgUrlList.size
