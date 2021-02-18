@@ -25,4 +25,13 @@ interface SearchingActivityView {
 
     // detail calendar Fragment로 이동 - 예약 가능 날짜 확인
     fun goToDetailCalendar(lodgeId: Int)
+
+    // pay Fragment로 이동 - 결제 화면
+    fun goToPay()
+
+    // card Fragment로 이동 - 카드 등록 모달
+    fun goToCard()
+
+    // Company2 Fragment로 이동 (일행)
+    fun goToCompany2()
 }

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whiteForBackground"
+
+    app:behavior_hideable="true">
+
+    <LinearLayout
+        android:id="@+id/card_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="1"
+        android:layout_marginVertical="8dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.12"
+            android:background="@drawable/modal_line"/>
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_second_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/card_top_layout"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:background="@drawable/my_page_text_divider">
+
+        <ImageView
+            android:id="@+id/card_btn_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/arrow_back_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.15" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/card_txt_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/card_top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/card_second_layout"
+        android:background="@color/greyForMyPageDivider"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_num_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_top_divider"
+        android:hint="@string/card_txt_hint1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_num_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:digits="0123456789 .-"
+            android:inputType="number"
+            android:background="@color/whiteForBackground"
+            android:layout_weight="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/card_during_CVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_num_layout"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_during_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_top_divider"
+            android:hint="@string/card_txt_hint2"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/card_during_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textColor="@color/black"
+                android:digits="0123456789 .-/"
+                android:inputType="number"
+                android:background="@color/whiteForBackground"
+                android:layout_weight="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_CVV_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_top_divider"
+            android:layout_weight="1"
+            android:hint="@string/card_txt_hint3">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/card_CVV_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:textColor="@color/black"
+                android:digits="0123456789"
+                android:inputType="number"
+                android:background="@color/whiteForBackground"
+                android:layout_weight="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_postal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_during_CVV"
+        android:hint="@string/card_txt_hint4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_postal_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:textColor="@color/black"
+            android:digits="0123456789 .-"
+            android:inputType="number"
+            android:background="@color/whiteForBackground"
+            android:layout_weight="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/card_spinner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_postal_layout"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/log_in_linear_layout_phone_border">
+
+        <Spinner
+            android:id="@+id/card_spinner_nation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:paddingHorizontal="@dimen/log_in_activity_vertical_padding"
+            android:paddingVertical="4dp"
+            android:background="@null"
+            android:spinnerMode="dialog"
+            android:autofillHints="@string/card_txt_hint5"
+            android:entries="@array/log_in_spinner_nation_region" />
+
+        <ImageView
+            android:id="@+id/log_in_img_spinner_drop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_gravity="end"
+            android:adjustViewBounds="true"
+            android:src="@drawable/expand_more"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/card_spinner_layout"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/bottom_bar_top_border"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/card_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:elevation="0dp"
+            android:fadingEdgeLength="0dp"
+            style="?attr/borderlessButtonStyle"
+            android:maxLines="1"
+            android:text="취소"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:backgroundTint="@color/whiteForBackground"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/transparentForBackground"
+            android:layout_weight="0.7"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/card_btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:maxLines="1"
+            android:text="@string/card_btn_confirm"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:elevation="0dp"
+            android:fadingEdge="none"
+            app:backgroundTint="@color/black"
+            android:background="@drawable/input_profile_btn_continue_selector"/>
+    </LinearLayout>
+</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

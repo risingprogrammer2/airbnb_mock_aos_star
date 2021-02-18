@@ -11,8 +11,6 @@ import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.databinding.FragmentSearchingCalendarBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.DatesData
-import com.savvi.rangedatepicker.CalendarPickerView
-import java.util.*
 
 
 class SearchingCalendarFragment(private val searchingView: SearchingActivityView) :
@@ -38,38 +36,9 @@ class SearchingCalendarFragment(private val searchingView: SearchingActivityView
         binding.searchingCalendarLayoutTop.clipToOutline = true
 
         binding.searchingCalendarAppbar.addOnOffsetChangedListener(appBarStateChangeListener)
-        val startDates = "2021-02-17"
-        val endDates = "2021-02-20"
-        val startCal = Calendar.getInstance()
-        startCal.set(startDates.substring(0..3).toInt(),
-            startDates.substring(5..6).toInt(),
-            startDates.substring(8..9).toInt()
-        )
-        val start = Calendar.getInstance()
-        val end = Calendar.getInstance()
-        end.add(Calendar.YEAR,1)
-
-        val endCal = Calendar.getInstance()
-        endCal.set(endDates.substring(0..3).toInt(),
-            endDates.substring(5..6).toInt(),
-            endDates.substring(8..9).toInt()
-        )
-
-        Log.d("로그","날짜: startDates: ${startCal.time}, endDates: ${endCal.time}")
 
 
-        binding.searchingCalendarPicker.init(start.time, end.getTime()) //
-            .inMode(CalendarPickerView.SelectionMode.RANGE)
-            .withSelectedDate(Date())
-// deactivates given dates, non selectable
-//            .withDeactivateDates(list)
-// highlight dates in red color, mean they are aleady used.
-//            .withHighlightedDates(arrayList)
-// add subtitles to the dates pass a arrayList of SubTitle objects with date and text
-//            .withSubtitles(getSubtitle())
-
-
-        /*// 날짜 범위 선택 -> 위에 띄운다
+        // 날짜 범위 선택 -> 위에 띄운다
         binding.searchingCalendarCalendar.setOnRangeSelectedListener { startDate, endDate, startLabel, endLabel ->
             Log.d("로그", "날짜 범위 선택: Date: $startDate ~ $endDate, label: $startLabel , $endLabel")
             val startDateList = startLabel.split(' ').let{
@@ -116,7 +85,7 @@ class SearchingCalendarFragment(private val searchingView: SearchingActivityView
         }
 
         // 날짜 선택 -> 상단에 띄운다
-        binding.searchingCalendarPicker.setOnStartSelectedListener { startDate, label ->
+        binding.searchingCalendarCalendar.setOnStartSelectedListener { startDate, label ->
             Log.d("로그", "날짜 하나 선택: startDate: $startDate, label: $label")
 
             // 다음 버튼 활성화
@@ -138,7 +107,7 @@ class SearchingCalendarFragment(private val searchingView: SearchingActivityView
                 binding.searchingCalendarTextRange.text = mDatesString
             }
 
-        }*/
+        }
 
         // 날짜 선택 -> 다음 단계
         binding.searchingCalendarNext.setOnClickListener(onClickNext)

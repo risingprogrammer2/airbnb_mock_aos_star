@@ -49,15 +49,13 @@
         android:background="@color/whiteForBackground"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <com.savvi.rangedatepicker.CalendarPickerView
-            android:id="@+id/searching_calendar_picker"
+        <com.andrewjapar.rangedatepicker.CalendarPicker
+            android:id="@+id/searching_calendar_calendar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbarStyle="outsideOverlay"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
-            app:tsquare_orientation_horizontal="false"
-            app:tsquare_dividerColor="@color/transparentForBackground"
-            app:tsquare_headerTextColor="@color/black" />
+            android:scrollbarStyle="outsideOverlay"
+            app:pickerType="range" />
     </FrameLayout>
 
     <com.rp2.star.airbnb.src.main.search.searching.calendar.CustomScrollView

@@ -102,6 +102,10 @@ dependencies {
     // 뷰페이저 인디케이터
     implementation 'me.relex:circleindicator:2.1.4'
 
+    // 카드번호 mask 라이브러리
+    implementation 'com.redmadrobot:input-mask-android:6.0.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
     
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

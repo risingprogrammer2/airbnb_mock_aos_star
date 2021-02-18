@@ -42,8 +42,8 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
         isStored = sp.getBoolean("isStored", false)
         // 전달받은 해당 숙소 아이디
         lodgeId = this.arguments!!.getInt("lodgeId", 26)
+        sp.edit().putInt("lodgeId", lodgeId).apply()
 
-        //showLoadingDialog(this)
         // 넘겨받은 숙소 번호 조회, 없으면 26번 숙소 조회 하도록 임시 설정
         showLoadingDialog(context!!)
         SearchingDetailService(this as SearchingDetailFragmentView).tryGetLodgeDetail(lodgeId)

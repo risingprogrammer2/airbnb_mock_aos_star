@@ -4,5 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class NoDatesByHostItem(
     @SerializedName("NotRefundable_start") val startDates: String,
-    @SerializedName("NotRefundable_end") val endDates: String
+    @SerializedName("NotRefundable_end") val endDates: String,
+    @SerializedName("price") val price: Int
 )

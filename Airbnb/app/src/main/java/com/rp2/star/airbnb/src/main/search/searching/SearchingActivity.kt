@@ -9,9 +9,12 @@ import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.databinding.ActivitySearchingBinding
 import com.rp2.star.airbnb.src.main.search.searching.calendar.SearchingCalendarFragment
+import com.rp2.star.airbnb.src.main.search.searching.card.SearchingCardFragment
 import com.rp2.star.airbnb.src.main.search.searching.company.SearchingCompanyFragment
 import com.rp2.star.airbnb.src.main.search.searching.company.SearchingReviewFragment
+import com.rp2.star.airbnb.src.main.search.searching.company2.SearchingCompany2Fragment
 import com.rp2.star.airbnb.src.main.search.searching.detail.SearchingDetailFragment
+import com.rp2.star.airbnb.src.main.search.searching.pay.SearchingPayFragment
 import com.rp2.star.airbnb.src.main.search.searching.show.SearchingShowFragment
 import com.rp2.star.airbnb.src.main.search.searching.step1.SearchingStep1Fragment
 import com.rp2.star.airbnb.src.main.search.searching.step2.SearchingStep2Fragment
@@ -35,7 +38,7 @@ SearchingActivityView {
 
         /*supportFragmentManager.beginTransaction().add(R.id.search_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()*/
-        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingShowFragment(this))
+        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingDetailCalendarFragment(this))
             .commitAllowingStateLoss()
 
     }
@@ -115,6 +118,22 @@ SearchingActivityView {
         ).commitAllowingStateLoss()
     }
 
+    override fun goToPay() {
+        supportFragmentManager.beginTransaction().replace(R.id.searching_frm,
+            SearchingPayFragment(this)
+        ).commitAllowingStateLoss()
+    }
+
+    // Bottom Sheet
+    override fun goToCard() {
+        val bottomSheetCard = SearchingCardFragment(this)
+        bottomSheetCard.show(supportFragmentManager, "adding card info")
+    }
+
+    override fun goToCompany2() {
+        val bottomSheetGuest = SearchingCompany2Fragment(this)
+        bottomSheetGuest.show(supportFragmentManager, "changing guests info")
+    }
 
     override fun onBackPressed() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.searching_frm)

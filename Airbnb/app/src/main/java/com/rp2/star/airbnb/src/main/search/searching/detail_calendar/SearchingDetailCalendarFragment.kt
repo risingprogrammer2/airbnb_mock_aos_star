@@ -12,6 +12,7 @@ import com.rp2.star.airbnb.src.main.search.searching.detail_calendar.SearchingDe
 import com.rp2.star.airbnb.src.main.search.searching.models.DatesData
 import com.rp2.star.airbnb.src.main.search.searching.models.GetImpossibleDatesResponse
 import com.savvi.rangedatepicker.CalendarPickerView
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,6 +30,7 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
     private var mStartYear: String? = null
     private var mEndYear: String? = null
     private var mDatesString: String? = null
+    private var price: String? = null
     private lateinit var noByHostList: MutableList<Date>
     private lateinit var noByGuestsList: MutableList<Date>
     private lateinit var totalNoList: MutableList<Date>
@@ -37,10 +39,17 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
     private var isRanged = false
     private var startDate: String? = null
     private var endDate: String? = null
+    private lateinit var leftBtmTxt: String
+    private lateinit var kwrTxt: String
     private lateinit var dateFormatter: SimpleDateFormat
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 요금을 확인하려면 날짜를 입력하세요.
+        leftBtmTxt = resources.getString(R.string.dtl_calendar_txt_input)
+        // 한화 글자
+        kwrTxt = resources.getString(R.string.kwr)
 
         //binding.searchingCalendarTextQuery.text = sp.getString("query", null)
 
@@ -89,24 +98,33 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
                 Log.d("로그", "onDateSelected() called - isRanged: $isRanged")
 
                 when(isRanged){
+                    // 범위가 선택됐는데, 다른 날짜를 다시 선택할 때
                     true ->{
                         startDate = dateFormatter.format(date)
                         endDate = null
                         binding.detailCalendarSave.isEnabled = false
                         isRanged = !isRanged
+                        binding.detailCalendarTxtFee.text = leftBtmTxt
                     }
+                    // 범위가 선택되지 않았을 때
                     false ->{
                         // 삭제버튼 후 startDate가 비어있으면 클릭한 값을 넣어준다
                         if(startDate == null) {
                             startDate = dateFormatter.format(date)
-                        }else{
+                        }
+                        // 날짜 하나가 선택된 상태에서 하나를 더 선택할 때 (범위 선택)
+                        else{
                             val tempStart = dateFormatter.parse(startDate!!)
                             if(date!!.time > tempStart!!.time){
                                 endDate = dateFormatter.format(date)
                                 binding.detailCalendarSave.isEnabled = true
                                 isRanged = !isRanged
+
+                                // 하단 왼쪽에 1박당 얼마인지 알려준다.
+                                binding.detailCalendarTxtFee.text = String.format("${kwrTxt}${price} / 1박")
                             }else{
                                 startDate = dateFormatter.format(date)
+
                             }
                         }
                     }
@@ -125,21 +143,27 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
             !(dateStr == startDate || dateStr == endDate)
         }
 
-        // 저장 클릭 -> 쉐어드저장소에 날짜를 저장하고 나간다.
+        // 저장 클릭 -> 쉐어드저장소에 날짜, 가격을 저장하고 나간다.
        binding.detailCalendarSave.setOnClickListener{
            val spEditor = sp.edit()
            spEditor.putString("startDate", startDate)
            spEditor.putString("endDate", endDate)
+           spEditor.putString("price", price)
            spEditor.apply()
-           searchingView.goToDetail(lodgeId)
+           // searchingView.goToDetail(lodgeId)
+
+           // 임시로 pay 화면으로
+           searchingView.goToPay()
         }
 
+        // 삭제 버튼
         binding.detailCalendarBtnErase.setOnClickListener {
             binding.detailCalendarPicker.clearSelectedDates()
             startDate = null
             endDate = null
             isRanged = false
             binding.detailCalendarSave.isEnabled = false
+            binding.detailCalendarTxtFee.text = leftBtmTxt
         }
 
 
@@ -256,6 +280,9 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
         when(response.isSuccess){
             // 요청 성공하면 각 날짜를 Date 리스트에 모두 담는다
             true -> {
+                // "10,000" 과 같은 가격 형식의 문자열로 변경
+                price = NumberFormat.getInstance(Locale.getDefault())
+                    .format(response.noDatesByHost[0].price)
 
                 val noDatesByHost = response.noDatesByHost
                 val noDatesByGuests = response.noDatesByGuests
@@ -309,7 +336,10 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
                     }
                     totalNoList.addAll(noByGuestsList)
                 }
+
+                // 달력에 표시
                 binding.detailCalendarPicker.highlightDates(totalNoList)
+
             }
             false -> {
                 showCustomToast("예약 가능 날짜를 확인할 수 없습니다, 잠시 후 다시 시도해주세요." +

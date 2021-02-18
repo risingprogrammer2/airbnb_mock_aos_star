@@ -5,6 +5,6 @@ import com.rp2.star.airbnb.config.BaseResponse
 
 data class GetImpossibleDatesResponse(
     @SerializedName("NoncalendarsRows") val noDatesByHost: ArrayList<NoDatesByHostItem>,
-    @SerializedName("ReservcalendarsRows") val noDatesByGuests: ArrayList<NoDatesByGuestsItem>
+    @SerializedName("ReservcalendarsRows") val noDatesByGuests: ArrayList<NoDatesByGuestsItem>,
 
 ) : BaseResponse()
