@@ -28,6 +28,7 @@ class SearchingCompany2Fragment(val searchingView: SearchingActivityView):
     private var child: Int = 0
     private var total: Int = 1
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,12 +44,16 @@ class SearchingCompany2Fragment(val searchingView: SearchingActivityView):
 
         binding.searchingCompany2Btn1Number.text = "1"
 
+
         // 완료 버튼
         binding.searchingCompany2Save.setOnClickListener{
             sp.edit().apply{
                 putInt("adult", adult)
                 putInt("kid", kid)
                 putInt("child", child)
+                total = adult + kid
+                putInt("total", total)
+                commit()
             }
             this.dismiss()
         }

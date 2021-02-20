@@ -27,13 +27,13 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 
 
         showLoadingDialog(context!!)
-        // 검색 도시로 숙소 조회
-//        sp.getString("query", null)?.let{
-//            SearchingShowService(this).tryGetLodgeByCity(it)
-//        }
+        //검색 도시로 숙소 조회
+        sp.getString("query", null)?.let{
+           SearchingShowService(this).tryGetLodgeByCity(it)
+        }
 
         // 서울로 숙소 조회
-        SearchingShowService(this).tryGetLodgeByCity("홍대")
+        // SearchingShowService(this).tryGetLodgeByCity("서울")
         //SearchingShowService(this).tryGetLodgeByCityDates("홍대")
         // 숙소 조회 리사이클러뷰 어댑터 설정
         lodgeByCityAdapter = SearchingShowLodgeAdapter(context!!, this, searchingView)

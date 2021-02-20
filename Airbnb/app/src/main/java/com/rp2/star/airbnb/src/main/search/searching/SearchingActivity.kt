@@ -38,7 +38,7 @@ SearchingActivityView {
 
         /*supportFragmentManager.beginTransaction().add(R.id.search_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()*/
-        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingDetailCalendarFragment(this))
+        supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()
 
     }
@@ -118,9 +118,14 @@ SearchingActivityView {
         ).commitAllowingStateLoss()
     }
 
-    override fun goToPay() {
+    override fun goToPay(lodgeId: Int) {
         supportFragmentManager.beginTransaction().replace(R.id.searching_frm,
-            SearchingPayFragment(this)
+            SearchingPayFragment(this).apply {
+                arguments = Bundle().apply {
+                    putInt("lodgeId", lodgeId)
+
+                }
+            }
         ).commitAllowingStateLoss()
     }
 

@@ -56,6 +56,8 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate: (LayoutInflate
         val jwt: String = result.token
         var name: String? = null
 
+        Log.d("로그","id: $id , jwt: $jwt")
+
         // 네이버 로그인에서 이름이 null값이 아니면 저장
         result.name.apply{
             when(this != null){

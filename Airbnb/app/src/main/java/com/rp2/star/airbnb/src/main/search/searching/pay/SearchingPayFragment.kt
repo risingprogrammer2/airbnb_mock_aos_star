@@ -5,12 +5,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.databinding.FragmentSearchingPayBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
+import java.text.NumberFormat
+import java.util.*
 
 
 class SearchingPayFragment(val searchingView: SearchingActivityView) :
@@ -27,9 +30,30 @@ class SearchingPayFragment(val searchingView: SearchingActivityView) :
     private var message: String = ""
     private var startDate: String = ""
     private var endDate: String = ""
+    private var price: String = ""
+    private var totalPrice: Int = 0
+    private var dayCnt: Int = 0
+    private var serviceFee: Int = 0
+    private var kwrTxt: String = ""
+    private var imgUrl: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lodgeId = sp.getInt("lodgeId", 3)
+        paymentId = sp.getInt("paymentId", 5)
+        imgUrl = sp.getString("imgUrl", "").toString()
+
+        kwrTxt = resources.getString(R.string.kwr)
+
+        binding.payLodgeImg.clipToOutline = true
+
+
+        Glide.with(context!!)
+            .load(imgUrl)
+            .error(R.drawable.my_page_me)
+            .placeholder(R.drawable.my_page_me)
+            .into(binding.payLodgeImg)
 
         // 게스트 정보, 예약할 날짜 반영
         sp.apply{
@@ -40,19 +64,60 @@ class SearchingPayFragment(val searchingView: SearchingActivityView) :
             endDate = getString("endDate", "").toString()
         }
 
+        // 요금 반영
+        startDate = sp.getString("startDate", "").toString().replace("-", ".")
+        endDate = sp.getString("endDate", "").toString().replace("-", ".")
+        price = sp.getString("price", "").toString()
+        dayCnt = sp.getInt("dayCnt", 0).toInt()
+        totalPrice = price.replace(",", "").toInt()
+        totalPrice *= dayCnt
+
+        binding.payDatesTxt.text = String.format("${startDate}-${endDate}")
+
+        binding.payLodgmentTxt.text = String.format("${kwrTxt}${price} x ${dayCnt}박")
+        binding.payLodgmentFee.text = String.format("${kwrTxt}${NumberFormat.getInstance(
+            Locale.getDefault())
+            .format(totalPrice)}")
+
+        serviceFee = (totalPrice.toFloat() / 14.2).toInt()
+        binding.payServiceTaxFee.text = String.format("${kwrTxt}${NumberFormat.getInstance(
+            Locale.getDefault())
+            .format(serviceFee)}")
+        binding.payServiceTaxFee.text = String.format("${kwrTxt}${NumberFormat.getInstance(
+            Locale.getDefault())
+            .format(serviceFee)}")
+
+        val lodgmentTax = serviceFee / 10
+        binding.payLodgmentTaxFee.text = String.format("${kwrTxt}${NumberFormat.getInstance(
+            Locale.getDefault())
+            .format(lodgmentTax)}$")
+
+        val realTotal: Int = totalPrice + serviceFee + lodgmentTax
+        binding.payTotalFee.text = String.format("${kwrTxt}${NumberFormat.getInstance(
+            Locale.getDefault())
+            .format(realTotal)}$")
+
+
+
+
+
         binding.payBtnAddMethod.setOnClickListener(onAddMethod)
 
         binding.payMsgContents.addTextChangedListener(msgChangeListener)
 
-        binding.payBtnGuest.setOnClickListener {
+        binding.payDatesBtn.setOnClickListener {
+            sp.edit().putInt("company2", 1).commit()        // 결제화면에서 온 것임을 알림
+            searchingView.goToDetailCalendar(lodgeId)
+        }
+
+        binding.payBtnGuest.setOnClickListener{
+        sp.edit().putInt("company2", 0).commit()        // 결제화면에서 온 것임을 알림
             searchingView.goToCompany2()
         }
 
         // 결제 버튼
         binding.payBtnPay.setOnClickListener {
             headCountStr = String.format("성인: $adult, 어린이: $kid, 유아: $child")
-            lodgeId = sp.getInt("lodgeId", 3)
-            paymentId = sp.getInt("paymentId", 5)
 
             showLoadingDialog(context!!)
             SearchingPayService(this).tryPostReserveLodge(startDate, endDate, headCountStr,
@@ -81,6 +146,7 @@ class SearchingPayFragment(val searchingView: SearchingActivityView) :
         when(response.isSuccess){
             true -> {
                 showCustomLongToast("여행이 예약되었습니다.")
+                searchingView.goToDetail(lodgeId)
             }
             false -> {
                 showCustomLongToast("예약에 실패했습니다. 아래 내용을 확인해주세요.\n 원인: $message")
@@ -92,5 +158,9 @@ class SearchingPayFragment(val searchingView: SearchingActivityView) :
         Log.d("로그", "onPostReserveFailure() called - message: $message")
         dismissLoadingDialog()
         showCustomToast("카드 등록 실패: 네트워크 확인 후 다시 시도해주세요")
+    }
+
+    override fun changeGuests(total: Int) {
+        binding.payGuestTxt.text = String.format("게스트 ${total}명")
     }
 }

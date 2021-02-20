@@ -16,7 +16,7 @@ class SearchingPayService(val view: SearchingPayFragmentView) {
                             message: String, paymentId: Int, lodgingId: Int){
 
         val postReserveBody = PostReserveBody(startDate, endDate, headCount,
-            message, paymentId, couponName = 1, lodgingId)
+            message, paymentId, couponId = 0, lodgingId)
 
         val searchingPayRetrofitInterface = ApplicationClass.sRetrofit.create(
             SearchingPayRetrofitInterface::class.java)

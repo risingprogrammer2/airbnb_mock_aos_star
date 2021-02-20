@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recycler_show_lodge_root"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="16dp"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="210dp"
         android:background="@color/transparentForBackground">
 
         <androidx.cardview.widget.CardView
@@ -21,7 +22,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/show_recycler_view_viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </androidx.cardview.widget.CardView>
             <TextView
@@ -34,14 +35,15 @@
                 android:background="@drawable/show_superhost_border"
                 android:text="슈퍼호스트"
                 android:textColor="@color/black"
-                android:padding="8dp"
-                android:textSize="14sp"
+                android:paddingVertical="4.3dp"
+                android:paddingHorizontal="8dp"
+                android:textSize="12sp"
                 android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/recycler_show_lodge_store"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="16dp"
                 android:layout_gravity="top|end"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
@@ -52,7 +54,7 @@
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/recycler_show_lodge_indicator"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="28dp"
             android:layout_gravity="bottom"
             app:ci_drawable="@drawable/searching_show_indicator"/>
     </FrameLayout>
@@ -61,34 +63,46 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="2dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
+            android:layout_height="15dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:src="@drawable/btm_nav_store"
+            android:src="@drawable/star_red_24dp"
             android:scaleType="fitCenter"
             android:tint="@color/redForText"/>
         <TextView
-            android:id="@+id/recycler_show_lodge_rating"
+        android:id="@+id/recycler_show_lodge_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:gravity="start"
+        android:text="NEW"
+        android:textSize="13sp"
+        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/recycler_show_lodge_count"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:text="NEW"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
+            android:layout_marginStart="2dp"
+            android:gravity="start"
+            android:text="(13)"
+            android:textSize="13sp"
+            android:textColor="@color/greyForMyPageText"/>
     </LinearLayout>
     <TextView
         android:id="@+id/recycler_show_lodge_location"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginVertical="2dp"
         android:gravity="center"
         android:text="아파트 전체, 서초"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textColor="@color/black"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -98,10 +112,39 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginVertical="2dp"
         android:gravity="center"
         android:text="Comfy Studio"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textColor="@color/black"
         android:maxLines="1"
         android:ellipsize="end"/>
+
+    <LinearLayout
+        android:id="@+id/recycler_show_lodge_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginVertical="2dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/recycler_show_lodge_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="22,138"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=" / 박"
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 </LinearLayout>

@@ -8,4 +8,6 @@ interface SearchingPayFragmentView {
     fun onPostReserveSuccess(response: BaseResponse)
 
     fun onPostReserveFailure(message: String)
+
+    fun changeGuests(total: Int)
 }

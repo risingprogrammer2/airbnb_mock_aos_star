@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/trip_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="432dp"
+    android:elevation="4dp"
+    android:paddingBottom="16dp"
+    android:background="@drawable/main_search_img_border"
+    android:backgroundTint="@color/whiteForBackground"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/trip_item_img_l"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/search_main_incheon"/>
+
+    <TextView
+        android:id="@+id/trip_item_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/store_reclr_txt_dates"
+        android:textSize="16sp"
+        android:textColor="@color/greyForMainBtmText"/>
+
+    <TextView
+        android:id="@+id/trip_item_captial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:text="서울"
+        android:textSize="22sp"
+        android:textColor="@color/blackForText"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <LinearLayout
+        android:id="@+id/trip_item_btn_more1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/trip_item_img_s"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_search_img_border"
+            android:layout_weight="1.5"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:src="@drawable/search_main_seoul"/>
+
+        <TextView
+            android:id="@+id/trip_item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="zezeze"
+            android:gravity="center"
+            android:textColor="@color/blackForText"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:src="@drawable/right_black_24dp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/right_black_24dp"
+            android:scaleType="centerInside"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@color/greyForMyPageDivider"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/trip_item_btn_more2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        style="?attr/borderlessButtonStyle"
+        android:text="@string/trip_recycler_txt_more"
+        android:textColor="@color/blackForText"/>
+</LinearLayout>

@@ -92,6 +92,8 @@ abstract class BaseFragment<B : ViewBinding>(
         }
     }
 
+
+
     // status bar 배경 색상 변경
     fun changeStatusBarColor(color: Int){
         val mWindow = requireActivity().window

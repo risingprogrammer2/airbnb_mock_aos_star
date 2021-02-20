@@ -1,5 +1,6 @@
 package com.rp2.star.airbnb.src.main.my_page
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,7 @@ import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.databinding.FragmentMainMyPageBinding
 import com.rp2.star.airbnb.databinding.FragmentMainMyPageBinding.bind
+import com.rp2.star.airbnb.src.log_in.LogInActivity
 
 
 class MyPageFragment : BaseFragment<FragmentMainMyPageBinding>(FragmentMainMyPageBinding::bind,
@@ -34,6 +36,13 @@ class MyPageFragment : BaseFragment<FragmentMainMyPageBinding>(FragmentMainMyPag
                 .placeholder(R.drawable.my_page_me)
                 .error(R.drawable.my_page_me)
                 .into(binding.myPageImg)
+        }
+
+        binding.myPageBtn14.setOnClickListener {
+            appLogOut()
+            val intent = Intent(context, LogInActivity::class.java)
+            startActivity(intent)
+            activity!!.finish()
         }
 
     }

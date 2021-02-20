@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,4 +7,60 @@
     android:background="@color/whiteForBackground"
     tools:context=".src.main.trip.TripFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/trip_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/whiteForBackground"
+        android:theme="@style/TripTabTheme"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="top"
+            android:text="여행"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"/>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/trip_tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:tabGravity="start"
+            android:layout_gravity="bottom">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/trip_txt_tab0" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/trip_txt_tab1" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/trip_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

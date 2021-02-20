@@ -27,7 +27,7 @@ interface SearchingActivityView {
     fun goToDetailCalendar(lodgeId: Int)
 
     // pay Fragment로 이동 - 결제 화면
-    fun goToPay()
+    fun goToPay(lodgeId: Int)
 
     // card Fragment로 이동 - 카드 등록 모달
     fun goToCard()

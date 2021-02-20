@@ -48,6 +48,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
         private val superhost: TextView = lodgeView.recycler_show_lodge_superhost
         private val isStoredImg: ImageView = lodgeView.recycler_show_lodge_store
         private val rating: TextView = lodgeView.recycler_show_lodge_rating
+        private val count: TextView = lodgeView.recycler_show_lodge_count
         private val location: TextView = lodgeView.recycler_show_lodge_location
         private val lodgeTitle: TextView = lodgeView.recycler_show_lodge_title
         private val indicator: CircleIndicator3 = lodgeView.recycler_show_lodge_indicator
@@ -87,9 +88,15 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
 
             // 평점 값이 null이면 NEW로 출력
             resultLodgeByCity.rating.apply{
-                when(this){
-                    null -> rating.text = String.format("NEW")
-                    else -> rating.text = this.toString()
+                when(resultLodgeByCity.count){
+                    0 -> {
+                        rating.text = String.format("NEW")
+                        count.text = ""
+                    }
+                    else -> {
+                        rating.text = this.toString()
+                        count.text = String.format("(${resultLodgeByCity.count})")
+                    }
                 }
             }
 

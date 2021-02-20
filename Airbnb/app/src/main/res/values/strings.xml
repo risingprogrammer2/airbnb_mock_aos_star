@@ -153,7 +153,20 @@
     <!-- searching_detail -->
     <string name="searching_dtl_txt_for_fee">요금을\n확인하려면</string>
     <string name="searching_dtl_txt_reserve">예약 가능 여부 보기</string>
+    <string name="searching_dtl_txt_pay">예약하기</string>
     <string name="searching_dtl_txt_no_review">여행에 차질이 없도록 최선을 다해 도와드리겠습니다. 모든 예약은 에어비앤비의 <u>게스트 환불 정책</u>에 따라 보호받습니다.</string>
+    <string name="searching_dtl_txt_property0">집 전체</string>
+    <string name="searching_dtl_txt_property0_1">공동주택 전체를 단독으로 사용하시게 됩니다.</string>
+    <string name="searching_dtl_txt_property1">청결 강화</string>
+    <string name="searching_dtl_txt_property1_1">에어비앤비의 강화된 5단계 청소 절차를 준수하겠다고 동의한 호스트입니다. <b><u>자세히 알아보기</u></b></string>
+    <string name="searching_dtl_txt_property2">셀프 체크인</string>
+    <string name="searching_dtl_txt_property2_1">키패드를 이용해 체크인하세요.</string>
+    <string name="searching_dtl_txt_property3">체크인 5일 전까지 수수료 없이 취소 가능</string>
+    <string name="searching_dtl_txt_property3_1">그 이후로는 체크인 전에 취소하면 첫 1박 요금과 서비스 수수료를 제외하고 50%가 환불됩니다.</string>
+    <string name="searching_dtl_txt_property4">숙소 이용규칙</string>
+    <string name="searching_dtl_txt_property4_1"><b><u>세부 정보 보기</u></b></string>
+    <string name="searching_dtl_txt_extra_reg">추가 이용규칙</string>
+    <string name="searching_dtl_btn_more_info"><u>더 보기</u></string>
 
     <!--searching_review -->
     <string name="searching_review_toolbar_back_title">뒤로가기</string>
@@ -179,4 +192,13 @@
     <string name="card_txt_hint3">CVV</string>
     <string name="card_txt_hint4">우편번호</string>
     <string name="card_txt_hint5">국가/지역</string>
+
+    <!-- recycler_view_folder_item -->
+    <string name="store_txt_title">저장 목록</string>
+    <string name="store_reclr_txt_dates">항상</string>
+
+    <!-- recylcer_view_trip_item-->
+    <string name="trip_recycler_txt_more">여행 계획 더 보기</string>
+    <string name="trip_txt_tab0">예정된 예약</string>
+    <string name="trip_txt_tab1">이전 예약</string>
 </resources>

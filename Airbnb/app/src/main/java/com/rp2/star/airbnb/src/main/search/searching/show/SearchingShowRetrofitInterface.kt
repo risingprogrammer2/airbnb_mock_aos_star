@@ -62,7 +62,7 @@ interface SearchingShowRetrofitInterface {
     ): Call<GetLodgeByCityResponse>
 
     // 숙소 찜, listName: 찜 폴더 이름
-    @POST("/lodging/list")
+    @POST("/saves")
     fun postLodgeStoreRequest(@Body postLodgeStoreBody: PostLodgeStoreBody): Call<BaseResponse>
 
     // 숙소 찜 취소

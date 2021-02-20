@@ -135,7 +135,7 @@ class SearchingCardFragment(val searchingView: SearchingActivityView):
 
 
     val onClickBack = View.OnClickListener {
-        searchingView.goToPay()
+        this.dismiss()
     }
 
     // 카드 등록 요청 통신 성공
@@ -145,7 +145,7 @@ class SearchingCardFragment(val searchingView: SearchingActivityView):
 
         when(response.isSuccess){
             true -> {
-                searchingView.goToPay()
+                this.dismiss()
             }
             false -> {
                 showCustomLongToast("카드를 등록하지 못했습니다, 다음 사항을 확인해주세요\n원인: " +

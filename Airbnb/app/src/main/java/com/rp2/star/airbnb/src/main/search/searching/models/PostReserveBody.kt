@@ -8,6 +8,6 @@ data class PostReserveBody (
     @SerializedName("headcount") val headCount: String,
     @SerializedName("message") val message: String,
     @SerializedName("payment_id") val paymentId: Int,
-    @SerializedName("coupon_id") var couponId: Int = 1,
+    @SerializedName("coupon_id") var couponId: Int = 0,
     @SerializedName("lodging_id") val lodgingId: Int
 )

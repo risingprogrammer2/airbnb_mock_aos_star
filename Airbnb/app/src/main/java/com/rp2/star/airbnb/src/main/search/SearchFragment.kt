@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseFragment
 import com.rp2.star.airbnb.databinding.FragmentMainSearchBinding
@@ -17,6 +18,13 @@ class SearchFragment : BaseFragment<FragmentMainSearchBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 이미지 겉에 radius 적용
+        for(i in 0..5){
+            val imgId = resources.getIdentifier("main_search_img$i", "id", activity!!.packageName)
+            val imgView = activity!!.findViewById<ImageView>(imgId)
+            imgView.clipToOutline = true
+        }
 
         activity!!.window.apply{
             // 상태바 검정색

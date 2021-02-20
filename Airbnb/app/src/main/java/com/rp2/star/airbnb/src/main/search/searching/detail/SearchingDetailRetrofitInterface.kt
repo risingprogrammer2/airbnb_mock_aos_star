@@ -17,12 +17,12 @@ interface SearchingDetailRetrofitInterface {
         @Path("lodgeId") lodgeId: Int): Call<GetLodgeDetailResponse>
 
     // 숙소 찜, listName: 찜 폴더 이름
-    @POST("/lodging/list")
+    @POST("/saves")
     fun postLodgeStoreRequest(@Body postLodgeStoreBody: PostLodgeStoreBody): Call<BaseResponse>
 
     // 숙소 찜 취소
-    @DELETE("/lodging/list/{lodgingId}")
-    fun deleteLodgeStoreRequest(@Path("lodgingId") lodgeId: Int): Call<BaseResponse>
+    @DELETE("/saves/{lodgeId}")
+    fun deleteLodgeStoreRequest(@Path("lodgeId") lodgeId: Int): Call<BaseResponse>
 
     // 예약 가능 날짜 확인
     @GET("/lodgings/{lodgingId}/calendars")

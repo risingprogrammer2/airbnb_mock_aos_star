@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class NoDatesByGuestsItem(
     @SerializedName("Reservation_start") val startDates: String,
-    @SerializedName("Reservation_end") val endDates: String
+    @SerializedName("Reservation_end") val endDates: String,
+    @SerializedName("price") val price: Int
 
 )

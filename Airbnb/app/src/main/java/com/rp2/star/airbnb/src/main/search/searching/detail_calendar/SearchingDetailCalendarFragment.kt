@@ -36,15 +36,25 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
     private lateinit var totalNoList: MutableList<Date>
     private val MS_PER_DAY: Long = 86400000
     private var lodgeId = 2
-    private var isRanged = false
+    private var isRanged = true
     private var startDate: String? = null
     private var endDate: String? = null
     private lateinit var leftBtmTxt: String
     private lateinit var kwrTxt: String
     private lateinit var dateFormatter: SimpleDateFormat
 
+    private lateinit var minDate: Date
+    private lateinit var maxDate: Date
+
+    private var comeback: Int = 0
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 0: detail , 1: pay
+        comeback = sp.getInt("company2", 0)        // 어디서 왔는지 확인
+        lodgeId = this.arguments!!.getInt("lodgeId", 2)    // 해당 숙소 아이디
 
         // 요금을 확인하려면 날짜를 입력하세요.
         leftBtmTxt = resources.getString(R.string.dtl_calendar_txt_input)
@@ -54,7 +64,7 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
         //binding.searchingCalendarTextQuery.text = sp.getString("query", null)
 
         // Date 변환
-        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         startDate = dateFormatter.format(Date())
 
         /*val strDate = "2016-10-17 18:30"
@@ -69,11 +79,14 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
         val start = Calendar.getInstance()
         val end = Calendar.getInstance()
         end.add(Calendar.YEAR, 1)
+        Log.d("로그", "minDates: ${start.time}, maxDates: ${end.time}")
+
+        minDate = start.time
+        maxDate = end.time
 
         // 달력 초기화
         binding.detailCalendarPicker.init(start.time, end.time) //
             .inMode(CalendarPickerView.SelectionMode.RANGE)
-            .withSelectedDate(Date())
 //            .withDeactivateDates(arrayListOf<Int>(1,2,3))
 // deactivates given dates, non selectable
 //            .withDeactivateDates(abc)
@@ -88,7 +101,11 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
 
         // 뒤로가기 버튼
         binding.detailCalendarBtnBack.setOnClickListener {
-            //searchingView.goToDetail(lodgeId)
+            when(comeback){
+                0 -> searchingView.goToDetail(lodgeId)
+                1 -> searchingView.goToPay(lodgeId)
+            }
+
         }
 
         // 날짜 선택 시 동작 설정
@@ -149,11 +166,18 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
            spEditor.putString("startDate", startDate)
            spEditor.putString("endDate", endDate)
            spEditor.putString("price", price)
-           spEditor.apply()
-           // searchingView.goToDetail(lodgeId)
+           var startMS = dateFormatter.parse(startDate).time  // Date 클래스
+           val endMS = dateFormatter.parse(endDate). time
+           val dayCnt: Int = (endMS - startMS).toInt() / MS_PER_DAY.toInt()
+           spEditor.putInt("dayCnt", dayCnt.toInt())
+           Log.d("로그", "몇박:  $dayCnt")
+           spEditor.commit()
 
-           // 임시로 pay 화면으로
-           searchingView.goToPay()
+           Log.d("로그", "comeback: $comeback")
+           when(comeback){
+               0 -> searchingView.goToDetail(lodgeId)
+               1 -> searchingView.goToPay(lodgeId)
+           }
         }
 
         // 삭제 버튼
@@ -288,19 +312,25 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
                 val noDatesByGuests = response.noDatesByGuests
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
+                val minMS = minDate.time        // 최소, 최대 날짜의 밀리세컨드
+                val maxMS = maxDate.time
+
 
                 // 호스트가 지정한 예약 불가능 날짜
                 if(noDatesByHost.size > 0){
                     for(i in 0 until noDatesByHost.size){
                         var startStr = noDatesByHost[i].startDates  // 문자열: yyyy-MM-dd
                         val endStr = noDatesByHost[i].endDates
-                        Log.d("로그","startStr: $startStr, endStr: $endStr")
+                        Log.d("날짜","host - startStr: $startStr, endStr: $endStr")
                         var startDate = dateFormat.parse(startStr)  // Date 클래스
                         val endDate = dateFormat.parse(endStr)
-                        Log.d("로그","startDate: $startDate, endDate: $endDate")
+                        Log.d("날짜","host - startDate: $startDate, endDate: $endDate")
                         var startMS = startDate.time                // 밀리세컨드
+                        if(startMS < minMS){                        // 시작 날짜가 오늘~1년뒤 사이에 있어야 함
+                            startMS = minMS
+                        }
                         val endMS = endDate.time
-                        Log.d("로그","startMS: $startMS, endMS: $endMS")
+                        Log.d("날짜","hoat - startMS: $startMS, endMS: $endMS")
                         lateinit var addedDate: Date
 
                         // 시작날 ~ 끝날 까지 하루마다 비교해서
@@ -311,32 +341,39 @@ class SearchingDetailCalendarFragment(private val searchingView: SearchingActivi
                             noByHostList.add(startDate)             // 비활성화 Date리스트에 추가
                             startMS += MS_PER_DAY                   // 그 다음날로 변경
                         }
-                        totalNoList.addAll(noByHostList)
                     }
+                    totalNoList.addAll(noByHostList)
                 }
 
                 // 이미 예약돼서 불가능한 날짜
                 if(noDatesByGuests.size > 0){
                     for(i in 0 until noDatesByGuests.size){
-                        var startStr = noDatesByHost[i].startDates  // 문자열: yyyy-MM-dd
-                        val endStr = noDatesByHost[i].endDates
+                        var startStr = noDatesByGuests[i].startDates  // 문자열: yyyy-MM-dd
+                        val endStr = noDatesByGuests[i].endDates
+                        Log.d("날짜","guest - startStr: $startStr, endStr: $endStr")
                         var startDate = dateFormat.parse(startStr)  // Date 클래스
                         val endDate = dateFormat.parse(endStr)
+                        Log.d("날짜","guest - startDate: $startDate, endDate: $endDate")
                         var startMS = startDate.time                // 밀리세컨드
+                        if(startMS < minMS){                        // 시작 날짜가 오늘~1년뒤 사이에 있어야 함
+                            startMS = minMS
+                        }
                         val endMS = endDate.time
+                        Log.d("날짜","guest - startMS: $startMS, endMS: $endMS")
 
                         // 시작날 ~ 끝날 까지 하루마다 비교해서
                         // Date 클래스로 변환해서 추가한다
                         while(startMS <= endMS){
                             startStr = dateFormat.format(startMS)    // 밀리세컨드 -> 문자열로 다시 변환
                             startDate = dateFormat.parse(startStr)  // Date 클래스로 변환
-                            noByGuestsList.add(startDate)             // 비활성화 Date리스트에 추가
+                            noByGuestsList.add(startDate)       // 비활성화 Date리스트에 추가
                             startMS += MS_PER_DAY                   // 그 다음날로 변경
                         }
                     }
                     totalNoList.addAll(noByGuestsList)
                 }
 
+                Log.d("로그", "totalNoList: $totalNoList")
                 // 달력에 표시
                 binding.detailCalendarPicker.highlightDates(totalNoList)
 
