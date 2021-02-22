@@ -48,7 +48,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.main_frm, TripFragment())
                             .commitAllowingStateLoss()
-                        return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_message -> {
                         supportFragmentManager.beginTransaction()

@@ -23,7 +23,7 @@ class TripRecyclerAdapter(val context: Context, private var tripList: ArrayList<
         viewType: Int
     ): TripRecyclerAdapter.TripViewHolder {
         val viewHolder =TripViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_view_show_lodge, parent, false))
+            .inflate(R.layout.recycler_view_trip_item, parent, false))
         return viewHolder
     }
 
@@ -34,7 +34,7 @@ class TripRecyclerAdapter(val context: Context, private var tripList: ArrayList<
         holder.setValue(tripList[position])
     }
 
-    override fun getItemCount() =tripList.size
+    override fun getItemCount() = tripList.size
 
     // custom ViewHolder 클래스 정의
     inner class TripViewHolder(tripView: View) : RecyclerView.ViewHolder(tripView){

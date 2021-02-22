@@ -8,15 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rp2.star.airbnb.R
-import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
-import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
+import com.rp2.star.airbnb.src.main.store.in_folder.models.Folder
 import kotlinx.android.synthetic.main.recycler_view_folder_item.view.*
 
-class StoreFolderRecyclerAdapter(val context: Context, val fragment: StoreFragment,
-                                 val searchingActivityView: SearchingActivityView):
+class StoreFolderRecyclerAdapter(val context: Context):
     RecyclerView.Adapter<StoreFolderRecyclerAdapter.FolderHolder>(){
 
-    private var folderList = ArrayList<ResultLodgeByCity>()
+    private var folderList = ArrayList<Folder>()
 
     // 뷰홀더를 생성해서 반환한다
     override fun onCreateViewHolder(
@@ -25,7 +23,7 @@ class StoreFolderRecyclerAdapter(val context: Context, val fragment: StoreFragme
     ): StoreFolderRecyclerAdapter.FolderHolder {
         val viewHolder = FolderHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.recycler_view_show_lodge, parent, false)
+                .inflate(R.layout.recycler_view_folder_item, parent, false)
         )
         return viewHolder
     }
@@ -49,19 +47,15 @@ class StoreFolderRecyclerAdapter(val context: Context, val fragment: StoreFragme
         private val numLodge: TextView = folderView.folder_item_num_lodge   // 숙소 n개
 
         // 데이터 타입 수정해야함
-        fun setValue(folder: ResultLodgeByCity){
+        fun setValue(folder: Folder){
             root.clipToOutline = true
         }
     }
 
 
     // 숙소 리스트를 받아온다, 프래그먼트에서 실행
-    fun provideList(lodgeByCityList: ArrayList<ResultLodgeByCity>){
-        this.folderList = lodgeByCityList
+    fun provideList(folderList: ArrayList<Folder>){
+        this.folderList = folderList
         this.notifyDataSetChanged()
-    }
-
-    fun changeHeartState(pos: Int){
-        folderList[pos].isSave = !(folderList[pos].isSave)
     }
 }

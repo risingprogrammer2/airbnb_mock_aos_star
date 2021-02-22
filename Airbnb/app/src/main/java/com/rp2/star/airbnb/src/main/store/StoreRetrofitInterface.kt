@@ -3,10 +3,17 @@ package com.rp2.star.airbnb.src.main.store
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.PostLodgeStoreBody
+import com.rp2.star.airbnb.src.main.store.in_folder.models.GetFoldersResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface StoreRetrofitInterface {
+
+    // 저장 목록의 폴더 요청
+    @GET("/saves")
+    fun getStoredFoldersRequest(@Query("page") page: Int,
+                                @Query("num") num: Int
+    ): Call<GetFoldersResponse>
 
     // 도시명으로 숙소들 정보 요청
     /*@GET("/lodging/city")

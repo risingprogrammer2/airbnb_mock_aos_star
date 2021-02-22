@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteForBackground"
+    android:clipToPadding="false"
+    android:background="@color/transparentForBackground"
     tools:context=".src.main.trip.TripFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/trip_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="123dp"
+        android:paddingHorizontal="24dp"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
         android:background="@color/whiteForBackground"
+        app:elevation="8dp"
         android:theme="@style/TripTabTheme"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -34,13 +36,19 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             app:tabGravity="start"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorColor="@color/black"
+
+            android:clipToPadding="true"
+            app:tabTextColor="@color/greyForMyPageText"
             android:layout_gravity="bottom">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="@string/trip_txt_tab0" />
+                android:text="@string/trip_txt_tab0"
+                android:textAlignment="textStart" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -48,12 +56,17 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/trip_txt_tab1" />
         </com.google.android.material.tabs.TabLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/greyForMyPageDivider"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:layout_marginTop="8dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.viewpager2.widget.ViewPager2

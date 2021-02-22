@@ -12,6 +12,10 @@
         android:id="@+id/trip_prev_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="?attr/actionBarSize"
+        android:paddingTop="16dp"
+        android:paddingHorizontal="24dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/recycler_view_trip_item"/>
 
 </LinearLayout>

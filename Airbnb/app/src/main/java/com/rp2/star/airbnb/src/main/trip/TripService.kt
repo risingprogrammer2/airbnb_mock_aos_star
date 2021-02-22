@@ -15,7 +15,8 @@ class TripService(val view:TripFragmentView) {
     fun tryGetPrevReserve(){
 
         val tripRetrofitInterface = ApplicationClass.sRetrofit.create(
-            TripRetrofitInterface::class.java)
+            TripRetrofitInterface::class.java
+        )
 
         tripRetrofitInterface.getPrevReserveRequest()
             .enqueue(object : Callback<GetScheduleResponse> {

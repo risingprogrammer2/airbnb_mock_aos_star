@@ -12,7 +12,7 @@ import com.rp2.star.airbnb.src.main.trip.models.ScheduleResult
 class TripPrevFragment(private val tripList: ArrayList<ScheduleResult>) :
     BaseFragment<FragmentTripPrevBinding>(
         FragmentTripPrevBinding::bind,
-    R.layout.fragment_trip_scheduled) {
+    R.layout.fragment_trip_prev) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

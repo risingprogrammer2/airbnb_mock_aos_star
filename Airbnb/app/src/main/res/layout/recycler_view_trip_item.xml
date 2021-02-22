@@ -3,17 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/trip_item_root"
     android:layout_width="match_parent"
-    android:layout_height="432dp"
-    android:elevation="4dp"
-    android:paddingBottom="16dp"
-    android:background="@drawable/main_search_img_border"
-    android:backgroundTint="@color/whiteForBackground"
+    android:layout_height="382dp"
+    android:layout_marginVertical="16dp"
+    android:elevation="16dp"
+    android:background="@drawable/trip_item_border"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/trip_item_img_l"
         android:layout_width="match_parent"
-        android:layout_height="216dp"
+        android:layout_height="172dp"
         android:scaleType="fitXY"
         android:src="@drawable/search_main_incheon"/>
 
@@ -24,7 +23,7 @@
         android:paddingHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/store_reclr_txt_dates"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textColor="@color/greyForMainBtmText"/>
 
     <TextView
@@ -43,9 +42,9 @@
     <LinearLayout
         android:id="@+id/trip_item_btn_more1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:padding="16dp"
+        android:layout_height="80dp"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="16dp"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -67,13 +66,15 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:text="zezeze"
-            android:gravity="center"
-            android:textColor="@color/blackForText"/>
+            android:paddingHorizontal="16dp"
+            android:gravity="start"
+            android:textColor="@color/black"/>
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
+            android:padding="8dp"
             android:src="@drawable/right_black_24dp"/>
 
         <ImageView
@@ -86,15 +87,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
+        android:layout_height="1dp"
         android:background="@color/greyForMyPageDivider"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/trip_item_btn_more2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         style="?attr/borderlessButtonStyle"
         android:text="@string/trip_recycler_txt_more"
-        android:textColor="@color/blackForText"/>
+        android:textColor="@color/black"/>
 </LinearLayout>
