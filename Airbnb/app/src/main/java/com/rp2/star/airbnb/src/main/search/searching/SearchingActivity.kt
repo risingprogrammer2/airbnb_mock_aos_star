@@ -3,7 +3,6 @@ package com.rp2.star.airbnb.src.main.search.searching
 import SearchingDetailCalendarFragment
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.BaseActivity
@@ -141,19 +140,16 @@ SearchingActivityView {
     }
 
     override fun onBackPressed() {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.searching_frm)
-        Log.d("로그","currentFragment.id: ${currentFragment!!.id}")
-        when(currentFragment.id){
-            R.id.searching_step1_root -> super.onBackPressed()
-            R.id.searching_step2_root -> goToStep1()
-            R.id.searching_calendar_root -> goToStep2()
-            R.id.searching_company_root -> goToCalendar()
-            R.id.searching_show_root -> goToStep1()
-            R.id.searching_detail_root -> {
-                Log.d("로그","detail_root.id: ${R.id.searching_detail_root}")
-                goToShow()
-            }
-            else -> super.onBackPressed()
+        val fragmentManager = supportFragmentManager
+        val parentFragment = fragmentManager.findFragmentById(
+            resources.getIdentifier("searching_show_root", "id", packageName)
+        )
+
+        if (parentFragment != null && parentFragment.childFragmentManager.backStackEntryCount > 0) {
+            parentFragment.childFragmentManager.popBackStack()
+        } else {
+            //goToStep1()
+            super.onBackPressed()
         }
     }
 }

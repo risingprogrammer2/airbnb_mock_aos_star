@@ -5,32 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
+    android:background="@drawable/trip_item_border"
     android:paddingBottom="16dp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@color/transparentForBackground">
+        android:layout_height="170dp"
+        android:background="@color/transparentForBackground"
+        android:layout_marginBottom="16dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/folder_item_img1"
-            android:layout_width="240dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:background="@drawable/main_store_img_border"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:elevation="1dp"
             android:src="@drawable/search_main_incheon"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/folder_item_img2"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
             android:layout_toEndOf="@id/folder_item_img1"
+            android:background="@drawable/main_store_img_border"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="2dp"
             android:adjustViewBounds="true"
             android:layout_marginBottom="1dp"
             android:scaleType="fitXY"
@@ -40,10 +44,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/folder_item_img3"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
+            android:layout_height="85dp"
+            android:background="@drawable/main_store_img_border"
+            android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/folder_item_img1"
             android:layout_below="@id/folder_item_img2"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="1dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
@@ -60,7 +66,7 @@
         android:paddingHorizontal="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/store_reclr_txt_dates"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textColor="@color/greyForMainBtmText"/>
 
     <TextView
@@ -69,11 +75,11 @@
         android:layout_height="0dp"
         android:layout_weight="1.5"
         android:gravity="center"
+        android:layout_marginVertical="2dp"
         android:paddingHorizontal="16dp"
         android:text="서울"
-        android:textSize="22sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/blackForText"
         android:maxLines="1"
         android:ellipsize="end"/>
 
@@ -84,9 +90,10 @@
         android:layout_weight="1.5"
         android:gravity="center"
         android:paddingHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:text="숙소 1개"
-        android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textColor="@color/blackForText"
         android:maxLines="1"
         android:ellipsize="end" />
 </LinearLayout>

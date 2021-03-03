@@ -1,6 +1,6 @@
 package com.rp2.star.airbnb.src.main.store
 
-import com.rp2.star.airbnb.src.main.store.in_folder.models.GetFoldersResponse
+import com.rp2.star.airbnb.src.main.store.models.GetFoldersResponse
 
 interface StoreFragmentView {
 

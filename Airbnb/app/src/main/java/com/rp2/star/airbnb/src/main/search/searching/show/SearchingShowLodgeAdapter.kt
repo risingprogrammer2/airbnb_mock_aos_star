@@ -13,6 +13,7 @@ import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
+import com.rp2.star.airbnb.src.main.store.on_store.OnStoreBtmFragment
 import kotlinx.android.synthetic.main.recycler_view_show_lodge.view.*
 import me.relex.circleindicator.CircleIndicator3
 
@@ -115,7 +116,6 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
                 val lodgeId = lodgeList[pos].id
 
                 searchingActivityView.goToDetail(lodgeId)
-
             }
 
             // 숙소 찜하기 / 취소
@@ -123,7 +123,33 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
                 val pos = adapterPosition
                 val lodgeId = lodgeList[pos].id
 
-                when(isStored){
+                val onStoreBtmFragment = OnStoreBtmFragment()
+                val fragmentManager = fragment.childFragmentManager
+                onStoreBtmFragment.show(fragmentManager, "onStore")
+
+                /*val transaction = fragmentManager.beginTransaction()
+                transaction.add(R.id.searching_show_frm, onStoreBtmFragment)
+                transaction.addToBackStack("onStore")
+                transaction.commitAllowingStateLoss()*/
+
+
+                /*val onStoreTransaction = fragment.activity!!.supportFragmentManager
+                    .beginTransaction().replace(R.id.searching_frm, onStoreBtmFragment)
+                fragment.activity!!.supportFragmentManager.beginTransaction().remove(fragment)
+
+                onStoreBtmFragment.show(onStoreTransaction, "showing stored folders")*/
+
+                // onStoreBtmFragment.show(fragment.fragmentManager!!, "showing stored folders")
+
+
+                /*val onStoreBehavior = BottomSheetBehavior
+                    .from(fragment.view!!
+                        .findViewById<RecyclerView>(R.id.on_store_btm_sheet)
+                    )
+                onStoreBehavior.peekHeight = 180
+                onStoreBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*/
+
+                /*when(isStored){
                     false -> {
                         fragment.showLoadingDialog(fragment.context!!)
                         SearchingShowService(fragment).tryPostStoreLodge(
@@ -133,8 +159,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
                         fragment.showLoadingDialog(fragment.context!!)
                         SearchingShowService(fragment).tryDeleteLodgeStore(lodgeId, pos)
                     }
-
-                }
+                }*/
             }
         }
 

@@ -1,7 +1,7 @@
 package com.rp2.star.airbnb.src.main.store
 
 import com.rp2.star.airbnb.config.ApplicationClass
-import com.rp2.star.airbnb.src.main.store.in_folder.models.GetFoldersResponse
+import com.rp2.star.airbnb.src.main.store.models.GetFoldersResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

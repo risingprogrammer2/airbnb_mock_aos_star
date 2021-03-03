@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rp2.star.airbnb.R
-import com.rp2.star.airbnb.src.main.store.in_folder.models.Folder
+import com.rp2.star.airbnb.src.main.store.models.Saves
 import kotlinx.android.synthetic.main.recycler_view_folder_item.view.*
 
-class StoreFolderRecyclerAdapter(val context: Context):
-    RecyclerView.Adapter<StoreFolderRecyclerAdapter.FolderHolder>(){
+class StoreFolderRecyclerAdapter(val context: Context,
+                                 private var folderList: ArrayList<Saves>):
+    RecyclerView.Adapter<StoreFolderRecyclerAdapter.FolderHolder>() {
 
-    private var folderList = ArrayList<Folder>()
 
     // 뷰홀더를 생성해서 반환한다
     override fun onCreateViewHolder(
@@ -37,7 +38,7 @@ class StoreFolderRecyclerAdapter(val context: Context):
 
     override fun getItemCount() = folderList.size
 
-    inner class FolderHolder(folderView: View) : RecyclerView.ViewHolder(folderView){
+    inner class FolderHolder(folderView: View) : RecyclerView.ViewHolder(folderView) {
         private val root: View = folderView.folder_item_root        // 아이템 루트 레이아웃
         private val img1: ImageView = folderView.folder_item_img1   // 큰사진
         private val img2: ImageView = folderView.folder_item_img2
@@ -47,15 +48,72 @@ class StoreFolderRecyclerAdapter(val context: Context):
         private val numLodge: TextView = folderView.folder_item_num_lodge   // 숙소 n개
 
         // 데이터 타입 수정해야함
-        fun setValue(folder: Folder){
+        fun setValue(folder: Saves) {
             root.clipToOutline = true
+            img1.clipToOutline = true
+            img2.clipToOutline = true
+            img3.clipToOutline = true
+
+            // 대표 이미지 3개 적용
+            val imgList = folder.imageList
+            when (imgList.size) {
+                1 -> {
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img1)
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img2)
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img3)
+                }
+                2 -> {
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img1)
+                    Glide.with(context!!)
+                        .load(imgList[1])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img2)
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img3)
+                }
+                else -> {
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img1)
+                    Glide.with(context!!)
+                        .load(imgList[0])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img2)
+                    Glide.with(context!!)
+                        .load(imgList[2])
+                        .error(R.drawable.search_main_seoul)
+                        .into(img3)
+                }
+            }
+
+            // 날짜
+            dates.setText("항상")
+
+            // 폴더 이름
+            title.text = String.format(folder.folderName)
+
+            // 숙소 개수
+            numLodge.text = String.format("숙소 ${folder.imageList.size}개")
         }
     }
 
-
-    // 숙소 리스트를 받아온다, 프래그먼트에서 실행
-    fun provideList(folderList: ArrayList<Folder>){
-        this.folderList = folderList
-        this.notifyDataSetChanged()
+    fun provideFolderList(folders: ArrayList<Saves>){
+        folderList = folders
+        notifyDataSetChanged()
     }
 }

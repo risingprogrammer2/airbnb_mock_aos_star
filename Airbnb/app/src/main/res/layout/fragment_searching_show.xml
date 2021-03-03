@@ -149,4 +149,20 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!--<fragment
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/on_store_btm_sheet"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:name="com.rp2.star.airbnb.src.main.store.on_store.OnStoreBtmFragment"
+        android:tag="fragment_on_store_btm"
+        tools:layout="@layout/fragment_on_store_btm"/>-->
+    <FrameLayout
+        android:id="@+id/searching_show_frm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparentForBackground"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

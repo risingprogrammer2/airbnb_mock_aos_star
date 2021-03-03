@@ -20,7 +20,7 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 
     private val sp = ApplicationClass.sSharedPreferences
     private var lodgeByCityList = ArrayList<ResultLodgeByCity>()
-    lateinit var lodgeByCityAdapter: SearchingShowLodgeAdapter
+    private lateinit var lodgeByCityAdapter: SearchingShowLodgeAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,22 +34,49 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 
         // 서울로 숙소 조회
         // SearchingShowService(this).tryGetLodgeByCity("서울")
-        //SearchingShowService(this).tryGetLodgeByCityDates("홍대")
         // 숙소 조회 리사이클러뷰 어댑터 설정
         lodgeByCityAdapter = SearchingShowLodgeAdapter(context!!, this, searchingView)
         binding.searchingShowRecyclerView.adapter = lodgeByCityAdapter
         binding.searchingShowRecyclerView.layoutManager = LinearLayoutManager(activity,
             LinearLayoutManager.VERTICAL, false)
         // 인디케이터 설정
-
-
 /*
         // 뒤로가기 버튼
         binding.searchingShowBack.setOnClickListener {
             searchingView.goToCalendar()
         }
 */
+
+        /*val onStoreFragment = childFragmentManager.findFragmentByTag("fragment_on_store") as?
+                OnStoreBtmFragment ?: return
+        val onStoreBehavior = BottomSheetBehavior.from(onStoreFragment.view!!)
+        onStoreBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback(){
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when(newState){
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        onStoreBehavior.peekHeight = 0
+                        onStoreBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                    }
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_DRAGGING -> {
+                    }
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        })*/
     }
+
+
 
     // 도시명으로 숙소정보 조회 성공했을 때 실행
     override fun onGetLodgeSuccess(response: GetLodgeByCityResponse) {
