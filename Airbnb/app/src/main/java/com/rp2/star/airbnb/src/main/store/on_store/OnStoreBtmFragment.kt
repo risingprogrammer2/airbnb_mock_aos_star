@@ -39,13 +39,23 @@ class OnStoreBtmFragment():
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         Log.d("로그","onCreateDialog() called")
         val btmSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        val btmSheet = btmSheetDialog.findViewById<View>(R.id.on_store_fragment)
-        btmSheetDialog.setContentView(btmSheet!!)
-        val btmSheetBehavior = BottomSheetBehavior.from(btmSheet.parent as View)
+        /*val metrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getRealMetrics(metrics)
+        btmSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        btmSheetDialog.behavior.peekHeight = metrics.heightPixels*/
+        val view = View.inflate(context, R.layout.fragment_on_store_btm, null)
+        // val btmSheet = btmSheetDialog.findViewById<View>(R.id.on_store_fragment)
+        btmSheetDialog.setContentView(view)
+        val btmSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        Log.d("로그","view.parent: ${view.parent}")
 
         //setting Peek at the 16:9 ratio keyline of its parent.
         btmSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
-        btmSheetBehavior.isHideable = true
+
+        setUpFullHeight(view.parent as View)
+
+        // view.minimumHeight = (Resources.getSystem().displayMetrics.heightPixels) / 2
+
         btmSheetBehavior.addBottomSheetCallback(btmSheetCallback)
 
         /*btmSheetDialog.setOnShowListener {
