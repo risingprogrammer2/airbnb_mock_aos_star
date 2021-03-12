@@ -5,10 +5,8 @@ import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -18,7 +16,6 @@ import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.ApplicationClass
 import com.rp2.star.airbnb.databinding.FragmentOnStoreBtmBinding
 import com.rp2.star.airbnb.src.main.store.StoreFragmentView
-import com.rp2.star.airbnb.src.main.store.StoreService
 import com.rp2.star.airbnb.src.main.store.models.GetFoldersResponse
 import com.rp2.star.airbnb.src.main.store.models.Saves
 import com.rp2.star.airbnb.util.LoadingDialog
@@ -36,82 +33,99 @@ class OnStoreBtmFragment():
     private var folderList = ArrayList<Saves>()
     private lateinit var onStoreRecyclerAdapter: OnStoreRecyclerAdapter
 
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         Log.d("로그","onCreateDialog() called")
         val btmSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        /*val metrics = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getRealMetrics(metrics)
-        btmSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        btmSheetDialog.behavior.peekHeight = metrics.heightPixels*/
+
         val view = View.inflate(context, R.layout.fragment_on_store_btm, null)
-        // val btmSheet = btmSheetDialog.findViewById<View>(R.id.on_store_fragment)
+
+
         btmSheetDialog.setContentView(view)
+        Log.d("로그", "btmSheetDialog: $btmSheetDialog")
+
         val btmSheetBehavior = BottomSheetBehavior.from(view.parent as View)
-        Log.d("로그","view.parent: ${view.parent}")
+
+        // 새로운 폴더 만들기 버튼을 BottomSheetDialogFragment의 최상위 레이아웃인 FrameLayout에 추가한다
+        val container = view.parent.parent.parent as FrameLayout
+        val createFolderView = View.inflate(context, R.layout.layout_create_folder,
+            null
+        )
+        val cParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+        cParams.gravity = Gravity.BOTTOM
+
+        createFolderView?.setOnClickListener(onClickNew)
+        container.addView(createFolderView, container.childCount, cParams)
+        // container.addView(createFolderView, cParams)
+
+
+
 
         //setting Peek at the 16:9 ratio keyline of its parent.
         btmSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        val screenHeight = activity!!.resources.displayMetrics.heightPixels
+        /*val params = ((view.parent as View).layoutParams) as CoordinatorLayout.LayoutParams
+        val behavior2 = params.behavior*/
 
-        setUpFullHeight(view.parent as View)
+        // setUpFullHeight(view.parent as View)
+        val btmSheetContainer = btmSheetDialog.findViewById<View>(R.id.design_bottom_sheet)
+        val params = btmSheetContainer?.layoutParams
+        params?.height = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        //params?.height = screenHeight / 2
+        btmSheetContainer?.layoutParams = params
 
-        // view.minimumHeight = (Resources.getSystem().displayMetrics.heightPixels) / 2
 
-        btmSheetBehavior.addBottomSheetCallback(btmSheetCallback)
+        // minimizeHeight(view.parent as View)
 
-        /*btmSheetDialog.setOnShowListener {
-            val dialog = it as BottomSheetDialog
-            val btmSheet = dialog.findViewById<View>(R.id.on_store_fragment)
-            //setUpFullHeight(btmSheet!!.rootView)
-            val btmSheetBehavior = BottomSheetBehavior.from(btmSheet!!.parent as View)
-            Log.d("로그", "parent: $view")
-            //setting Peek at the 16:9 ratio keyline of its parent.
-            btmSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
 
-            // btmSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        /*btmSheetBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback(){
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                Log.d("로그", "onSlide() called, btmSheet: $bottomSheet , slideOffset: $slideOffset")
+            }
 
-            btmSheetBehavior.isHideable = true
-            btmSheetBehavior.isFitToContents = false
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                Log.d("로그", "STATE_COLLAPSED, bottomSheet: $bottomSheet ," +
+                        " height: ${bottomSheet.layoutParams.height}")
 
-            btmSheetBehavior.addBottomSheetCallback(btmSheetCallback)
-        }*/
+                when(newState){
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        btmSheetContainer?.layoutParams = params
+                    }
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        setUpFullHeight(btmSheetContainer!!)
+                    }
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        btmSheetContainer?.layoutParams = params
+                    }
+                }
+            }
+        })*/
+
         return btmSheetDialog
     }
 
-    /*override fun onStart() {
-        super.onStart()
-        val dialog = dialog;
-        lateinit var bottomSheet: View
+    private val onClickNew = View.OnClickListener {
 
-        if (dialog != null) {
-            bottomSheet = dialog.findViewById(R.id.on_store_fragment);
-            bottomSheet.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        }
-        val view = view;
-        view!!.post {
-            val parent = view.parent
-            val params = (parent as View).layoutParams as CoordinatorLayout.LayoutParams
-            val behavior = params.behavior
-            val bottomSheetBehavior = behavior as BottomSheetBehavior<*>
-            bottomSheetBehavior.peekHeight = view.measuredHeight;
-            (bottomSheet.parent as View).setBackgroundColor(Color.TRANSPARENT)
-        }
-    }*/
-
-   private val btmSheetCallback = object: BottomSheetBehavior.BottomSheetCallback(){
-        override fun onStateChanged(bottomSheet: View, newState: Int) {
-            Log.d("로그", "onStateChanged() called, btmSheet: $bottomSheet , newState: $newState")
-
-        }
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            Log.d("로그", "onSlide() called, btmSheet: $bottomSheet , slideOffset: $slideOffset")
-        }
     }
-
-    private fun setUpFullHeight(bottomSheet: View){
-        val layoutParams = bottomSheet.layoutParams
+    private fun setUpFullHeight(bottomSheetParent: View){
+        val layoutParams = bottomSheetParent.layoutParams
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-        bottomSheet.layoutParams = layoutParams
+        bottomSheetParent.layoutParams = layoutParams
+        Log.d("로그","setUpFullHeight() called - height1: ${bottomSheetParent.layoutParams.height}, " +
+                "height2: ${bottomSheetParent.height}")
     }
+
+    private fun minimizeHeight(bottomSheetParent: View){
+        val layoutParams = bottomSheetParent.layoutParams
+        layoutParams.height = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        bottomSheetParent.layoutParams = layoutParams
+        Log.d("로그","minimizeHeight() called - height1: ${bottomSheetParent.layoutParams.height}" +
+                "height2: ${bottomSheetParent.height}")
+    }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d("로그","onViewCreated() called")
@@ -119,8 +133,20 @@ class OnStoreBtmFragment():
 
         userId = sp.getInt("id", -1)
 
-        showLoadingDialog(context!!)
-        StoreService(this).tryGetStoredFolders()
+        // 서버 못써서 주석처리
+
+//        showLoadingDialog(context!!)
+//        StoreService(this).tryGetStoredFolders()
+
+        val imgList = arrayListOf<String>("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F99086B3C5B9B75C431B0FD")
+        val saves = Saves("더미데이터", imgList)
+        folderList.add(saves)
+        onStoreRecyclerAdapter = OnStoreRecyclerAdapter(context!!, folderList)
+        binding.onStoreRecyclerView.adapter = onStoreRecyclerAdapter
+        binding.onStoreRecyclerView.layoutManager = LinearLayoutManager(
+            activity!!,
+            LinearLayoutManager.VERTICAL, false
+        )
 
     }
 
