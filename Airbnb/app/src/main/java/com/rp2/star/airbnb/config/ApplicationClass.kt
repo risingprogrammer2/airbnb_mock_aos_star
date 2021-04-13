@@ -12,13 +12,12 @@ import java.util.concurrent.TimeUnit
 
 // 앱이 실행될때 1번만 실행이 됩니다.
 class ApplicationClass : Application() {
-    //val API_URL = "https://members.softsquared.com/"
-
     // 테스트 서버 주소
-    val API_URL = "https://dev.rp2airbnb.shop"
+    // val API_URL = "https://dev.rp2airbnb.shop"
 
     // 실 서버 주소
-    // val API_URL = "http://prod.rp2airbnb.shop"
+    val API_URL = "http://prod.rp2airbnb.shop"
+    // val API_URL = "https://askyourself.herokuapp.com/"
 
     // 네이버 로그인
     val NAVER_ID = "85c0KuzfMwyqtc7nXByI"

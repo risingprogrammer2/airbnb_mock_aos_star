@@ -121,7 +121,7 @@
                         android:adjustViewBounds="true"
                         android:scaleType="centerInside"
                         android:src="@drawable/star"
-                        android:tint="@color/redForContinue"
+                        app:tint="@color/redForContinue"
                         android:visibility="visible"/>
 
                     <TextView
@@ -142,7 +142,7 @@
                         android:adjustViewBounds="true"
                         android:scaleType="centerInside"
                         android:src="@drawable/medal"
-                        android:tint="@color/redForContinue"
+                        app:tint="@color/redForContinue"
                         android:visibility="visible"/>
 
                     <TextView
@@ -498,7 +498,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerInside"
                     android:src="@drawable/star"
-                    android:tint="@color/redForContinue"/>
+                    app:tint="@color/redForContinue"/>
 
                 <TextView
                     android:id="@+id/detail_rating_rating_text"

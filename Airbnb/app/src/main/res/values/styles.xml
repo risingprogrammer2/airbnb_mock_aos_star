@@ -119,4 +119,6 @@
         <item name="android:textColor">@color/blackForMyPageText</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="DialogNewFolder" parent="Theme.MaterialComponents.Light.Dialog"/>
 </resources>

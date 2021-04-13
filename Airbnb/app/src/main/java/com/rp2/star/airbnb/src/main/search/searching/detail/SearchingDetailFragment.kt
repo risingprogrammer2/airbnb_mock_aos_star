@@ -162,7 +162,7 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
             }
         }
 
-        // 평점이 있으면 평점 (개수) or null
+        // 평점이 있으면 "평점 (개수)" or null
         var rating1: String? = null
         var rating2: String? = null // 아래에 큰 글씨로 적혀있는 후기
         var startIdx = 0    // (
@@ -275,6 +275,11 @@ class SearchingDetailFragment(val searchingView: SearchingActivityView) :
                 binding.detailReviewDates.text = dates
                 // 코멘트
                 binding.detailReviewComments.text = lodgeReview.comment
+                // 리뷰 모두보기 버튼의 텍스트 설정
+                if(lodgeUser.count > 1){
+                    binding.detailReviewBtn.text = String.format("후기 ${lodgeUser.count}개 모두 보기")
+                }
+
 
 
                 // 아래는 수정돼서 삭제

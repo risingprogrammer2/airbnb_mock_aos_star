@@ -11,12 +11,12 @@ interface SearchingShowFragmentView {
     fun onGetLodgeFailure(message: String)
 
     // 숙소 저장 요청 콜백
-    fun onPostLodgeStoreSuccess(response: BaseResponse, pos: Int)
+    fun onPostLodgeStoreSuccess(response: BaseResponse, pos: Int, folderName: String)
 
     fun onPostLodgeStoreFailure(message: String)
 
     // 숙소 저장 취소 콜백
-    fun onDeleteLodgeStoreSuccess(response: BaseResponse, pos: Int)
+    fun onDeleteLodgeStoreSuccess(response: BaseResponse, pos: Int, folderName: String)
 
     fun onDeleteLodgeStoreFailure(message: String)
 }

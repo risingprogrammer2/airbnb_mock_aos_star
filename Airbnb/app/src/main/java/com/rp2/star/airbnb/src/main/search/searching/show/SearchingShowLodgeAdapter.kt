@@ -1,6 +1,7 @@
 package com.rp2.star.airbnb.src.main.search.searching.show
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -78,7 +79,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
             val isStored: Boolean = resultLodgeByCity.isSave
             if(isStored){
                 ApplicationClass.sSharedPreferences.edit()
-                    .putBoolean("isStored", isStored).commit()
+                    .putBoolean("isStored", isStored).apply()
                 isStoredImg.apply{
                     when(isStored){
                         true -> setImageResource(R.drawable.searching_detail_heart_filled)
@@ -97,6 +98,7 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
                     else -> {
                         rating.text = this.toString()
                         count.text = String.format("(${resultLodgeByCity.count})")
+
                     }
                 }
             }
@@ -118,36 +120,21 @@ class SearchingShowLodgeAdapter(val context: Context, val fragment: SearchingSho
                 searchingActivityView.goToDetail(lodgeId)
             }
 
-            // 숙소 찜하기 / 취소
+            // 숙소 찜하기 / 취소 클릭 -> 저장폴더 목록을 보여준다
             isStoredImg.setOnClickListener {
                 val pos = adapterPosition
                 val lodgeId = lodgeList[pos].id
 
+                // 숙소 저장 Bottom Sheet 화면
                 val onStoreBtmFragment = OnStoreBtmFragment()
+                // 숙소 아이디, pos 전달
+                val onStoreBundle = Bundle()
+                onStoreBundle.putInt("lodgeId", lodgeId)
+                onStoreBundle.putInt("position", pos)
+                onStoreBtmFragment.arguments = onStoreBundle
+
                 val fragmentManager = fragment.childFragmentManager
                 onStoreBtmFragment.show(fragmentManager, "onStore")
-
-                /*val transaction = fragmentManager.beginTransaction()
-                transaction.add(R.id.searching_show_frm, onStoreBtmFragment)
-                transaction.addToBackStack("onStore")
-                transaction.commitAllowingStateLoss()*/
-
-
-                /*val onStoreTransaction = fragment.activity!!.supportFragmentManager
-                    .beginTransaction().replace(R.id.searching_frm, onStoreBtmFragment)
-                fragment.activity!!.supportFragmentManager.beginTransaction().remove(fragment)
-
-                onStoreBtmFragment.show(onStoreTransaction, "showing stored folders")*/
-
-                // onStoreBtmFragment.show(fragment.fragmentManager!!, "showing stored folders")
-
-
-                /*val onStoreBehavior = BottomSheetBehavior
-                    .from(fragment.view!!
-                        .findViewById<RecyclerView>(R.id.on_store_btm_sheet)
-                    )
-                onStoreBehavior.peekHeight = 180
-                onStoreBehavior.state = BottomSheetBehavior.STATE_COLLAPSED*/
 
                 /*when(isStored){
                     false -> {

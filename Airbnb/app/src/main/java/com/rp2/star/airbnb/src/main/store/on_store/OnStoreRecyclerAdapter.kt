@@ -13,7 +13,8 @@ import com.rp2.star.airbnb.src.main.store.models.Saves
 import kotlinx.android.synthetic.main.recycler_view_on_store_item.view.*
 
 class OnStoreRecyclerAdapter(val context: Context,
-                             private var folderList: ArrayList<Saves>):
+                             private var folderList: ArrayList<Saves>,
+                             val onStoreView: OnStoreView):
     RecyclerView.Adapter<OnStoreRecyclerAdapter.FolderHolder>() {
 
 
@@ -43,10 +44,15 @@ class OnStoreRecyclerAdapter(val context: Context,
         private val dates: TextView = folderView.on_store_item_dates  // 날짜 미정 or 날짜 범위
         private val title: TextView = folderView.on_store_item_title
         private val numLodge: TextView = folderView.on_store_item_num_lodge   // 숙소 n개
+        private val rootView: View = folderView.rootView
 
         // 데이터 타입 수정해야함
         fun setValue(folder: Saves) {
             img.clipToOutline = true
+
+            rootView.setOnClickListener {
+                onStoreView.storeLodge(title.text.toString())
+            }
 
             // 이미지 1개 적용
             val imgList = folder.imageList

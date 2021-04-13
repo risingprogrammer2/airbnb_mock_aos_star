@@ -127,7 +127,7 @@ class InFolderShowLodgeAdapter(val context: Context, val fragment: SearchingShow
                     }
                     true -> {
                         fragment.showLoadingDialog(fragment.context!!)
-                        SearchingShowService(fragment).tryDeleteLodgeStore(lodgeId, pos)
+                        SearchingShowService(fragment).tryDeleteLodgeStore(lodgeId, pos, "하드코딩 폴더")
                     }
 
                 }

@@ -87,7 +87,7 @@
                 <LinearLayout
                     android:id="@+id/searching_company2_btn1_counter"
                     android:layout_width="0dp"
-                    android:layout_height="36dp"
+                    android:layout_height="32dp"
                     android:orientation="horizontal"
                     app:layout_constraintWidth_percent="0.4"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -178,7 +178,7 @@
                 <LinearLayout
                     android:id="@+id/searching_company2_btn2_counter"
                     android:layout_width="0dp"
-                    android:layout_height="36dp"
+                    android:layout_height="32dp"
                     android:orientation="horizontal"
                     app:layout_constraintWidth_percent="0.4"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -248,7 +248,7 @@
                 <LinearLayout
                     android:id="@+id/searching_company2_btn3_counter"
                     android:layout_width="0dp"
-                    android:layout_height="36dp"
+                    android:layout_height="32dp"
                     android:orientation="horizontal"
                     app:layout_constraintWidth_percent="0.4"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -301,7 +301,7 @@
             android:id="@+id/searching_company2_erase"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="?attr/borderlessButtonStyle"
+            style="?android:attr/borderlessButtonStyle"
             android:maxLines="1"
             android:text="@string/txt_erase"
             android:textColor="@color/black"
@@ -322,7 +322,7 @@
             android:text="저장"
             android:textColor="@color/white"
             android:textSize="14sp"
-            style="?attr/borderlessButtonStyle"
+            style="?android:attr/borderlessButtonStyle"
             app:backgroundTint="@color/black"
             android:background="@drawable/input_profile_btn_continue_selector"/>
     </LinearLayout>

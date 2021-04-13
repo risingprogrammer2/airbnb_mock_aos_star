@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/create_folder_btn"
+    android:layout_gravity="bottom"
+    android:elevation="2dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@color/greyForMyPageDivider"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="64dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/on_store_btn_new"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="@string/on_store_txt_new"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="@color/whiteForBackground" />
+</FrameLayout>

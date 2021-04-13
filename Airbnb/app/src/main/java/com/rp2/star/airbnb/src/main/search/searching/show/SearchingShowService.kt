@@ -49,7 +49,7 @@ class SearchingShowService(val view: SearchingShowFragmentView) {
 
                 override fun onResponse(call: Call<BaseResponse>,
                                         response: Response<BaseResponse>) {
-                    view.onPostLodgeStoreSuccess(response.body() as BaseResponse, pos)
+                    view.onPostLodgeStoreSuccess(response.body() as BaseResponse, pos, folderName)
                 }
 
                 override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
@@ -59,7 +59,7 @@ class SearchingShowService(val view: SearchingShowFragmentView) {
     }
 
     // 숙소 찜하기 취소 요청
-    fun tryDeleteLodgeStore(lodgeId: Int, pos: Int){
+    fun tryDeleteLodgeStore(lodgeId: Int, pos: Int, folderName: String){
 
         val searchingShowRetrofitInterface = ApplicationClass.sRetrofit.create(
             SearchingShowRetrofitInterface::class.java)
@@ -69,7 +69,7 @@ class SearchingShowService(val view: SearchingShowFragmentView) {
 
                 override fun onResponse(call: Call<BaseResponse>,
                                         response: Response<BaseResponse>) {
-                    view.onDeleteLodgeStoreSuccess(response.body() as BaseResponse, pos)
+                    view.onDeleteLodgeStoreSuccess(response.body() as BaseResponse, pos, folderName)
                 }
 
                 override fun onFailure(call: Call<BaseResponse>, t: Throwable) {

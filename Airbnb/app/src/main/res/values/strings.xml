@@ -201,4 +201,7 @@
     <string name="trip_recycler_txt_more">여행 계획 더 보기</string>
     <string name="trip_txt_tab0">예정된 예약</string>
     <string name="trip_txt_tab1">이전 예약</string>
+
+    <!-- on_store_btm_fragment -->
+    <string name="on_store_txt_new"><u>새로운 목록 만들기</u></string>
 </resources>

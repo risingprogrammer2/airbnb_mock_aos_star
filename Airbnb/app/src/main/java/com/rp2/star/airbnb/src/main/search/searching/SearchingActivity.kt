@@ -35,10 +35,10 @@ SearchingActivityView {
         mWindow.statusBarColor = Color.parseColor("#ffffff")
 
 
-        /*supportFragmentManager.beginTransaction().add(R.id.search_frm, SearchingStep1Fragment(this))
-            .commitAllowingStateLoss()*/
         supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingStep1Fragment(this))
             .commitAllowingStateLoss()
+        /*supportFragmentManager.beginTransaction().add(R.id.searching_frm, SearchingCompanyFragment(this))
+            .commitAllowingStateLoss()*/
 
     }
 

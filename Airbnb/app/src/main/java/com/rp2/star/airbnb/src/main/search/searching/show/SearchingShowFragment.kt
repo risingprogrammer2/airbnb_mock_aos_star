@@ -12,6 +12,7 @@ import com.rp2.star.airbnb.databinding.FragmentSearchingShowBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
+import com.rp2.star.airbnb.src.main.store.on_store.OnStoreBtmFragment
 
 
 class SearchingShowFragment(private val searchingView: SearchingActivityView) :
@@ -26,6 +27,8 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
         super.onViewCreated(view, savedInstanceState)
 
 
+        // 서버 이용을 못해서 임시 주석 처리
+
         showLoadingDialog(context!!)
         //검색 도시로 숙소 조회
         sp.getString("query", null)?.let{
@@ -39,6 +42,15 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
         binding.searchingShowRecyclerView.adapter = lodgeByCityAdapter
         binding.searchingShowRecyclerView.layoutManager = LinearLayoutManager(activity,
             LinearLayoutManager.VERTICAL, false)
+
+        /*
+        // 서버 사용 못해서 더미데이터 사용
+        val temp_city = ResultLodgeByCity(0, "Y", "신라호텔", "뉴욕",
+            "아파트", "전체", 2, 3.5.toFloat(), 1.5.toFloat(),
+            4.6.toFloat(), 5, false, arrayListOf("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8dPeO%2FbtqA8j5fFTx%2FMaxPXI78hOQcCgdG2SHTw0%2Fimg.jpg"),
+            ResultLodgeByCitySpaces(1.toFloat(), 1.toFloat(), 1.toFloat()), 300000, 900000)
+        lodgeByCityAdapter.provideList(arrayListOf(temp_city))*/
+
         // 인디케이터 설정
 /*
         // 뒤로가기 버튼
@@ -47,33 +59,6 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
         }
 */
 
-        /*val onStoreFragment = childFragmentManager.findFragmentByTag("fragment_on_store") as?
-                OnStoreBtmFragment ?: return
-        val onStoreBehavior = BottomSheetBehavior.from(onStoreFragment.view!!)
-        onStoreBehavior.addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback(){
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when(newState){
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-                        onStoreBehavior.peekHeight = 0
-                        onStoreBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-
-                    }
-                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-
-                    }
-                    BottomSheetBehavior.STATE_DRAGGING -> {
-                    }
-                    BottomSheetBehavior.STATE_SETTLING -> {
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-        })*/
     }
 
 
@@ -127,21 +112,27 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
     }
 
     // 숙소 저장 통신 성공
-    override fun onPostLodgeStoreSuccess(response: BaseResponse, pos: Int) {
+    override fun onPostLodgeStoreSuccess(response: BaseResponse, pos: Int, folderName: String) {
         dismissLoadingDialog()
 
         Log.d("로그","onPostLodgeStoreSuccess() called - response: $response")
 
         when(response.isSuccess){
             true -> {
-                // 성공 -> 하트 변경 , 저장 플래그 변경
+                // 성공 -> 하트 변경 , 저장 플래그 변경, 성공 토스트 메시지
                 lodgeByCityList[pos].isSave = !(lodgeByCityList[pos].isSave)
                 lodgeByCityAdapter.apply{
                     changeHeartState(pos)
                     notifyDataSetChanged()
                     //notifyItemChanged(pos)
                 }
+                showCustomLongToast("${folderName}에 저장됨")
 
+                // 바텀시트, 그 위에 있는 다이얼로그 모두 내린다
+                val btmFragment =
+                    childFragmentManager.findFragmentByTag("onStore") as OnStoreBtmFragment
+                btmFragment.dismiss()
+                // btmFragment.createFolderDialog.dismiss()
             }
             false -> {
                 showCustomToast("저장에 실패했습니다, 잠시 후 다시 시도해주세요.\n" +
@@ -160,7 +151,7 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
     }
 
     // 숙소 저장 취소 통신 성공
-    override fun onDeleteLodgeStoreSuccess(response: BaseResponse, pos: Int) {
+    override fun onDeleteLodgeStoreSuccess(response: BaseResponse, pos: Int, folderName: String) {
         dismissLoadingDialog()
 
         Log.d("로그", "onDeleteLodgeStoreSuccess() called - response: $response")
@@ -173,11 +164,13 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
                     notifyDataSetChanged()
                     // notifyItemChanged(pos)
                 }
+                showCustomLongToast("${folderName}에서 삭제됨")
             }
             false -> {
                 Log.d("로그", "숙소 저장 취소 실패 - message: ${response.message}")
                 showCustomLongToast("저장 숙소 삭제에 실패했습니다, 잠시 후 다시 시도해주세요.\n" +
-                        "원인: ${response.message}")
+                        "원인: ${response.message}"
+                )
             }
         }
 
@@ -190,13 +183,4 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 
         showCustomToast("숙소 저장 취소 통신 실패: message: $message")
     }
-
-    fun onHeartClicked(pos: Int, lodgeId: Int, isStored: Boolean){
-        when(isStored){
-            true -> SearchingShowService(this).tryDeleteLodgeStore(lodgeId, pos)
-            false -> SearchingShowService(this)
-                .tryPostStoreLodge("하드코딩 폴더", lodgeId, pos)
-        }
-    }
-
 }
