@@ -13,7 +13,6 @@ import com.rp2.star.airbnb.config.BaseActivity
 import com.rp2.star.airbnb.config.BaseResponse
 import com.rp2.star.airbnb.databinding.ActivityPhoneBinding
 import com.rp2.star.airbnb.src.log_in.input_profile.InputProfileActivity
-import com.rp2.star.airbnb.src.log_in.models.PostCertNumCompRequest
 import com.rp2.star.airbnb.src.log_in.models.SignUpResponse
 import com.rp2.star.airbnb.src.main.MainActivity
 
@@ -31,9 +30,9 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
         mContext = this
 
         // 하이픈 있는 번호
-        val formattedNumber = intent.extras?.let{it.get("formatted") as String} ?: ""
+        val formattedNumber = intent.extras?.let{it.get("formatted") as String} ?: "010-8244-9983"
         // 하이픈 없는 번호
-        phoneNumber = intent.extras?.let{it.get("phone") as String} ?: ""
+        phoneNumber = intent.extras?.let{it.get("phone") as String} ?: "+821082449983"
         //phoneNumber = "+821082449983"
         val guideText = "문자 메시지를 통해 ${formattedNumber}번으로 보내드린 코드를 입력하세요."
         binding.phoneTextGuide1.text = guideText
@@ -51,12 +50,12 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
             numView.addTextChangedListener(numChangedListener)
         }
 
-
+        /*
         // 서버에서 인증번호 전송 완료될 때까지 로딩화면을 보여준다
         showLoadingDialog(mContext)
         binding.root.visibility = View.GONE
         // 서버에 인증번호 전송 요청
-        PhoneService(this).tryPostCertNum(phoneNumber)
+        PhoneService(this).tryPostCertNum(phoneNumber)*/
 
         // 뒤로가기 버튼
         binding.phoneBtnBack.setOnClickListener{
@@ -197,7 +196,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
 
                     // 마지막 칸에 입력하면 서버에 자동으로 번호 비교를 요청한다
                     binding.phoneTextInputNum3.id -> {
-
+                        /*
                         for(i in 0..3){
                             inputNum += numViewArray[i].text.toString()
                         }
@@ -209,7 +208,7 @@ class PhoneActivity : BaseActivity<ActivityPhoneBinding>(ActivityPhoneBinding::i
                         val postCertNumCompRequest = PostCertNumCompRequest("+821082449983", inputNum)
                         showLoadingDialog(mContext)
                         PhoneService(mContext as PhoneActivityView).tryPostCertNumCompare(postCertNumCompRequest)
-
+                         */
                     }
 
                     // 나머지 칸에 숫자 입력 -> 자동 다음 뷰 이동, 이전 뷰 disabled

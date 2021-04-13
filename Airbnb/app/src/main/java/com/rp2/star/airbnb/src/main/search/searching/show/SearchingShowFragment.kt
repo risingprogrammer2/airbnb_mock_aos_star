@@ -12,6 +12,7 @@ import com.rp2.star.airbnb.databinding.FragmentSearchingShowBinding
 import com.rp2.star.airbnb.src.main.search.searching.SearchingActivityView
 import com.rp2.star.airbnb.src.main.search.searching.models.GetLodgeByCityResponse
 import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCity
+import com.rp2.star.airbnb.src.main.search.searching.models.ResultLodgeByCitySpaces
 import com.rp2.star.airbnb.src.main.store.on_store.OnStoreBtmFragment
 
 
@@ -28,12 +29,12 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
 
 
         // 서버 이용을 못해서 임시 주석 처리
-
+/*
         showLoadingDialog(context!!)
         //검색 도시로 숙소 조회
         sp.getString("query", null)?.let{
            SearchingShowService(this).tryGetLodgeByCity(it)
-        }
+        }*/
 
         // 서울로 숙소 조회
         // SearchingShowService(this).tryGetLodgeByCity("서울")
@@ -43,13 +44,13 @@ class SearchingShowFragment(private val searchingView: SearchingActivityView) :
         binding.searchingShowRecyclerView.layoutManager = LinearLayoutManager(activity,
             LinearLayoutManager.VERTICAL, false)
 
-        /*
+
         // 서버 사용 못해서 더미데이터 사용
         val temp_city = ResultLodgeByCity(0, "Y", "신라호텔", "뉴욕",
             "아파트", "전체", 2, 3.5.toFloat(), 1.5.toFloat(),
             4.6.toFloat(), 5, false, arrayListOf("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8dPeO%2FbtqA8j5fFTx%2FMaxPXI78hOQcCgdG2SHTw0%2Fimg.jpg"),
             ResultLodgeByCitySpaces(1.toFloat(), 1.toFloat(), 1.toFloat()), 300000, 900000)
-        lodgeByCityAdapter.provideList(arrayListOf(temp_city))*/
+        lodgeByCityAdapter.provideList(arrayListOf(temp_city))
 
         // 인디케이터 설정
 /*

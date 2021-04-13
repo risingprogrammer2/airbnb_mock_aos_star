@@ -1,10 +1,8 @@
 package com.rp2.star.airbnb.src.main.trip
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rp2.star.airbnb.R
 import com.rp2.star.airbnb.config.ApplicationClass
@@ -16,20 +14,17 @@ import com.rp2.star.airbnb.src.main.trip.models.GetScheduleResponse
 class TripFragment : BaseFragment<FragmentMainTripBinding>(FragmentMainTripBinding::bind,
     R.layout.fragment_main_trip), TripFragmentView{
 
-    private lateinit var mContext: Context
     private lateinit var prevFragment: TripPrevFragment
     private lateinit var scheduledFragment: TripScheduledFragment
     private var isPrevLoaded: Boolean = false
     private var isScheduledLoaded: Boolean = false
     private lateinit var pagerAdapter: TripPagerAdapter
-    private var fragmentList = ArrayList<Fragment>(2)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         showLoadingDialog(context!!)
 
-        Log.d("로그", "로그1")
         // 모든 예약 정보를 가져온다
         TripService(this).tryGetPrevReserve()
         TripService(this).tryGetScheduleReserve()

@@ -44,11 +44,6 @@
             android:theme="@style/LogInTheme"
             android:windowSoftInputMode="adjustPan|adjustResize">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".src.log_in.input_profile.InputProfileActivity"
@@ -67,7 +62,11 @@
         <activity android:name=".src.main.search.searching.SearchingActivity"
             android:theme="@style/SearchTheme">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
